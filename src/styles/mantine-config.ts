@@ -4,10 +4,10 @@ import { MantineTheme, MantineThemeOverride } from "@mantine/core";
 
 export const MaintineThemeConfig: MantineThemeOverride = {
     colorScheme: "light",
-    // fontFamily: "'AppRegularFont', sans-serif",
-    // fontFamilyMonospace: "'AppRegularFont', sans-serif",
-    // headings: { fontFamily: "'AppRegularFont', sans-serif" },
-    primaryColor: "orange",
+    fontFamily: "'AppRegularFont', sans-serif",
+    fontFamilyMonospace: "'AppRegularFont', sans-serif",
+    headings: { fontFamily: "'AppRegularFont', sans-serif" },
+    primaryColor: "blue",
     colors: {
         darkBlue: ["black", "black", "black", "#2C4C59", "#667D86", "#1A3C4A", "black", "black", "black", "#667D86"]
     },
@@ -29,15 +29,15 @@ export const MaintineThemeConfig: MantineThemeOverride = {
                 return {
                     root: {
                         //@ts-ignore
-                        background: theme.fn.lighten(theme.colors.darkBlue[5], .1),
-                        borderRadius: 0
+                        // background: theme.fn.lighten(theme.colors.darkBlue[5], .1),
+                        // borderRadius: 0
                     }
                 }
             },
         },
         Tabs: {
             defaultProps: {
-                color: "orange"
+                color: "blue"
             },
             styles(theme, params) {
                 return {
@@ -57,7 +57,7 @@ export const MaintineThemeConfig: MantineThemeOverride = {
             styles(theme, params) {
                 return {
                     input: {
-                        background: theme.fn.darken(theme.colors.darkBlue[5], .2),
+                        // background: theme.fn.darken(theme.colors.darkBlue[5], .2),
                         borderColor: "transparent"
                     },
                 }
@@ -67,11 +67,11 @@ export const MaintineThemeConfig: MantineThemeOverride = {
             styles(theme, params) {
                 return {
                     input: {
-                        background: theme.fn.darken(theme.colors.darkBlue[5], .2),
+                        // background: theme.fn.darken(theme.colors.darkBlue[5], .2),
                         borderColor: "transparent"
                     },
                     dropdown: {
-                        background: theme.fn.darken(theme.colors.darkBlue[5], .2),
+                        // background: theme.fn.darken(theme.colors.darkBlue[5], .2),
                         borderColor: "transparent"
                     },
 
@@ -82,7 +82,7 @@ export const MaintineThemeConfig: MantineThemeOverride = {
             styles(theme, params) {
                 return {
                     modal: {
-                        background: theme.colors.darkBlue[5],
+                        // background: theme.colors.darkBlue[5],
                         borderColor: "transparent",
                         alignSelf: 'center'
                     },
