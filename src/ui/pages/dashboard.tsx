@@ -6,7 +6,6 @@ export const DashboardScreen = () => {
   let theme = useMantineTheme();
   return (
     <Stack spacing={"xl"} justify="stretch">
-      <MainScreenHeader title="Dashboard" />
       <AccountOverview />
     </Stack>
   );

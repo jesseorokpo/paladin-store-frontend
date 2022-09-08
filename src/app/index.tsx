@@ -6,7 +6,6 @@ import {
 import { observer } from "mobx-react";
 import { MantineProvider } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
-import AuthRoutes from "./router/AuthRoutes";
 import MainAppRoutes from "./router/MainAppRoutes";
 import { MaintineThemeConfig } from "../styles/mantine-config";
 
@@ -26,15 +25,7 @@ export default observer(function () {
           withNormalizeCSS
         >
           <NotificationsProvider>
-            {appState == "loaded" ?
-              checkAuthStatus ? <React.Fragment>
-                <AuthRoutes />
-              </React.Fragment> : <React.Fragment>
-                <MainAppRoutes />
-              </React.Fragment> : <React.Fragment>
-                <div>Initializing</div>
-              </React.Fragment>
-            }
+            <MainAppRoutes />
           </NotificationsProvider>
         </MantineProvider>
       </BrowserRouter>

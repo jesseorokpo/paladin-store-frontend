@@ -3,51 +3,65 @@ import MainHeader from "@ui/organisms/main-header/MainHeader";
 import MainAppNavigation from "@ui/organisms/main-navigation/MainNavigation";
 import { DashboardScreen } from "@ui/pages/dashboard";
 import MainAppShell from "@ui/template/MainAppShell";
-import React from "react";
-import { Add } from "iconsax-react";
 import AdsScreen from "@ui/pages/ads";
 import InvoicesScreen from "@ui/pages/invoices";
 import ProductsScreen from "@ui/pages/products";
 import StoresScreen from "@ui/pages/store";
+import MarketplaceShell from "@ui/template/MarketplaceShell";
+import MarketplaceHeader from "@ui/organisms/marketplace-widgets/MarketplaceHeader";
+import MarketHomeScreen from "@ui/pages/market/MarketHome";
 
 export default function MainAppRoutes() {
   return (
-    <MainAppShell Navbar={MainAppNavigation} ShellHeader={MainHeader}>
-      <Routes>
-        <Route path="/">
-          <Route path="" element={<DashboardScreen />} />
-          <Route path="about" element={<DashboardScreen />} />
-          <Route path="contact" element={<DashboardScreen />} />
-          <Route path="signin" element={<DashboardScreen />} />
-          <Route path="signup" element={<DashboardScreen />} />
-        </Route>
+    <Routes>
+      <Route path="/">
+        <Route path="about" element={<RenderMarketplaceScreen><div>About</div></RenderMarketplaceScreen>} />
+        <Route path="contact" element={<RenderMarketplaceScreen><div>Contact</div></RenderMarketplaceScreen>} />
+        <Route path="signin" element={<RenderMarketplaceScreen><div>Signin</div></RenderMarketplaceScreen>} />
+        <Route path="signup" element={<RenderMarketplaceScreen><div>Signup</div></RenderMarketplaceScreen>} />
         <Route path="/brand">
-          <Route path=":brand" element={<DashboardScreen />} />
+          <Route path=":brand" element={<RenderMarketplaceScreen><div>Brand</div></RenderMarketplaceScreen>} />
         </Route>
         <Route path="/store">
-          <Route path=":store" element={<DashboardScreen />} />
+          <Route path=":store" element={<RenderMarketplaceScreen><DashboardScreen /></RenderMarketplaceScreen>} />
         </Route>
+        <Route path="" element={<RenderMarketplaceScreen><MarketHomeScreen /></RenderMarketplaceScreen>} />
+      </Route>
 
-        <Route path="/account">
-          <Route path="stores">
-            <Route path=":product" element={<StoresScreen />} />
-            <Route path="" element={<StoresScreen />} />
-          </Route>
-          <Route path="products">
-            <Route path=":product" element={<ProductsScreen />} />
-            <Route path="" element={<ProductsScreen />} />
-          </Route>
-          <Route path="ads">
-            <Route path=":ad" element={<AdsScreen />} />
-            <Route path="" element={<AdsScreen />} />
-          </Route>
-          <Route path="invoices">
-            <Route path=":invoice" element={<InvoicesScreen />} />
-            <Route path="" element={<InvoicesScreen />} />
-          </Route>ProductsScreen
-          <Route path="" element={<DashboardScreen />} />
+      <Route path="/account">
+        <Route path="stores">
+          <Route path=":product" element={<RenderAppScreen><StoresScreen /></RenderAppScreen>} />
+          <Route path="" element={<RenderAppScreen><StoresScreen /></RenderAppScreen>} />
+        </Route>account
+        <Route path="products">
+          <Route path=":product" element={<RenderAppScreen><ProductsScreen /></RenderAppScreen>} />
+          <Route path="" element={<RenderAppScreen><ProductsScreen /></RenderAppScreen>} />
         </Route>
-      </Routes>
-    </MainAppShell>
+        <Route path="ads">
+          <Route path=":ad" element={<RenderAppScreen><AdsScreen /></RenderAppScreen>} />
+          <Route path="" element={<RenderAppScreen><AdsScreen /></RenderAppScreen>} />
+        </Route>
+        <Route path="invoices">
+          <Route path=":invoice" element={<InvoicesScreen />} />
+          <Route path="" element={<RenderAppScreen><InvoicesScreen /></RenderAppScreen>} />
+        </Route>
+        <Route path="" element={<RenderAppScreen><DashboardScreen /></RenderAppScreen>} />
+      </Route>
+    </Routes>
+
   );
 };
+
+
+
+function RenderMarketplaceScreen({ children }: any) {
+  return <MarketplaceShell ShellHeader={MarketplaceHeader}>
+    {children}
+  </MarketplaceShell>
+}
+
+function RenderAppScreen({ children }: any) {
+  return <MainAppShell ShellHeader={MainHeader} Navbar={MainAppNavigation}>
+    {children}
+  </MainAppShell>
+}

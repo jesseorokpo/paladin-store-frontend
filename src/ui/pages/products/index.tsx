@@ -7,7 +7,6 @@ import { Filter } from "iconsax-react";
 export default function ProductsScreen() {
     return <Box style={{ overflow: "hidden !important" }}>
         <Stack>
-            <MainScreenHeader title="Products" />
             <ProductsOverview />
         </Stack>
     </Box>
@@ -32,17 +31,12 @@ function ProductsOverview() {
 
 
     return <Paper p={"18px"} sx={theme => {
-        return { width: "100%", background: "ghostwhite" }
+        return { width: "100%", background: "white" }
     }} shadow="md">
-        <Stack sx={theme => {
-            return {
-                padding: 12,
-                borderRadius: 10, background: "white", border: "2px solid rgba(0, 0, 0, 0.16)",
-            }
-        }}>
+        <Stack>
             <Group position="apart">
                 <Box>
-                    <Title sx={{fontSize:24}}>
+                    <Title sx={{ fontSize: 24 }}>
                         Products <small>(4,336)</small>
                     </Title>
                     <Text>Last updated: 30 August, 2022</Text>
@@ -51,10 +45,10 @@ function ProductsOverview() {
                     Add Product
                 </Button>
             </Group>
-
+            
             <Group position="apart" spacing={"xl"}>
-                <Box sx={{flex:1}}>
-                    <Input variant="filled" sx={{flex:1}} placeholder="Search"/>
+                <Box sx={{ flex: 1 }}>
+                    <Input variant="filled" sx={{ flex: 1 }} placeholder="Search" />
                 </Box>
 
                 <Box>
@@ -62,29 +56,36 @@ function ProductsOverview() {
                         <Text>Sort by: Product ID</Text>
                     </Group>
                 </Box>
-               
             </Group>
 
-
-            <Table border={0}>
-                <thead>
-                    <tr>
-                        <th><Checkbox /></th>
-                        <th>S/N</th>
-                        <th>Image</th>
-                        <th>Product ID</th>
-                        <th>Product Name</th>
-                        <th>Quantity</th>
-                        <th>Unit Price</th>
-                        <th>Inventory Value</th>
-                        <th>Ad Promotion</th>
-                    </tr>
-                </thead>
-                <tbody>{rows}</tbody>
-            </Table>
+            <Stack sx={theme => {
+                return {
+                    padding: 12,
+                    borderRadius: 10, background: "white", border: "2px solid rgba(0, 0, 0, 0.16)",
+                }
+            }}>
 
 
+
+
+
+                <Table border={0}>
+                    <thead>
+                        <tr>
+                            <th><Checkbox /></th>
+                            <th>S/N</th>
+                            <th>Image</th>
+                            <th>Product ID</th>
+                            <th>Product Name</th>
+                            <th>Quantity</th>
+                            <th>Unit Price</th>
+                            <th>Inventory Value</th>
+                            <th>Ad Promotion</th>
+                        </tr>
+                    </thead>
+                    <tbody>{rows}</tbody>
+                </Table>
+            </Stack>
         </Stack>
-
     </Paper>
 }
