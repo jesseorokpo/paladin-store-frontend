@@ -10,6 +10,9 @@ import StoresScreen from "@ui/pages/store";
 import MarketplaceShell from "@ui/template/MarketplaceShell";
 import MarketplaceHeader from "@ui/organisms/marketplace-widgets/MarketplaceHeader";
 import MarketHomeScreen from "@ui/pages/market/MarketHome";
+import { LoginScreen } from "@ui/pages/authentication/login";
+import { RegisterScreen } from "@ui/pages/authentication/register";
+import { StoreRegisterationScreen } from "@ui/pages/authentication/SellerRegisteration";
 
 export default function MainAppRoutes() {
   return (
@@ -17,8 +20,9 @@ export default function MainAppRoutes() {
       <Route path="/">
         <Route path="about" element={<RenderMarketplaceScreen><div>About</div></RenderMarketplaceScreen>} />
         <Route path="contact" element={<RenderMarketplaceScreen><div>Contact</div></RenderMarketplaceScreen>} />
-        <Route path="signin" element={<RenderMarketplaceScreen><div>Signin</div></RenderMarketplaceScreen>} />
-        <Route path="signup" element={<RenderMarketplaceScreen><div>Signup</div></RenderMarketplaceScreen>} />
+        <Route path="signin" element={<RenderMarketplaceScreen><LoginScreen /></RenderMarketplaceScreen>} />
+        <Route path="signup" element={<RenderMarketplaceScreen><RegisterScreen /></RenderMarketplaceScreen>} />
+        <Route path="/store-registeration" element={<RenderMarketplaceScreen><StoreRegisterationScreen /></RenderMarketplaceScreen>} />
         <Route path="/brand">
           <Route path=":brand" element={<RenderMarketplaceScreen><div>Brand</div></RenderMarketplaceScreen>} />
         </Route>

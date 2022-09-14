@@ -19,7 +19,9 @@ export const MaintineThemeConfig: MantineThemeOverride = {
                         ":disabled": {
                             background: theme.colors.gray[6],
                             color: theme.colors.gray[3]
-                        }
+                        },
+                        height:40,
+                        borderRadius:8
                     }
                 }
             },
@@ -28,9 +30,7 @@ export const MaintineThemeConfig: MantineThemeOverride = {
             styles(theme, params) {
                 return {
                     root: {
-                        //@ts-ignore
-                        // background: theme.fn.lighten(theme.colors.darkBlue[5], .1),
-                        // borderRadius: 0
+                     
                     }
                 }
             },
@@ -58,7 +58,7 @@ export const MaintineThemeConfig: MantineThemeOverride = {
                 return {
                     input: {
                         // background: theme.fn.darken(theme.colors.darkBlue[5], .2),
-                        borderColor: "transparent"
+                       
                     },
                 }
             },
@@ -66,14 +66,7 @@ export const MaintineThemeConfig: MantineThemeOverride = {
         Select: {
             styles(theme, params) {
                 return {
-                    input: {
-                        // background: theme.fn.darken(theme.colors.darkBlue[5], .2),
-                        borderColor: "transparent"
-                    },
-                    dropdown: {
-                        // background: theme.fn.darken(theme.colors.darkBlue[5], .2),
-                        borderColor: "transparent"
-                    },
+                
 
                 }
             },

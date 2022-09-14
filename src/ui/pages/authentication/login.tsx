@@ -8,73 +8,51 @@ import {
   PaperProps,
   Button,
   Title,
+  Box,
+  Stack,
+  Container,
+  Input,
+  Grid,
 } from "@mantine/core";
-import { AuthenticationTemplate } from "../../template/authentication";
-import { Link } from "react-router-dom";
+
 import { useForm } from "@mantine/form";
 
-export function LoginScreen(props:any) {
- 
-  const form = useForm({
-    initialValues: {
-      email: "",
-      name: "",
-      password: "",
-      terms: true,
-    },
-  });
-
+export function LoginScreen(props: any) {
   return (
-    <AuthenticationTemplate>
-      <Title>Sign in.</Title>
-      <Text size="lg" weight={500} sx={{ width: "80%" }}>
-        New to  ElevatedHub?{" "}
-        <Link to={"/register"}>
-          <Button variant="white" sx={{ paddingLeft: 4 }}>
-            Signup
-          </Button>
-        </Link>
-      </Text>
+    <Box py="42px">
 
-      <form onSubmit={form.onSubmit(() => { })} style={{ marginTop: 24 }}>
-        <Group grow>
-          <TextInput
-            required
-            label="Email"
-            size="lg"
-            placeholder="hello@mantine.dev"
-            value={form.values.email}
-            onChange={(event) =>
-              form.setFieldValue("email", event.currentTarget.value)
-            }
-            error={form.errors.email && "Invalid email"}
-          />
+      <Grid justify={"center"}>
+        <Grid.Col md={6}>
+          <Container>
+            <Title color={"#183B56"}>Sign in.</Title>
 
-          <PasswordInput
-            required
-            label="Password"
-            size="lg"
-            placeholder="Your password"
-            value={form.values.password}
-            onChange={(event) =>
-              form.setFieldValue("password", event.currentTarget.value)
-            }
-            error={
-              form.errors.password &&
-              "Password should include at least 6 characters"
-            }
-          />
+            <Stack>
+              <TextInput
+                placeholder="Your name"
+                label="Full name"
+                withAsterisk
+                size="lg"
+              />
+              <PasswordInput
+                label="Password"
+                size="lg"
+              />
 
-          <Button
-            size="lg"
-            onClick={() => {
-          
-            }}
-          >
-            Signin{" "}
-          </Button>
-        </Group>
-      </form>
-    </AuthenticationTemplate>
+              <Button
+                size="lg"
+                onClick={() => {
+
+                }}
+              >
+                Signin{" "}
+              </Button>
+              <Text sx={{ textAlign: 'center' }}>
+                Don’t have a seller account? <span style={{ fontWeight: "bold" }}>Register</span>
+              </Text>
+            </Stack>
+          </Container>
+        </Grid.Col>
+      </Grid>
+    </Box>
   );
 }

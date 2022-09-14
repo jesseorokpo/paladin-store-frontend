@@ -1,6 +1,6 @@
 import React from "react";
 import { useToggle, upperFirst } from "@mantine/hooks";
-import {useForm} from "@mantine/form"
+import { useForm } from "@mantine/form"
 import {
   TextInput,
   PasswordInput,
@@ -12,6 +12,11 @@ import {
   Anchor,
   Title,
   Stack,
+  Box,
+  Container,
+  Grid,
+  Group,
+  Avatar,
 } from "@mantine/core";
 import { AuthenticationTemplate } from "../../template/authentication";
 import { Link } from "react-router-dom";
@@ -27,83 +32,83 @@ export function RegisterScreen(props: any) {
   });
 
   return (
-    <AuthenticationTemplate>
-      <Title>Let’s create your account.</Title>
-      <Text size="lg" weight={500} sx={{ width: "80%" }}>
-        Signing up for ElevatedHub is fast and free. No commitments or long-term
-        contracts.
-      </Text>
+    <Container py="42px">
 
-      <form onSubmit={form.onSubmit(() => { })} style={{ marginTop: 24 }}>
-        <Stack >
-          <TextInput
-            label="Name"
-            placeholder="Your name"
-            size="lg"
-            value={form.values.name}
-            onChange={(event) =>
-              form.setFieldValue("name", event.currentTarget.value)
-            }
-          />
-          <TextInput
-            required
-            label="Email"
-            size="lg"
-            placeholder="hello@mantine.dev"
-            value={form.values.email}
-            onChange={(event) =>
-              form.setFieldValue("email", event.currentTarget.value)
-            }
-            error={form.errors.email && "Invalid email"}
-          />
+      <Stack>
+        
+        <Grid>
+          <Grid.Col md={6}>
+            <TextInput
+              label="Business Registration Number *"
+              placeholder="Your name"
+              size="md"
+            />
+          </Grid.Col>
+          <Grid.Col md={6}>
+            <TextInput
+              label="Business Category *"
+              placeholder="Your name"
+              size="md"
+            />
+          </Grid.Col>
+          <Grid.Col md={6}>
+            <TextInput
+              label="Business Name"
+              placeholder="Your name"
+              size="md"
+            />
+          </Grid.Col>
+          <Grid.Col md={6}>
+            <TextInput
+              label="zmarket Website URL *"
+              placeholder="Your name"
+              size="md"
+            />
+          </Grid.Col>
+          <Grid.Col md={12}>
+            <TextInput
+              label="Business Address *"
+              placeholder="Your name"
+              size="md"
+            />
+          </Grid.Col>
 
-          <PasswordInput
-            required
-            label="Password"
-            size="lg"
-            placeholder="Your password"
-            value={form.values.password}
-            onChange={(event) =>
-              form.setFieldValue("password", event.currentTarget.value)
-            }
-            error={
-              form.errors.password &&
-              "Password should include at least 6 characters"
-            }
-          />
+        </Grid>
 
-          <Checkbox
-            label="I accept terms and conditions"
-            checked={form.values.terms}
-            onChange={(event) =>
-              form.setFieldValue("terms", event.currentTarget.checked)
-            }
-          />
+        <Grid>
+          <Grid.Col md={12}>
+            <Text sx={{ fontWeight: "bold" }}>Social (Optional)</Text>
+          </Grid.Col>
+          <Grid.Col md={4}>
+            <TextInput
+              label="Name"
+              placeholder="Your name"
+              size="md"
+            />
+          </Grid.Col>
+          <Grid.Col md={4}>
+            <TextInput
+              label="Name"
+              placeholder="Your name"
+              size="md"
+            />
+          </Grid.Col>
+          <Grid.Col md={4}>
+            <TextInput
+              label="Name"
+              placeholder="Your name"
+              size="md"
+            />
+          </Grid.Col>
+        </Grid>
 
-          <Text color={"gray"}>
-            This site is protected by reCAPTCHA Enterprise and the Google
-            Privacy Policy and Terms of Service apply.
-          </Text>
 
-          <Button
-            size="lg"
-            onClick={() => {
-              if (form.validate()) {
-              }
-            }}
-          >
-            Create Account
-          </Button>
-          <Text size="lg" weight={500} sx={{ width: "80%" }}>
-            Already have a Central market account?{" "}
-            <Link to={"/login"}>
-              <Button variant="white" sx={{ paddingLeft: 4 }}>
-                Sign in
-              </Button>
-            </Link>
-          </Text>
-        </Stack>
-      </form>
-    </AuthenticationTemplate>
+        <Group position="apart">
+          <Avatar size={"xl"} />
+
+          <Button>Add Brand Logo</Button>
+        </Group>
+      </Stack>
+    </Container>
   );
 }
