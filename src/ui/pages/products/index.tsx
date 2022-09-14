@@ -24,7 +24,7 @@ function ProductsOverview() {
             <td>{"43"}</td>
             <td>{"325,000"}</td>
             <td>{"13,975,000"}</td>
-            <td><Button>Promote</Button></td>
+            <td><Button variant="outline">Edit</Button></td>
 
         </tr>
     ));
@@ -80,7 +80,7 @@ function ProductsOverview() {
                             <th>Quantity</th>
                             <th>Unit Price</th>
                             <th>Inventory Value</th>
-                            <th>Ad Promotion</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>{rows}</tbody>

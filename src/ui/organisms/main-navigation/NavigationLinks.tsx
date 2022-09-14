@@ -89,7 +89,7 @@ function LinksGroup({ icon: Icon, label, initiallyOpened, links, link, onChangeP
           <Group position="apart" spacing={0}>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
 
-              <Icon size={18} variant="Bold" />
+              <Icon size={24} variant="Bold" />
 
               <Box ml="md">{label}</Box>
             </Box>

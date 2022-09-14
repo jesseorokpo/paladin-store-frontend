@@ -1,4 +1,4 @@
-import { IconGauge, } from "@tabler/icons";
+import { IconBuildingStore, IconDashboard, IconFileInvoice, IconFiles, IconGauge, IconPackage, IconTags, } from "@tabler/icons";
 import { LinksGroupProps } from "./NavigationLinks";
 import {
     Card as SaxCard, TransactionMinus as SaxTransaction, Setting as SaxSetting, People as SaxPeople, ProfileTick as SaxProfileTick,
@@ -6,9 +6,10 @@ import {
 } from "iconsax-react"
 
 export const navigationLinks: LinksGroupProps[] = [
-    { label: 'Overview', icon: Element4, link: "/account", },
-    { label: 'Products', icon: SaxTransaction, link: "/account/products", },
-    { label: 'My Ads', icon: SaxTransaction, link: "/account/ads", },
-    { label: 'My Stores', icon: SaxTransaction, link: "/account/stores", },
-    { label: 'Invoices', icon: SaxTransaction, link: "/account/invoices", }
+    { label: 'Overview', icon: IconDashboard, link: "/account", },
+    { label: 'Collections', icon: IconFiles, link: "/account/collections", },
+    { label: 'Products', icon: IconTags, link: "/account/products", },
+    { label: 'My Ads', icon: IconPackage, link: "/account/ads", },
+    { label: 'My Stores', icon: IconBuildingStore, link: "/account/stores", },
+    { label: 'Invoices', icon: IconFileInvoice, link: "/account/invoices", }
 ];

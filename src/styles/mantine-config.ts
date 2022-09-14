@@ -13,6 +13,9 @@ export const MaintineThemeConfig: MantineThemeOverride = {
     },
     components: {
         Button: {
+            defaultProps: {
+                color: "blue"
+            },
             styles(theme, params) {
                 return {
                     root: {
@@ -20,7 +23,6 @@ export const MaintineThemeConfig: MantineThemeOverride = {
                             background: theme.colors.gray[6],
                             color: theme.colors.gray[3]
                         },
-                        height:40,
                         borderRadius:8
                     }
                 }

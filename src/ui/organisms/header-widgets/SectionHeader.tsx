@@ -5,14 +5,15 @@ import { } from "iconsax-react";
 
 type SectionHeaderProps = {
     title: string;
-    right?: React.ReactNode
+    right?: React.ReactNode;
+    showBorder?: boolean
 }
-export function SectionHeader({ title, right }: SectionHeaderProps) {
+export function SectionHeader({ title, right, showBorder }: SectionHeaderProps) {
     return <Stack spacing={"sm"}>
         <Group position="apart" align={"center"}>
-            <Text sx={{ fontWeight: "bold", color:'#183B56' }}>{title.toUpperCase()}</Text>
+            <Text sx={{ fontWeight: "bold", color: '#183B56' }}>{title.toUpperCase()}</Text>
             {right}
         </Group>
-        <Divider />
+        {showBorder !== false ? <Divider /> : null}
     </Stack>
 }

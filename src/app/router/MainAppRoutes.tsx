@@ -13,6 +13,7 @@ import MarketHomeScreen from "@ui/pages/market/MarketHome";
 import { LoginScreen } from "@ui/pages/authentication/login";
 import { RegisterScreen } from "@ui/pages/authentication/register";
 import { StoreRegisterationScreen } from "@ui/pages/authentication/SellerRegisteration";
+import CollectionsScreen from "@ui/pages/collections";
 
 export default function MainAppRoutes() {
   return (
@@ -36,7 +37,10 @@ export default function MainAppRoutes() {
         <Route path="stores">
           <Route path=":product" element={<RenderAppScreen><StoresScreen /></RenderAppScreen>} />
           <Route path="" element={<RenderAppScreen><StoresScreen /></RenderAppScreen>} />
-        </Route>account
+        </Route>
+        <Route path="collections">
+          <Route path="" element={<RenderAppScreen><CollectionsScreen /></RenderAppScreen>} />
+        </Route>
         <Route path="products">
           <Route path=":product" element={<RenderAppScreen><ProductsScreen /></RenderAppScreen>} />
           <Route path="" element={<RenderAppScreen><ProductsScreen /></RenderAppScreen>} />
