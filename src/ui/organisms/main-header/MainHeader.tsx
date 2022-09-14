@@ -1,4 +1,6 @@
-import { Header, MediaQuery, Burger, useMantineTheme, Text, Box, Stack, Title, Group, Input, Avatar, Menu, Button } from "@mantine/core";
+import { Header, MediaQuery, Burger, useMantineTheme, Text, Box, Stack, Title, Group, Input, Avatar, Menu, Button, ActionIcon } from "@mantine/core";
+import { IconNotification, IconSearch } from "@tabler/icons";
+import { Message, Notification } from "iconsax-react";
 import Logo from "./logo.svg"
 
 
@@ -35,7 +37,18 @@ const MainHeader: React.FC<{ setOpened: (data: any) => void, opened: boolean }> 
                     </Box>
                     <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
                         <Box>
-                            <UserPrimaryActions />
+                            <Group>
+                                <ActionIcon color={"blue"}>
+                                    <IconSearch />
+                                </ActionIcon>
+                                <ActionIcon color={"blue"}>
+                                    <Message />
+                                </ActionIcon>
+                                <ActionIcon color={"blue"}>
+                                    <Notification />
+                                </ActionIcon>
+                                <UserPrimaryActions />
+                            </Group>
                         </Box>
                     </MediaQuery>
                 </Group>

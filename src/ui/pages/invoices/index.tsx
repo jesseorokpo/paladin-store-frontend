@@ -1,4 +1,5 @@
-import { Box, Button, Group, Input, Paper, Stack, Table, Title, Text } from "@mantine/core";
+import { Box, Button, Group, Input, Paper, Stack, Table, Title, Text, ActionIcon, Center } from "@mantine/core";
+import { IconDownload, IconFileDownload } from "@tabler/icons";
 
 import MainScreenHeader from "@ui/organisms/screen-widgets/MainScreenHeader";
 
@@ -20,7 +21,7 @@ function InvoicesOverview() {
             <td>{"03-Sep-2022"}</td>
             <td>{"132,000"}</td>
             <td>{"Not Delivered"}</td>
-            <td><Button>Promote</Button></td>
+            <td><Center><ActionIcon><IconFileDownload /></ActionIcon></Center></td>
         </tr>
     ));
 
@@ -62,7 +63,7 @@ function InvoicesOverview() {
                             <th>Payment Date</th>
                             <th>Amount (N)</th>
                             <th>Delivery Status</th>
-                            <th>Download</th>
+                            <th style={{ textAlign: 'center' }}>Download</th>
                         </tr>
                     </thead>
                     <tbody>{rows}</tbody>
