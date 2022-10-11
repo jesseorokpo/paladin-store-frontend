@@ -11,19 +11,22 @@ import {
   Text,
   Title,
 } from "@mantine/core";
+import { RenderStatsMain } from "@ui/organisms/dashboard-widgets/render-stats";
+import MainScreenHeader from "@ui/organisms/screen-widgets/MainScreenHeader";
+import { Filter } from "iconsax-react";
 
-export default function StoresScreen() {
+export default function ManageProductsScreen() {
   return (
     <Box style={{ overflow: "hidden !important" }}>
       <Stack>
-        <StoresOverview />
+        <ProductsOverview />
       </Stack>
     </Box>
   );
 }
 
-function StoresOverview() {
-  const rows = [].map((element) => (
+function ProductsOverview() {
+  const rows = [1, 2, 3, 4, 4].map((element) => (
     <tr key={element} style={{ border: "0px solid black" }}>
       <td>
         <Checkbox />
@@ -39,10 +42,10 @@ function StoresOverview() {
       <td>{"10436AD"}</td>
       <td>{"52” LG OLED Smart Television with WiFi, Netf..."}</td>
       <td>{"43"}</td>
+      <td>{"325,000"}</td>
+      <td>{"13,975,000"}</td>
       <td>
-        <Button variant="outline" color="red">
-          Edit
-        </Button>
+        <Button variant="outline">Edit</Button>
       </td>
     </tr>
   ));
@@ -58,7 +61,23 @@ function StoresOverview() {
       <Stack>
         <Group position="apart">
           <Box>
-            <Title sx={{ fontSize: 24 }}>My Stores</Title>
+            <Title sx={{ fontSize: 24 }}>
+              Products <small>(4,336)</small>
+            </Title>
+            <Text>Last updated: 30 August, 2022</Text>
+          </Box>
+          <Button>Add Product</Button>
+        </Group>
+
+        <Group position="apart" spacing={"xl"}>
+          <Box sx={{ flex: 1 }}>
+            <Input variant="filled" sx={{ flex: 1 }} placeholder="Search" />
+          </Box>
+
+          <Box>
+            <Group>
+              <Text>Sort by: Product ID</Text>
+            </Group>
           </Box>
         </Group>
 
@@ -80,9 +99,11 @@ function StoresOverview() {
                 </th>
                 <th>S/N</th>
                 <th>Image</th>
-                <th>Location</th>
-                <th>Market</th>
-                <th>Category</th>
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Unit Price</th>
+                <th>Inventory Value</th>
                 <th>Action</th>
               </tr>
             </thead>

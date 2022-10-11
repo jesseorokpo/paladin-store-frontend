@@ -1,11 +1,10 @@
 import React from "react";
 import { useToggle, upperFirst } from "@mantine/hooks";
-import { useForm } from "@mantine/form"
+import { useForm } from "@mantine/form";
 import {
   TextInput,
   PasswordInput,
   Text,
-
   Button,
   Divider,
   Checkbox,
@@ -22,7 +21,7 @@ import {
 import { AuthenticationTemplate } from "../../template/authentication";
 import { Link } from "react-router-dom";
 
-export function StoreRegisterationScreen(props: any) {
+export function BrandRegisterationScreen(props: any) {
   const form = useForm({
     initialValues: {
       email: "",
@@ -34,25 +33,16 @@ export function StoreRegisterationScreen(props: any) {
 
   return (
     <Container py="42px">
-
       <Stack spacing={"xl"}>
-        <Title>Become A Seller</Title>
+        <Title>Create Brand Account</Title>
         <Text>Personal Details</Text>
         <Grid>
           <Grid.Col md={6}>
-            <TextInput
-              label="First Name"
-              placeholder="Type Here"
-              size="md"
-            />
-          </Grid.Col >
+            <TextInput label="First Name" placeholder="Type Here" size="md" />
+          </Grid.Col>
           <Grid.Col md={6}>
-            <TextInput
-              label="Last Name"
-              placeholder="Type here"
-              size="md"
-            />
-          </Grid.Col >
+            <TextInput label="Last Name" placeholder="Type here" size="md" />
+          </Grid.Col>
           <Grid.Col md={12}>
             <Grid>
               <Grid.Col md={3}>
@@ -71,33 +61,23 @@ export function StoreRegisterationScreen(props: any) {
                 />
               </Grid.Col>
               <Grid.Col md={6}>
-                <TextInput
-                  label="Email"
-                  placeholder="Your name"
-                  size="md"
-                />
+                <TextInput label="Email" placeholder="Your name" size="md" />
               </Grid.Col>
             </Grid>
-
           </Grid.Col>
           <Grid.Col md={6}>
-            <PasswordInput
-              label="Password"
-              placeholder="Type Here"
-              size="md"
-            />
-          </Grid.Col >
+            <PasswordInput label="Password" placeholder="Type Here" size="md" />
+          </Grid.Col>
           <Grid.Col md={6}>
             <PasswordInput
               label="Confirm Password"
               placeholder="Type here"
               size="md"
             />
-          </Grid.Col >
+          </Grid.Col>
         </Grid>
 
-
-        <Text sx={{ textAlign: 'center' }}>OR REGISTER WITH</Text>
+        <Text sx={{ textAlign: "center" }}>OR REGISTER WITH</Text>
 
         <Grid>
           <Grid.Col md={6}>
@@ -112,14 +92,12 @@ export function StoreRegisterationScreen(props: any) {
           </Grid.Col>
         </Grid>
 
-        <Button fullWidth>
-          Continue
-        </Button>
+        <Button fullWidth>Continue</Button>
 
-        <Text sx={{ textAlign: 'center' }}>
-                Already have a seller account? <span style={{ fontWeight: "bold" }}>Signin</span>
-              </Text>
-
+        <Text sx={{ textAlign: "center" }}>
+          Already have a seller account?{" "}
+          <span style={{ fontWeight: "bold" }}>Signin</span>
+        </Text>
       </Stack>
     </Container>
   );

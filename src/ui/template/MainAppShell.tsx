@@ -1,38 +1,45 @@
-import { useState } from 'react';
-import {
-  AppShell,
-  useMantineTheme,
-} from '@mantine/core';
+import { useState } from "react";
+import { AppShell, useMantineTheme } from "@mantine/core";
+import MarketplaceFooter from "@ui/organisms/marketplace-widgets/MarketplaceFooter";
 
 type MainAppShellProps = {
   children: any;
-  Navbar: React.FC<{ setOpened: (data: any) => void, opened: boolean }>;
-  ShellHeader: React.FC<{ setOpened: (data: any) => void, opened: boolean }>;
-}
+  Navbar?: React.FC<{ setOpened: (data: any) => void; opened: boolean }>;
+  ShellHeader: React.FC<{ setOpened: (data: any) => void; opened: boolean }>;
+};
 
-export const MainAppShell: React.FC<MainAppShellProps> = ({ children, Navbar,ShellHeader}) => {
+export const MainAppShell: React.FC<MainAppShellProps> = ({
+  children,
+  Navbar,
+  ShellHeader,
+}) => {
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
   return (
     <AppShell
       styles={{
         main: {
-          background: theme.colorScheme === 'dark' ? theme.colors.darkBlue[5] : theme.colors.gray[0],
+          background:
+            theme.colorScheme === "dark"
+              ? theme.colors.darkBlue[5]
+              : theme.colors.gray[0],
+          paddingLeft: Navbar == undefined ? 0 : undefined,
+          paddingRight: Navbar == undefined ? 0 : undefined,
         },
       }}
       navbarOffsetBreakpoint="sm"
       asideOffsetBreakpoint="sm"
       navbar={
-        <Navbar setOpened={setOpened} opened={opened} />
+        Navbar == undefined ? undefined : (
+          <Navbar setOpened={setOpened} opened={opened} />
+        )
       }
-      header={
-        <ShellHeader opened={opened} setOpened={setOpened}/>
-      }
+      header={<ShellHeader opened={opened} setOpened={setOpened} />}
+      footer={Navbar == undefined ? <MarketplaceFooter /> : undefined}
     >
-      {children}
+      <div>{children}</div>
     </AppShell>
   );
-}
+};
 
-
-export default MainAppShell 
+export default MainAppShell;
