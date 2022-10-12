@@ -32,7 +32,7 @@ export default function RenderBrandCategoriesGrid() {
     return <Box>
         <Grid>
             {brandsCats.map(element => {
-                return <Grid.Col  xs={6}  sm={6} md={3}>
+                return <Grid.Col span={6} xs={6}  sm={6} md={3}>
                     <Group align={"center"} sx={{ backgroundColor: "ghostwhite" }}>
                         <Avatar size={"xl"} src={"https://cdn.dribbble.com/users/5917891/screenshots/16231517/media/6f191703667b67283bdfe386a1412782.jpg?compress=1&resize=400x300"} />
                         <Box sx={{ flex: 1, textAlign: "start" }}>
