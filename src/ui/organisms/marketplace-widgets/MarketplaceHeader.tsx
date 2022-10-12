@@ -83,8 +83,7 @@ const MarketplaceHeader: React.FC<{
             </Box>
           </MediaQuery>
 
-          <Box>
-            <Group align={"center"}>
+          <Group align={"center"}>
               <Link to={"/login"}>
                 <Button variant="white">Signin</Button>
               </Link>
@@ -92,7 +91,6 @@ const MarketplaceHeader: React.FC<{
                 <Button>Become A Seller</Button>
               </Link>
             </Group>
-          </Box>
         </Group>
       </Container>
     </Header>
