@@ -27,8 +27,8 @@ export const MainAppShell: React.FC<MainAppShellProps> = ({
           paddingRight: Navbar == undefined ? 0 : undefined,
         },
       }}
-      navbarOffsetBreakpoint="sm"
-      asideOffsetBreakpoint="sm"
+      // navbarOffsetBreakpoint="sm"
+      // // asideOffsetBreakpoint="sm"
       navbar={
         Navbar == undefined ? undefined : (
           <Navbar setOpened={setOpened} opened={opened} />

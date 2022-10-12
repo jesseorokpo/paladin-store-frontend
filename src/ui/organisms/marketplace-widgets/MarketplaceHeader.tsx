@@ -84,13 +84,13 @@ const MarketplaceHeader: React.FC<{
           </MediaQuery>
 
           <Group align={"center"}>
-              <Link to={"/login"}>
-                <Button variant="white">Signin</Button>
-              </Link>
-              <Link to={"/register"}>
-                <Button>Become A Seller</Button>
-              </Link>
-            </Group>
+            <Link to={"/login"}>
+              <Button variant="white">Signin</Button>
+            </Link>
+            <Link to={"/register"}>
+              <Button>Become A Seller</Button>
+            </Link>
+          </Group>
         </Group>
       </Container>
     </Header>
