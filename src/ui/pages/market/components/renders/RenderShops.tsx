@@ -23,7 +23,7 @@ export default function RenderShopsGrid() {
         <Box>
             <Grid gutter={"xl"}>
                 {brands.map(element => {
-                    return <Grid.Col sm={6} md={3}>
+                    return <Grid.Col  xs={6} sm={6} md={3}>
                         <Paper withBorder sx={{ overflow: "hidden" }}>
 
                             <Box>

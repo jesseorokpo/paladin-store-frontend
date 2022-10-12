@@ -33,7 +33,7 @@ export default function RenderBrandsGrid() {
         <Box>
             <Grid gutter={"xl"}>
                 {brands.map(element => {
-                    return <Grid.Col sm={6} md={3}>
+                    return <Grid.Col  xs={6} sm={6} md={3}>
                         <Stack align={"stretch"} sx={{}}>
                             <Box px="12px" pt="12px">
                                 <Box sx={{
