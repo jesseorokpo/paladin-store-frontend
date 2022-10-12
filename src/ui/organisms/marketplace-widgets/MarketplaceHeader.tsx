@@ -35,15 +35,13 @@ const MarketplaceHeader: React.FC<{
           position="apart"
         >
           <MediaQuery largerThan="sm" styles={{ display: "none" }}>
-            <Stack align={"center"} justify="center" px="md">
-              <Burger
+          <Burger
                 opened={opened}
                 onClick={() => setOpened((o: any) => !o)}
                 size="sm"
                 color={theme.colors.gray[6]}
                 mr="xl"
               />
-            </Stack>
           </MediaQuery>
           <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
             <Box
