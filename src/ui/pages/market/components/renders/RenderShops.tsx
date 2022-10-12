@@ -5,6 +5,7 @@ import {
   Divider,
   Grid,
   Group,
+  MediaQuery,
   Paper,
   Stack,
   Text,
@@ -38,7 +39,7 @@ export default function RenderShopsGrid() {
         <Grid gutter={"xl"}>
           {brands.map((element) => {
             return (
-              <Grid.Col span={6} xs={6} sm={6} md={3}>
+              <Grid.Col span={6} xs={6} sm={4} md={4} lg={3} xl={3}>
                 <Paper withBorder sx={{ overflow: "hidden" }}>
                   <Box>
                     <Box
@@ -76,9 +77,18 @@ export default function RenderShopsGrid() {
                       </Text>
                     </Box>
                     <Divider color={"ghostwhite"} />
-                    <Text size={"sm"} sx={{ color: "#183B56" }}>
-                      The best beauty product shop with cheap price
-                    </Text>
+
+                    <MediaQuery
+                      smallerThan="sm"
+                      styles={{
+                        display: "none",
+                        background: "orange",
+                      }}
+                    >
+                      <Text size={"sm"} sx={{ color: "#183B56" }}>
+                        The best beauty product shop with cheap price
+                      </Text>
+                    </MediaQuery>
                   </Stack>
                 </Paper>
               </Grid.Col>
