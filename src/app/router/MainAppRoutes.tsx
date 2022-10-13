@@ -4,7 +4,6 @@ import AdsScreen from "@ui/pages/manage-brand/ads";
 import InvoicesScreen from "@ui/pages/manage-brand/invoices";
 import ProductsScreen from "@ui/pages/entity-products/ManageProductsScreen";
 import StoresScreen from "@ui/pages/store";
-import MarketHomeScreen from "@ui/pages/market/MarketHome";
 import { LoginScreen } from "@ui/pages/authentication/LoginScreen";
 import CollectionsScreen from "@ui/pages/entity-collections/ManageCollectionsScreen";
 import { BrandRegisterationScreen } from "@ui/pages/registerations/BrandRegisterationScreen";
@@ -13,6 +12,8 @@ import { PlatformNavigationShell } from "@ui/template/PlatformNavigationShell";
 import { AccountNavigationShell } from "@ui/template/AccountNavigationShell";
 import { RegisterationScreen } from "@ui/pages/authentication/RegisterationScreen";
 import { ShopHomeScreen } from "@ui/pages/market/shop-home/ShopHomeScreen";
+import PlatformHomeScreen from "@ui/pages/market/PlatformHome";
+import { MarketHomeScreen } from "@ui/pages/market/market-home/MarketHomeScreen";
 
 export default function MainAppRoutes() {
   return (
@@ -44,13 +45,16 @@ export default function MainAppRoutes() {
         <Route path="register" element={<RegisterationScreen />} />
         <Route path="new-store" element={<StoreRegisterationScreen />} />
         <Route path="new-brand" element={<BrandRegisterationScreen />} />
-        <Route path="b">
+        <Route path="brand">
           <Route path=":brand" element={<div></div>} />
         </Route>
-        <Route path="s">
+        <Route path="store">
           <Route path=":store" element={<ShopHomeScreen />} />
         </Route>
-        <Route path="" element={<MarketHomeScreen />} />
+        <Route path="market">
+          <Route path=":id" element={<MarketHomeScreen />} />
+        </Route>
+        <Route path="" element={<PlatformHomeScreen />} />
       </Route>
     </Routes>
   );

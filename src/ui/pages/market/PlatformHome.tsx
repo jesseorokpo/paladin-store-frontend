@@ -18,7 +18,7 @@ import { useState } from "react";
 import BrandsPage from "./components/renders/BrandsHome";
 import MarketsPage from "./components/renders/MarketsHome";
 
-export default function MarketHomeScreen() {
+export default function PlatformHomeScreen() {
   let [showBrand, setPage] = useState(false);
   return (
     <Stack>
