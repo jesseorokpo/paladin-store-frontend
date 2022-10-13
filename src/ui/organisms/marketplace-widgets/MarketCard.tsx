@@ -1,9 +1,17 @@
 import { Paper, Stack, Divider, MediaQuery, Box, Text } from "@mantine/core";
 import {} from "iconsax-react";
+import { useNavigate } from "react-router-dom";
 
 export const MarketCard = () => {
+  let navigate = useNavigate();
   return (
-    <Paper withBorder sx={{ overflow: "hidden" }}>
+    <Paper
+      withBorder
+      sx={{ overflow: "hidden" }}
+      onClick={() => {
+        navigate("/market/market");
+      }}
+    >
       <Box>
         <Box
           sx={{

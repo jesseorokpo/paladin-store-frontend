@@ -9,10 +9,18 @@ import {
 } from "@mantine/core";
 import { IconBuildingStore } from "@tabler/icons";
 import { Verify } from "iconsax-react";
+import { useNavigate } from "react-router-dom";
 
 export const ShopCard = () => {
+  let navigate = useNavigate();
   return (
-    <Paper withBorder sx={{ overflow: "hidden" }}>
+    <Paper
+      withBorder
+      sx={{ overflow: "hidden" }}
+      onClick={() => {
+        navigate("/store/store");
+      }}
+    >
       <Box>
         <Box
           sx={{

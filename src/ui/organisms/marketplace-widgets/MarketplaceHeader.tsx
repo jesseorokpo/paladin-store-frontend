@@ -5,11 +5,7 @@ import {
   useMantineTheme,
   Text,
   Box,
-  Stack,
-  Title,
   Group,
-  Input,
-  Avatar,
   Button,
   Container,
 } from "@mantine/core";
@@ -56,7 +52,9 @@ const MarketplaceHeader: React.FC<{
               }}
               p="md"
             >
-              <img src={Logo} alt="React Logo" style={{ height: 40 }} />
+              <Link to={"/"}>
+                <img src={Logo} alt="React Logo" style={{ height: 40 }} />
+              </Link>
             </Box>
           </MediaQuery>
 
