@@ -135,7 +135,7 @@ function SearchComp() {
               rightSection={<ArrowDown2 size={14} color="black" />}
             />
           </Grid.Col>
-          <Grid.Col  span={6} xs={6} sm={6} md={3}>
+          <Grid.Col span={6} xs={6} sm={6} md={3}>
             <Select
               sx={{ flex: 0.5 }}
               data={[{ value: "ok", label: "ok" }]}

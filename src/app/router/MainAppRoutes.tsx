@@ -12,6 +12,7 @@ import { StoreRegisterationScreen } from "@ui/pages/registerations/StoreRegister
 import { PlatformNavigationShell } from "@ui/template/PlatformNavigationShell";
 import { AccountNavigationShell } from "@ui/template/AccountNavigationShell";
 import { RegisterationScreen } from "@ui/pages/authentication/RegisterationScreen";
+import { ShopHomeScreen } from "@ui/pages/market/shop-home/ShopHomeScreen";
 
 export default function MainAppRoutes() {
   return (
@@ -47,7 +48,7 @@ export default function MainAppRoutes() {
           <Route path=":brand" element={<div></div>} />
         </Route>
         <Route path="s">
-          <Route path=":store" element={<div></div>} />
+          <Route path=":store" element={<ShopHomeScreen />} />
         </Route>
         <Route path="" element={<MarketHomeScreen />} />
       </Route>
