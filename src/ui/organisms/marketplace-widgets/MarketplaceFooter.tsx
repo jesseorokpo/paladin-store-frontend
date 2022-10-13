@@ -71,7 +71,7 @@ const MarketplaceFooter: React.FC<{}> = ({}) => {
 
           <Grid.Col md={6}>
             <Grid sx={{ padding: 0, margin: 0 }}>
-              <Grid.Col md={4} style={{ marginBottom: 24 }}>
+              <Grid.Col xs={6} sm={6} md={4} style={{ marginBottom: 24 }}>
                 <Stack align={"stretch"}>
                   <Text sx={{ fontWeight: "bold" }}>Company</Text>
                   {[
@@ -84,7 +84,7 @@ const MarketplaceFooter: React.FC<{}> = ({}) => {
                   })}
                 </Stack>
               </Grid.Col>
-              <Grid.Col md={4} style={{ marginBottom: 24 }}>
+              <Grid.Col xs={6} sm={6} md={4} style={{ marginBottom: 24 }}>
                 <Stack align={"stretch"}>
                   <Text sx={{ fontWeight: "bold" }}>Support</Text>
                   {["About", "Blog", "Careers", "Features"].map((element) => {

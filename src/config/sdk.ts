@@ -1,27 +1,40 @@
 import { AuthControllerApi, UserControllerApi } from "../sdk/auth";
 import axios from "axios";
+import {
+  BusinessCategoryControllerApi,
+  MarketControllerApi,
+  ShopAdminControllerApi,
+  ShopControllerApi,
+  ShopProductAdminControllerApi,
+  ShopProductControllerApi,
+  StateControllerApi,
+} from "../sdk/market";
 export let authController = new AuthControllerApi();
 
 export let userController = new UserControllerApi();
 
-export function configureClientSDK(token: string) {
-  userController = new UserControllerApi(
-    {
-      isJsonMime: (mime: any) => {
-        return true;
-      },
-    },
-    undefined,
-    axios.create({ headers: { Authorization: `Bearer ${token}` } })
-  );
+export let businessCategoryController = new BusinessCategoryControllerApi();
 
-  authController = new AuthControllerApi(
-    {
-      isJsonMime: (mime: any) => {
-        return true;
-      },
+export let marketController = new MarketControllerApi();
+export let shopAdminController = new ShopAdminControllerApi();
+
+export let shopProductAdminController = new ShopProductAdminControllerApi();
+
+export let shopController = new ShopControllerApi();
+export let shopProductController = new ShopProductControllerApi();
+export let stateController = new StateControllerApi();
+
+export function configureClientSDK(token: string) {
+  let config = {
+    isJsonMime: (mime: any) => {
+      return true;
     },
-    undefined,
-    axios.create({ headers: { Authorization: `Bearer ${token}` } })
-  );
+  };
+  let axiosConfig = axios.create({
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+  userController = new UserControllerApi(config, undefined, axiosConfig);
+
+  authController = new AuthControllerApi(config, undefined, axiosConfig);
 }

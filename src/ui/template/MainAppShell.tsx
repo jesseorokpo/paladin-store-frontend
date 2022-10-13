@@ -25,6 +25,8 @@ export const MainAppShell: React.FC<MainAppShellProps> = ({
               : theme.colors.gray[0],
           paddingLeft: Navbar == undefined ? 0 : undefined,
           paddingRight: Navbar == undefined ? 0 : undefined,
+          marginTop: 0,
+          paddingTop: 60,
         },
       }}
       // navbarOffsetBreakpoint="sm"
