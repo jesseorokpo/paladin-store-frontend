@@ -13,13 +13,14 @@ import {
   TextInput,
   Center,
 } from "@mantine/core";
+import { uiManager } from "@store/env/ui";
 import { ArrowDown2, SearchNormal1 } from "iconsax-react";
+import { observer } from "mobx-react";
 import { useState } from "react";
 import BrandsPage from "./components/renders/BrandsHome";
 import MarketsPage from "./components/renders/MarketsHome";
 
-export default function PlatformHomeScreen() {
-  let [showBrand, setPage] = useState(false);
+export default observer(function PlatformHomeScreen() {
   return (
     <Stack>
       <Box
@@ -63,9 +64,9 @@ export default function PlatformHomeScreen() {
               >
                 <Switch
                   color="teal"
-                  checked={showBrand}
+                  checked={uiManager.platform == "BRAND"}
                   sx={{}}
-                  onChange={(event) => setPage(event.currentTarget.checked)}
+                  onChange={(event) => uiManager.togglePlatform()}
                 />
                 <Text>Switch to local markets page</Text>
               </Group>
@@ -74,7 +75,7 @@ export default function PlatformHomeScreen() {
         </Container>
       </Box>
 
-      {showBrand == true ? <BrandsPage /> : <MarketsPage />}
+      {uiManager.platform == "BRAND" ? <BrandsPage /> : <MarketsPage />}
 
       <Box py="100px">
         <Container size="lg">
@@ -117,7 +118,7 @@ export default function PlatformHomeScreen() {
       </Box>
     </Stack>
   );
-}
+});
 
 function SearchComp() {
   return (

@@ -14,6 +14,7 @@ import { RegisterationScreen } from "@ui/pages/authentication/RegisterationScree
 import { ShopHomeScreen } from "@ui/pages/market/shop-home/ShopHomeScreen";
 import PlatformHomeScreen from "@ui/pages/market/PlatformHome";
 import { MarketHomeScreen } from "@ui/pages/market/market-home/MarketHomeScreen";
+import { ViewShopProductScreen } from "@ui/pages/market/shop-home/ViewShopProduct";
 
 export default function MainAppRoutes() {
   return (
@@ -50,6 +51,10 @@ export default function MainAppRoutes() {
         </Route>
         <Route path="store">
           <Route path=":store" element={<ShopHomeScreen />} />
+          <Route
+            path=":store/products/:product"
+            element={<ViewShopProductScreen />}
+          />
         </Route>
         <Route path="market">
           <Route path=":id" element={<MarketHomeScreen />} />
