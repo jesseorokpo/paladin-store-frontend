@@ -9,7 +9,7 @@ import {
   Title,
 } from "@mantine/core";
 import { IconBuildingStore } from "@tabler/icons";
-import { Verify } from "iconsax-react";
+import { HeartRemove, HeartSlash, Verify } from "iconsax-react";
 import { useNavigate } from "react-router-dom";
 import { formatCurrency } from "../../../utils";
 
@@ -20,7 +20,7 @@ export const MainProductCard = () => {
       withBorder
       sx={{ overflow: "hidden" }}
       onClick={() => {
-        navigate("/store/store/products/product-id");
+        //navigate("/store/store/products/product-id");
       }}
       px={14}
     >
@@ -34,7 +34,7 @@ export const MainProductCard = () => {
           }}
         >
           <Box sx={{ position: "absolute", top: 12, left: 12 }}>
-            <Verify variant="Bold" color="#2ADF3C" />
+            <HeartSlash variant="Outline" color="gray" />
           </Box>
         </Box>
       </Box>
@@ -43,9 +43,8 @@ export const MainProductCard = () => {
           <Title size={"md"} color="#183B56">
             Product name goes
           </Title>
-          <Text size={"sm"}> Bolade Beauty Shop</Text>
           <Text size={"sm"} sx={{ color: "#183B56" }}>
-            Oshodi Market, Lagos
+            Category
           </Text>
           <Title size={"md"} color="#183B56">
             {formatCurrency(1000)}

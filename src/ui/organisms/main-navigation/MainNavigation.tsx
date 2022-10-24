@@ -5,10 +5,12 @@ import { NavigationLinks } from './NavigationLinks';
 
 const useStyles = createStyles((theme) => ({
     navbar: {
-        background: theme.fn.linearGradient(180, '#049ACE', '#3E829A'),
+        background: "white",
         paddingBottom: 0,
         paddingTop: 0,
-        borderRight: "0px solid gray"
+        borderRight: "0px solid gray",
+        boxShadow: theme.shadows.md,
+        // zIndex:0
     },
     header: {
         padding: theme.spacing.md,

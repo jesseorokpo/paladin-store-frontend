@@ -1,20 +1,24 @@
 import {
-  IconBuildingStore,
-  IconDashboard,
-  IconFileInvoice,
-  IconFiles,
-  IconGauge,
-  IconPackage,
-  IconTags,
+
 } from "@tabler/icons";
+import {
+  Heart,
+  LockCircle,
+  Notification,
+  InfoCircle,
+  Information,
+  User,
+} from "iconsax-react";
 import { LinksGroupProps } from "./NavigationLinks";
 
-
 export const navigationLinks: LinksGroupProps[] = [
-  { label: "Overview", icon: IconDashboard, link: "/account" },
-  { label: "Collections", icon: IconFiles, link: "/account/collections" },
-  { label: "Products", icon: IconTags, link: "/account/products" },
-  { label: "My Ads", icon: IconPackage, link: "/account/ads" },
-  { label: "My Stores", icon: IconBuildingStore, link: "/account/stores" },
-  { label: "Invoices", icon: IconFileInvoice, link: "/account/invoices" },
+  { label: "Overview", icon: User, link: "/account" },
+  { label: "Order History", icon: Information, link: "/account/history" },
+  { label: "Favourites", icon: Heart, link: "/account/favourites" },
+  { label: "Lockers", icon: LockCircle, link: "/account/lockers" },
+  {
+    label: "Notifications",
+    icon: Notification,
+    link: "/account/notifications",
+  },
 ];

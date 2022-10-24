@@ -1,43 +1,62 @@
-import React, { useState } from 'react';
-import { Group, Box, Collapse, ThemeIcon, Text, UnstyledButton, createStyles } from '@mantine/core';
-import { TablerIcon, IconCalendarStats, IconChevronLeft, IconChevronRight } from '@tabler/icons';
-import { navigationLinks } from './links';
-import { useNavigate, useRoutes } from 'react-router-dom';
+import React, { useState } from "react";
+import {
+  Group,
+  Box,
+  Collapse,
+  ThemeIcon,
+  Text,
+  UnstyledButton,
+  createStyles,
+} from "@mantine/core";
+import {
+  TablerIcon,
+  IconCalendarStats,
+  IconChevronLeft,
+  IconChevronRight,
+} from "@tabler/icons";
+import { navigationLinks } from "./links";
+import { useNavigate, useRoutes } from "react-router-dom";
 
 const useStyles = createStyles((theme) => ({
   control: {
     fontWeight: 500,
-    display: 'block',
-    width: '100%',
+    display: "block",
+    width: "100%",
     borderTopLeftRadius: 4,
     borderBottomLeftRadius: 4,
     padding: `${theme.spacing.sm}px ${theme.spacing.sm}px`,
-    color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.fn.darken(theme.white,.1),
+    color:
+      theme.colorScheme === "dark"
+        ? theme.colors.dark[0]
+        : theme.colors.dark[3],
     fontSize: theme.fontSizes.sm,
-    '&:hover': {
-      color:theme.white
+    "&:hover": {
+      color: theme.colors.dark[2],
     },
   },
   link: {
     fontWeight: 500,
-    display: 'block',
-    textDecoration: 'none',
+    display: "block",
+    textDecoration: "none",
     padding: `${theme.spacing.xs}px ${theme.spacing.md}px`,
     paddingLeft: 31,
     marginLeft: 42,
     fontSize: theme.fontSizes.sm,
-    color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
-    borderLeft: `0px solid ${theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
-      }`,
+    color:
+      theme.colorScheme === "dark"
+        ? theme.colors.dark[0]
+        : theme.colors.gray[7],
+    borderLeft: `0px solid ${
+      theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[3]
+    }`,
 
-    '&:hover': {
-
-      cursor:"pointer"
+    "&:hover": {
+      cursor: "pointer",
     },
   },
 
   chevron: {
-    transition: 'transform 200ms ease',
+    transition: "transform 200ms ease",
   },
 }));
 
@@ -51,15 +70,21 @@ export interface LinksGroupProps {
   links?: { label: string; link: string }[];
 }
 
-
-
-function LinksGroup({ icon: Icon, label, initiallyOpened, links, link, onChangePath, isActive }: LinksGroupProps) {
-  let navigate = useNavigate()
+function LinksGroup({
+  icon: Icon,
+  label,
+  initiallyOpened,
+  links,
+  link,
+  onChangePath,
+  isActive,
+}: LinksGroupProps) {
+  let navigate = useNavigate();
   const { classes, theme } = useStyles();
 
   const hasLinks = Array.isArray(links);
   const [opened, setOpened] = useState(initiallyOpened || false);
-  const ChevronIcon = theme.dir === 'ltr' ? IconChevronRight : IconChevronLeft;
+  const ChevronIcon = theme.dir === "ltr" ? IconChevronRight : IconChevronLeft;
   const items = (hasLinks ? links : []).map((link) => (
     <Text
       className={classes.link}
@@ -77,20 +102,22 @@ function LinksGroup({ icon: Icon, label, initiallyOpened, links, link, onChangeP
   return (
     <>
       <Box ml={"12px"}>
-        <UnstyledButton onClick={() => {
-          setOpened((o) => !o);
-          if (link == undefined) return;
-          navigate(link);
-          //@ts-ignore
-          onChangePath(link ?? "");
-        }} className={classes.control} sx={{
-          color: isActive ? "white" : undefined
-        }}>
+        <UnstyledButton
+          onClick={() => {
+            setOpened((o) => !o);
+            if (link == undefined) return;
+            navigate(link);
+            //@ts-ignore
+            onChangePath(link ?? "");
+          }}
+          className={classes.control}
+          sx={{
+            color: isActive ? "orange" : undefined,
+          }}
+        >
           <Group position="apart" spacing={0}>
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-
+            <Box sx={{ display: "flex", alignItems: "center" }}>
               <Icon size={24} variant="Bold" />
-
               <Box ml="md">{label}</Box>
             </Box>
             {hasLinks && (
@@ -99,7 +126,9 @@ function LinksGroup({ icon: Icon, label, initiallyOpened, links, link, onChangeP
                 size={14}
                 stroke={1.5}
                 style={{
-                  transform: opened ? `rotate(${theme.dir === 'rtl' ? -90 : 90}deg)` : 'none',
+                  transform: opened
+                    ? `rotate(${theme.dir === "rtl" ? -90 : 90}deg)`
+                    : "none",
                 }}
               />
             )}
@@ -113,22 +142,18 @@ function LinksGroup({ icon: Icon, label, initiallyOpened, links, link, onChangeP
 
 export function NavigationLinks() {
   let [activeKey, setActiveKey] = useState("/");
-  let navigate = useNavigate()
+  let navigate = useNavigate();
 
-  const links = navigationLinks.map(element => {
-    element.isActive = activeKey == element.link;
-    element.onChangePath = (path: any) => {
-      setActiveKey(path);
-    }
+  const links = navigationLinks
+    .map((element) => {
+      element.isActive = activeKey == element.link;
+      element.onChangePath = (path: any) => {
+        setActiveKey(path);
+      };
 
-    return element;
+      return element;
+    })
+    .map((item) => <LinksGroup {...item} key={item.label} />);
 
-
-  }).map((item) => <LinksGroup {...item} key={item.label} />);
-
-
-
-  return <React.Fragment>
-    {links}
-  </React.Fragment>;
+  return <React.Fragment>{links}</React.Fragment>;
 }

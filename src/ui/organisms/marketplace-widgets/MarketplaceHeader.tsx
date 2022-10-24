@@ -84,7 +84,7 @@ const MarketplaceHeader: React.FC<{
               <Button variant="white">Signin</Button>
             </Link>
             <Link to={"/register"}>
-              <Button>Become A Seller</Button>
+              <Button>Register</Button>
             </Link>
           </Group>
         </Group>

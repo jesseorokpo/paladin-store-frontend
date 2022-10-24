@@ -14,11 +14,11 @@ import {
   Center,
 } from "@mantine/core";
 import { uiManager } from "@store/env/ui";
+import { SectionHeader } from "@ui/organisms/header-widgets/SectionHeader";
+import RenderProductsGrid from "@ui/organisms/renderers/RenderProductsGrid";
 import { ArrowDown2, SearchNormal1 } from "iconsax-react";
 import { observer } from "mobx-react";
 import { useState } from "react";
-import BrandsPage from "./components/renders/BrandsHome";
-import MarketsPage from "./components/renders/MarketsHome";
 
 export default observer(function PlatformHomeScreen() {
   return (
@@ -75,7 +75,23 @@ export default observer(function PlatformHomeScreen() {
         </Container>
       </Box>
 
-      {uiManager.platform == "BRAND" ? <BrandsPage /> : <MarketsPage />}
+      <Box sx={{}}>
+        <Container size="lg" py="32px" sx={{ backgroundColor: "white" }}>
+          <Stack py={"24px"} spacing="xl">
+            <SectionHeader title="Popular Products" />
+            <RenderProductsGrid />
+          </Stack>
+        </Container>
+      </Box>
+
+      <Box sx={{}}>
+        <Container size="lg" py="32px" sx={{ backgroundColor: "white" }}>
+          <Stack py={"24px"} spacing="xl">
+            <SectionHeader title="Trending Products" />
+            <RenderProductsGrid useMainCard={true} />
+          </Stack>
+        </Container>
+      </Box>
 
       <Box py="100px">
         <Container size="lg">
