@@ -25,15 +25,26 @@ export const CartWidget = observer(() => {
   const [isLoading, setIsLoading] = useState(false);
   const theme = useMantineTheme();
 
-  let [step, setStep] = useState(2);
+  let [step, setStep] = useState(1);
 
   const CartBag = (
     <Stack>
-      <Box>
-        {cartManager.items.map((e, index) => {
-          return <CartItemCard e={e} key={index} />;
-        })}
-      </Box>
+      <Stack>
+        <Box>
+          {cartManager.items.map((e, index) => {
+            return <CartItemCard e={e} key={index} />;
+          })}
+        </Box>
+      </Stack>
+      {cartManager.items.length == 0 ? null : (
+        <Button
+          onClick={() => {
+            setStep(2);
+          }}
+        >
+          Checkout
+        </Button>
+      )}
     </Stack>
   );
 
