@@ -82,7 +82,7 @@ const MarketplaceHeader: React.FC<{
           <Group align={"center"}>
             <CartWidget />
             <Link to={"/account"}>
-              <Button>Accont</Button>
+              <Button>Account</Button>
             </Link>
           </Group>
         </Group>

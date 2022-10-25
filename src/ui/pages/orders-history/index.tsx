@@ -27,7 +27,7 @@ function InvoicesOverview() {
   const rows = [1, 2, 3, 4, 4].map((element) => (
     <tr key={element} style={{ border: "0px solid black" }}>
       <td>{"449012246AD"}</td>
-      <td>{"Jonathan"}</td>
+      <td>{"#1234"}</td>
       <td>{"03-Sep-2022"}</td>
       <td>{"132,000"}</td>
       <td>

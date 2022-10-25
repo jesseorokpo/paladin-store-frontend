@@ -1,5 +1,6 @@
 import { Box, Grid, Group, Paper, Stack, Title } from "@mantine/core";
 import { MainLockerCard } from "@ui/organisms/locker-widgets/MainLockerCard";
+import { NewLockerProcess } from "@ui/organisms/processes/new-locker-process";
 import { MainProductCard } from "@ui/organisms/product-widgets/MainProductCard";
 
 export default function LockersScreen() {
@@ -18,10 +19,11 @@ export default function LockersScreen() {
               <Box>
                 <Title sx={{ fontSize: 24 }}>Digital Lockers</Title>
               </Box>
+              <NewLockerProcess />
             </Group>
 
             <Grid>
-              {[1, 2,].map((element) => {
+              {[1, 2].map((element) => {
                 return (
                   <Grid.Col md={6}>
                     <MainLockerCard />
