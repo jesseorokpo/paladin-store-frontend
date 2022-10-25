@@ -52,7 +52,14 @@ export default observer(function PlatformHomeScreen() {
             </Box>
 
             <Box>
-              <Button color={"orange"} sx={{ borderRadius: 0 }} size="lg">
+              <Button
+                color={"orange"}
+                sx={{ borderRadius: 0 }}
+                size="lg"
+                onClick={() => {
+                  navigate("/explore");
+                }}
+              >
                 Shop Now
               </Button>
             </Box>
