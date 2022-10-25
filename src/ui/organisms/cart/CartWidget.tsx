@@ -6,20 +6,87 @@ import {
   Center,
   useMantineTheme,
   Box,
-  Avatar,
-  Group,
-  Input,
-  Button,
   Stack,
+  Button,
+  Group,
+  Divider,
+  TextInput,
 } from "@mantine/core";
-import { Add, Minus, ShoppingCart } from "iconsax-react";
+import { Add, Minus, ShoppingCart, Verify } from "iconsax-react";
 import { useTheme } from "@emotion/react";
 import { cartManager } from "@store/cart";
 import { observer } from "mobx-react";
+import { CartItemCard } from "./CartItem";
+import { HorizontalKeyValuePair } from "@ui/molecules/text";
+import { formatCurrency } from "../../../utils";
 
 export const CartWidget = observer(() => {
   const [opened, setOpened] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const theme = useMantineTheme();
+
+  let [step, setStep] = useState(2);
+
+  const CartBag = (
+    <Stack>
+      <Box>
+        {cartManager.items.map((e, index) => {
+          return <CartItemCard e={e} key={index} />;
+        })}
+      </Box>
+    </Stack>
+  );
+
+  const CheckoutBag = (
+    <Stack>
+      <Stack sx={{ width: "100%" }}>
+        {cartManager.items.map((e) => {
+          return (
+            <Box>
+              <Group position="apart">
+                <Text>
+                  {e.name} x {e.quantity}
+                </Text>
+                <Text>{`${formatCurrency(e.price * e.quantity)}`}</Text>
+              </Group>
+            </Box>
+          );
+        })}
+      </Stack>
+
+      <Divider />
+      <Group position="apart">
+        <Text>Total</Text>
+        <Text>{`${formatCurrency(100)}`}</Text>
+      </Group>
+
+      <TextInput
+        label="PID"
+        rightSection={
+          <ActionIcon>
+            <Verify />
+          </ActionIcon>
+        }
+      />
+      <Box>
+        <Button
+          fullWidth
+          loading={isLoading}
+          onClick={() => {
+            setIsLoading(true);
+            setTimeout(() => {
+              window.open("https://paystack.com/pay/-k8id-yo-4");
+              cartManager.clear();
+              setOpened(false);
+            }, 2000);
+          }}
+        >
+          {" "}
+          Proceed
+        </Button>
+      </Box>
+    </Stack>
+  );
 
   return (
     <>
@@ -30,64 +97,7 @@ export const CartWidget = observer(() => {
         padding="xl"
         size="xl"
       >
-        <Stack>
-          <Box>
-            {cartManager.items.map((e) => {
-              return (
-                <Box
-                  mb="12"
-                  sx={{ borderBottom: ".5px solid rgba(200,200,200,.5)" }}
-                  py="md"
-                >
-                  <Group>
-                    <Avatar size={"lg"} src={e.image} />
-                    <Box sx={{ flex: 1 }}>
-                      <Text>{e.name}</Text>
-                      <Text size={"sm"} color="gray">
-                        Quantity{e.quantity}
-                      </Text>
-                    </Box>
-
-                    <Box>
-                      <Group mb="4px">
-                        <ActionIcon
-                          color={"brown"}
-                          variant="light"
-                          size={"xs"}
-                          onClick={() => {
-                            cartManager.addItemQuantity(e, 1);
-                          }}
-                        >
-                          <Add size={14} />
-                        </ActionIcon>
-                        <Text size={"sm"}>{e.quantity}</Text>
-                        <ActionIcon
-                          color={"brown"}
-                          variant="light"
-                          size={"xs"}
-                          onClick={() => {
-                            cartManager.addItemQuantity(e, -1);
-                          }}
-                        >
-                          <Minus />
-                        </ActionIcon>
-                      </Group>
-                      <Button
-                        size="xs"
-                        variant="light"
-                        onClick={() => {
-                          cartManager.removeItem(e);
-                        }}
-                      >
-                        Remove
-                      </Button>
-                    </Box>
-                  </Group>
-                </Box>
-              );
-            })}
-          </Box>
-        </Stack>
+        {step == 1 ? CartBag : CheckoutBag}
       </Drawer>
 
       <ActionIcon
