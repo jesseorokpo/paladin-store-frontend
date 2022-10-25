@@ -111,7 +111,7 @@ const MarketplaceFooter: React.FC<{}> = ({}) => {
       <Container size={"lg"}>
         <Divider />
         <Text sx={{ textAlign: "center", padding: "24px 0px" }}>
-          All Rights Reserved © 2022 Z Market
+          All Rights Reserved © 2022
         </Text>
       </Container>
     </Box>

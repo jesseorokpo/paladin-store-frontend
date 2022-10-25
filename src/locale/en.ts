@@ -4,9 +4,9 @@ export default {
       flow: [
         {
           icon: "receive-amount.svg",
-          title: "Secure Trading",
+          title: "Lorem Ipum",
           caption:
-            "Portal with trusted, hassle-free, frictionless market transaction assurance.",
+            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius quo aut, debitis ipsum, voluptate velit.",
         },
         {
           icon: "Support.svg",
@@ -16,9 +16,9 @@ export default {
         },
         {
           icon: "Trade.svg",
-          title: "Easy Trading",
+          title: "Lorem Ipum",
           caption:
-            "Z Market platform is very going and in few seconds, you are done with your shoppings.",
+            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius quo aut, debitis ipsum, voluptate velit.",
         },
       ],
     },

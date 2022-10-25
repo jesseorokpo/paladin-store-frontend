@@ -26,64 +26,68 @@ export const CartWidget = observer(() => {
       <Drawer
         opened={opened}
         onClose={() => setOpened(false)}
-        title="Cart"
+        title="Shopping Bag"
         padding="xl"
         size="xl"
       >
-        {cartManager.items.map((e) => {
-          return (
-            <Box
-              mb="12"
-              sx={{ borderBottom: ".5px solid rgba(200,200,200,.5)" }}
-              py="md"
-            >
-              <Group>
-                <Avatar size={"lg"} src={e.image} />
-                <Box sx={{ flex: 1 }}>
-                  <Text>{e.name}</Text>
-                  <Text size={"sm"} color="gray">
-                    Quantity{e.quantity}
-                  </Text>
-                </Box>
+        <Stack>
+          <Box>
+            {cartManager.items.map((e) => {
+              return (
+                <Box
+                  mb="12"
+                  sx={{ borderBottom: ".5px solid rgba(200,200,200,.5)" }}
+                  py="md"
+                >
+                  <Group>
+                    <Avatar size={"lg"} src={e.image} />
+                    <Box sx={{ flex: 1 }}>
+                      <Text>{e.name}</Text>
+                      <Text size={"sm"} color="gray">
+                        Quantity{e.quantity}
+                      </Text>
+                    </Box>
 
-                <Box>
-                  <Group mb="4px">
-                    <ActionIcon
-                      color={"brown"}
-                      variant="light"
-                      size={"xs"}
-                      onClick={() => {
-                        cartManager.addItemQuantity(e, 1);
-                      }}
-                    >
-                      <Add size={14} />
-                    </ActionIcon>
-                    <Text size={"sm"}>{e.quantity}</Text>
-                    <ActionIcon
-                      color={"brown"}
-                      variant="light"
-                      size={"xs"}
-                      onClick={() => {
-                        cartManager.addItemQuantity(e, -1);
-                      }}
-                    >
-                      <Minus />
-                    </ActionIcon>
+                    <Box>
+                      <Group mb="4px">
+                        <ActionIcon
+                          color={"brown"}
+                          variant="light"
+                          size={"xs"}
+                          onClick={() => {
+                            cartManager.addItemQuantity(e, 1);
+                          }}
+                        >
+                          <Add size={14} />
+                        </ActionIcon>
+                        <Text size={"sm"}>{e.quantity}</Text>
+                        <ActionIcon
+                          color={"brown"}
+                          variant="light"
+                          size={"xs"}
+                          onClick={() => {
+                            cartManager.addItemQuantity(e, -1);
+                          }}
+                        >
+                          <Minus />
+                        </ActionIcon>
+                      </Group>
+                      <Button
+                        size="xs"
+                        variant="light"
+                        onClick={() => {
+                          cartManager.removeItem(e);
+                        }}
+                      >
+                        Remove
+                      </Button>
+                    </Box>
                   </Group>
-                  <Button
-                    size="xs"
-                    variant="light"
-                    onClick={() => {
-                      cartManager.removeItem(e);
-                    }}
-                  >
-                    Remove
-                  </Button>
                 </Box>
-              </Group>
-            </Box>
-          );
-        })}
+              );
+            })}
+          </Box>
+        </Stack>
       </Drawer>
 
       <ActionIcon

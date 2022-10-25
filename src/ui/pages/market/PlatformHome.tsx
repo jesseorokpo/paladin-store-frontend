@@ -113,9 +113,9 @@ export default observer(function PlatformHomeScreen() {
             {[
               {
                 icon: "receive-amount.svg",
-                title: "Secure Trading",
+                title: "Lorem Ipsum",
                 caption:
-                  "Portal with trusted, hassle-free, frictionless market transaction assurance.",
+                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius quo aut, debitis ipsum, voluptate velit.",
               },
               {
                 icon: "Support.svg",
@@ -125,9 +125,9 @@ export default observer(function PlatformHomeScreen() {
               },
               {
                 icon: "Trade.svg",
-                title: "Easy Trading",
+                title: "Lorem Ipsum",
                 caption:
-                  "Z Market platform is very going and in few seconds, you are done with your shoppings.",
+                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius quo aut, debitis ipsum, voluptate velit.",
               },
             ].map((element) => {
               return (
