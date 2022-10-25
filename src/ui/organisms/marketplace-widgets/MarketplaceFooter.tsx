@@ -27,7 +27,7 @@ const MarketplaceFooter: React.FC<{}> = ({}) => {
   return (
     <Box
       sx={(theme) => {
-        return { background: theme.colors.dark[5], color: "ghostwhite" };
+        return { background: "#432818", color: "ghostwhite" };
       }}
     >
       <Container size={"lg"} sx={{ padding: "42px 0px" }}>

@@ -7,34 +7,16 @@ import MainAppRoutes from "./router/MainAppRoutes";
 import { MaintineThemeConfig } from "../styles/mantine-config";
 import { useUtilsLoader } from "../hooks/loader";
 import axios from "axios";
+import { dataManager } from "@store/data";
 
 export default observer(function () {
   let [appState, setAppState] = React.useState("loaded");
   let checkAuthStatus;
 
-  // useUtilsLoader();
-
-  // React.useEffect(() => {
-  //   fetch("http://134.209.70.120:8081/api/v1/marketapi/category", {
-  //     // body: JSON.stringify({
-  //     //   email: "joshuanwafor01@gmail.com",
-  //     //   password: "15June1990..",
-  //     //   rememberMe: true,
-  //     //   platform: "BRAND_SELLER",
-  //     // }),
-  //     // headers: { "Access-Control-Allowed-Origin": "*" },
-  //     // method: "POST",
-  //   })
-  //     .then((res) => {
-  //       console.log("res");
-  //       console.log(res);
-  //     })
-  //     .catch((err) => {
-  //       console.log("err");
-  //       console.log(err);
-  //     });
-  // }, []);
-
+  React.useEffect(() => {
+    dataManager.loadCategories();
+    dataManager.loadProducts();
+  },[]);
   // return <div>I AM WORKING</div>;
 
   return (

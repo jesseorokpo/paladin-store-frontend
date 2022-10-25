@@ -13,6 +13,8 @@ import OrderHistoryScreen from "@ui/pages/orders-history";
 import FavouritesScreen from "@ui/pages/favourites";
 import LockersScreen from "@ui/pages/lockers";
 import LockerScreen from "@ui/pages/locker";
+import { ViewProductScreen } from "@ui/pages/public/ViewShopProduct";
+import ExploreScreen from "@ui/pages/market/ExploreScreen";
 
 export default function MainAppRoutes() {
   return (
@@ -36,10 +38,11 @@ export default function MainAppRoutes() {
 
       <Route path="/" element={<PlatformNavigationShell />}>
         <Route path="about" element={<AboutScreen />} />
+        <Route path="products/:product" element={<ViewProductScreen />} />
         <Route path="contact" element={<ContactScreen />} />
         <Route path="login" element={<LoginScreen />} />
         <Route path="register" element={<RegisterationScreen />} />
-        <Route path="explore" element={<PlatformHomeScreen />} />
+        <Route path="explore" element={<ExploreScreen />} />
         <Route path="" element={<PlatformHomeScreen />} />
       </Route>
     </Routes>

@@ -12,22 +12,25 @@ import {
   Menu,
   TextInput,
   Center,
+  Button,
 } from "@mantine/core";
-import { uiManager } from "@store/env/ui";
+import { dataManager } from "@store/data";
 import { SectionHeader } from "@ui/organisms/header-widgets/SectionHeader";
 import RenderProductsGrid from "@ui/organisms/renderers/RenderProductsGrid";
 import { ArrowDown2, SearchNormal1 } from "iconsax-react";
 import { observer } from "mobx-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default observer(function PlatformHomeScreen() {
+  let navigate = useNavigate();
   return (
     <Stack>
       <Box
         sx={{
           background: "blue",
           backgroundImage:
-            "linear-gradient(to bottom, rgba(100, 100, 200, 0.7), #049ACE), url(https://previews.123rf.com/images/iamzews/iamzews2001/iamzews200100099/137163842-beautiful-young-african-woman-in-a-local-african-market-viewing-content-on-her-phone-looking-surpris.jpg)",
+            "linear-gradient(to bottom, rgb(222, 190, 162,.5), rgb(85, 55, 37)), url(https://previews.123rf.com/images/iamzews/iamzews2001/iamzews200100099/137163842-beautiful-young-african-woman-in-a-local-african-market-viewing-content-on-her-phone-looking-surpris.jpg)",
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}
@@ -41,36 +44,18 @@ export default observer(function PlatformHomeScreen() {
             sx={{ minHeight: "60vh", color: "whitesmoke", textAlign: "center" }}
           >
             <Box>
-              <Title>Nigeria’s Largest Market Portal</Title>
+              <Title>School Paladmin Commerce</Title>
               <Text>
-                Search from over 15,000,000 products, from over 100,000 sellers
-                for free!
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius
+                quo aut, debitis ipsum, voluptate velit.
               </Text>
             </Box>
 
             <Box>
-              <SearchComp />
+              <Button color={"orange"} sx={{ borderRadius: 0 }} size="lg">
+                Shop Now
+              </Button>
             </Box>
-
-            <Center>
-              <Group
-                sx={{
-                  backgroundColor: "#252B32",
-                  borderRadius: 30,
-                  color: "white",
-                  width: 300,
-                }}
-                p="12px"
-              >
-                <Switch
-                  color="teal"
-                  checked={uiManager.platform == "BRAND"}
-                  sx={{}}
-                  onChange={(event) => uiManager.togglePlatform()}
-                />
-                <Text>Switch to local markets page</Text>
-              </Group>
-            </Center>
           </Stack>
         </Container>
       </Box>
@@ -78,8 +63,21 @@ export default observer(function PlatformHomeScreen() {
       <Box sx={{}}>
         <Container size="lg" py="32px" sx={{ backgroundColor: "white" }}>
           <Stack py={"24px"} spacing="xl">
-            <SectionHeader title="Popular Products" />
-            <RenderProductsGrid />
+            <SectionHeader
+              title="Popular Products"
+              showBorder={false}
+              right={
+                <Button
+                  variant="subtle"
+                  onClick={() => {
+                    navigate("/explore");
+                  }}
+                >
+                  VIEW MORE
+                </Button>
+              }
+            />
+            <RenderProductsGrid products={dataManager.products.slice(0, 6)} />
           </Stack>
         </Container>
       </Box>
@@ -87,8 +85,24 @@ export default observer(function PlatformHomeScreen() {
       <Box sx={{}}>
         <Container size="lg" py="32px" sx={{ backgroundColor: "white" }}>
           <Stack py={"24px"} spacing="xl">
-            <SectionHeader title="Trending Products" />
-            <RenderProductsGrid useMainCard={true} />
+            <SectionHeader
+              title="Trending Products"
+              showBorder={false}
+              right={
+                <Button
+                  variant="subtle"
+                  onClick={() => {
+                    navigate("/explore");
+                  }}
+                >
+                  VIEW MORE
+                </Button>
+              }
+            />
+            <RenderProductsGrid
+              useMainCard={true}
+              products={dataManager.products.slice(0, 4)}
+            />
           </Stack>
         </Container>
       </Box>
@@ -135,43 +149,3 @@ export default observer(function PlatformHomeScreen() {
     </Stack>
   );
 });
-
-function SearchComp() {
-  return (
-    <div>
-      <Box>
-        <Grid
-          sx={{ background: "white", padding: "4px 12px", borderRadius: 4 }}
-        >
-          <Grid.Col span={6} xs={6} sm={6} md={3}>
-            <Select
-              sx={{ flex: 0.5 }}
-              data={[{ value: "ok", label: "ok" }]}
-              variant="unstyled"
-              placeholder="Select State"
-              rightSection={<ArrowDown2 size={14} color="black" />}
-            />
-          </Grid.Col>
-          <Grid.Col span={6} xs={6} sm={6} md={3}>
-            <Select
-              sx={{ flex: 0.5 }}
-              data={[{ value: "ok", label: "ok" }]}
-              placeholder="Select Market"
-              variant="unstyled"
-              rightSection={<ArrowDown2 size={14} color="black" />}
-            />
-          </Grid.Col>
-
-          <Grid.Col md={6}>
-            <Input
-              sx={{ flex: 1 }}
-              placeholder="Search products, brands..."
-              rightSection={<SearchNormal1 color="black" />}
-              variant="unstyled"
-            />
-          </Grid.Col>
-        </Grid>
-      </Box>
-    </div>
-  );
-}

@@ -1,12 +1,11 @@
-import { platformUtilsManager } from "@store/platform/utils";
+import { dataManager } from "@store/data";
 import { useEffect } from "react";
 
 export function useUtilsLoader() {
   function load() {
     Promise.all([
-      platformUtilsManager.loadCategories(),
-      platformUtilsManager.loadMarkets(),
-      platformUtilsManager.loadStates(),
+      dataManager.loadCategories(),
+      dataManager.loadProducts(),
     ]).then((err) => {
       console.log(err);
     });

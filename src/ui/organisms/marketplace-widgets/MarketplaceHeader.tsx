@@ -8,8 +8,10 @@ import {
   Group,
   Button,
   Container,
+  Title,
 } from "@mantine/core";
 import { Link } from "react-router-dom";
+import { CartWidget } from "../cart/CartWidget";
 import Logo from "./logo.svg";
 
 const MarketplaceHeader: React.FC<{
@@ -52,9 +54,7 @@ const MarketplaceHeader: React.FC<{
               }}
               p="md"
             >
-              <Link to={"/"}>
-                <img src={Logo} alt="React Logo" style={{ height: 40 }} />
-              </Link>
+              <Title size={"md"}>Paladin Ecommerce</Title>
             </Box>
           </MediaQuery>
 
@@ -80,11 +80,9 @@ const MarketplaceHeader: React.FC<{
           </MediaQuery>
 
           <Group align={"center"}>
-            <Link to={"/login"}>
-              <Button variant="white">Signin</Button>
-            </Link>
-            <Link to={"/register"}>
-              <Button>Register</Button>
+            <CartWidget />
+            <Link to={"/account"}>
+              <Button>Accont</Button>
             </Link>
           </Group>
         </Group>

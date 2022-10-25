@@ -37,8 +37,7 @@ export function RegisterationScreen(props: any) {
       <RenderPlatformBanner />
       <Container py="42px">
         <Stack spacing={"xl"}>
-          <Title>Become A Seller</Title>
-          <Text>Personal Details</Text>
+          <Title>Create New Account</Title>
           <form
             onSubmit={form.onSubmit(async (values) => {
               try {
@@ -128,21 +127,6 @@ export function RegisterationScreen(props: any) {
               </Button>
             </Stack>
           </form>
-
-          <Text sx={{ textAlign: "center" }}>OR REGISTER WITH</Text>
-
-          <Grid>
-            <Grid.Col md={6}>
-              <Button fullWidth variant="subtle" disabled size="lg">
-                Facebook
-              </Button>
-            </Grid.Col>
-            <Grid.Col md={6}>
-              <Button fullWidth variant="subtle" disabled size="lg">
-                Google
-              </Button>
-            </Grid.Col>
-          </Grid>
 
           <Text sx={{ textAlign: "center" }}>
             Already have a seller account?{" "}

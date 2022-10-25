@@ -5,25 +5,25 @@ export const MaintineThemeConfig: MantineThemeOverride = {
   fontFamily: "'AppRegularFont', sans-serif",
   fontFamilyMonospace: "'AppRegularFont', sans-serif",
   headings: { fontFamily: "'AppRegularFont', sans-serif" },
-  primaryColor: "blue",
   colors: {
-    darkBlue: [
-      "black",
-      "black",
-      "black",
-      "#2C4C59",
-      "#667D86",
-      "#1A3C4A",
-      "black",
-      "black",
-      "black",
-      "#667D86",
+    brown: [
+      "#E5D4C3",
+      "#E5C9AE",
+      "#DEBEA2",
+      "#D6AB7D",
+      "#B3895D",
+      "#9B744A",
+      "#81583A",
+      "#734F38",
+      "#553725",
+      "#482919",
     ],
   },
+  primaryColor: "brown",
   components: {
     Button: {
       defaultProps: {
-        color: "orange",
+        color: "brown",
       },
       styles(theme, params) {
         return {

@@ -9,7 +9,7 @@ import {
   Title,
 } from "@mantine/core";
 import { IconBuildingStore } from "@tabler/icons";
-import { HeartRemove, HeartSlash, Verify } from "iconsax-react";
+import { Heart, HeartRemove, HeartSlash, Verify } from "iconsax-react";
 import { useNavigate } from "react-router-dom";
 import { formatCurrency } from "../../../utils";
 
@@ -20,7 +20,7 @@ export const MainProductCard = () => {
       withBorder
       sx={{ overflow: "hidden" }}
       onClick={() => {
-        //navigate("/store/store/products/product-id");
+        navigate("/products/product-id");
       }}
       px={14}
     >
@@ -34,21 +34,17 @@ export const MainProductCard = () => {
           }}
         >
           <Box sx={{ position: "absolute", top: 12, left: 12 }}>
-            <HeartSlash variant="Outline" color="gray" />
+            <Heart variant="Outline" color="gray" />
           </Box>
         </Box>
       </Box>
       <Stack spacing={"xs"} sx={{ flex: 1 }} px="12px" py="12px">
         <Box>
-          <Title size={"md"} color="#183B56">
-            Product name goes
-          </Title>
-          <Text size={"sm"} sx={{ color: "#183B56" }}>
+          <Title size={"md"}>Product name goes</Title>
+          <Text size={"sm"} sx={{}}>
             Category
           </Text>
-          <Title size={"md"} color="#183B56">
-            {formatCurrency(1000)}
-          </Title>
+          <Title size={"md"}>{formatCurrency(1000)}</Title>
         </Box>
       </Stack>
     </Paper>

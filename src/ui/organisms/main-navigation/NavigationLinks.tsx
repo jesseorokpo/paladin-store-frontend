@@ -112,7 +112,7 @@ function LinksGroup({
           }}
           className={classes.control}
           sx={{
-            color: isActive ? "orange" : undefined,
+            color: isActive ? "rgb(85, 55, 37)" : undefined,
           }}
         >
           <Group position="apart" spacing={0}>

@@ -14,9 +14,7 @@ export function SectionHeader({
   return (
     <Stack spacing={"sm"}>
       <Group position="apart" align={"center"}>
-        <Text sx={{ fontWeight: "bold", color: "#183B56" }}>
-          {title.toUpperCase()}
-        </Text>
+        <Text sx={{ fontWeight: "bold" }}>{title.toUpperCase()}</Text>
         {right}
       </Group>
       {showBorder !== false ? <Divider /> : null}

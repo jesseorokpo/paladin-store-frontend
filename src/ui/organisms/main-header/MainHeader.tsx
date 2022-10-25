@@ -22,6 +22,7 @@ import {
   ShoppingBag,
   ShoppingCart,
 } from "iconsax-react";
+import { CartWidget } from "../cart/CartWidget";
 import Logo from "./logo.svg";
 
 const MainHeader: React.FC<{
@@ -65,7 +66,7 @@ const MainHeader: React.FC<{
             }}
             p="md"
           >
-            <img src={Logo} alt="React Logo" style={{ height: 40 }} />
+            <Title size={"md"}>Paladin Ecommerce</Title>
           </Box>
         </MediaQuery>
         <Box p="md" sx={{ flex: 1 }}>
@@ -75,19 +76,15 @@ const MainHeader: React.FC<{
             sx={{ justifyContent: "space-between" }}
           >
             <Box></Box>
-            <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
-              <Box>
-                <Group>
-                  <ActionIcon>
-                    <ShoppingCart />
-                  </ActionIcon>
-                  <ActionIcon>
-                    <Notification />
-                  </ActionIcon>
-                  <UserPrimaryActions />
-                </Group>
-              </Box>
-            </MediaQuery>
+            <Box>
+              <Group>
+                <CartWidget />
+                <ActionIcon>
+                  <Notification />
+                </ActionIcon>
+                <UserPrimaryActions />
+              </Group>
+            </Box>
           </Group>
         </Box>
       </div>

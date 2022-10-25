@@ -1,28 +1,41 @@
-import { Box, Group, Paper, Stack, Text, Title } from "@mantine/core";
+import { TProduct } from "@interface/models";
+import {
+  ActionIcon,
+  Box,
+  Group,
+  Paper,
+  Stack,
+  Text,
+  Title,
+  useMantineTheme,
+} from "@mantine/core";
+import { cartManager } from "@store/cart";
 import { IconCamera } from "@tabler/icons";
-import { Camera } from "iconsax-react";
+import { Camera, ShoppingCart } from "iconsax-react";
 import { useNavigate } from "react-router-dom";
 import { formatCurrency } from "../../../utils";
 
-export default function ProductCard() {
+export default function ProductCard({ product }: { product: TProduct }) {
   let navigate = useNavigate();
+  let theme = useMantineTheme();
   return (
     <Box>
-      <Paper
-        withBorder
-        sx={{ overflow: "hidden" }}
-        onClick={() => {
-          navigate("/store/store/products/product-id");
-        }}
-        px={14}
-      >
-        <Box pt={14}>
+      <Paper withBorder sx={{ overflow: "hidden" }} px={14}>
+        <Box
+          pt={14}
+          onClick={() => {
+            navigate(`/products/${product.id}`);
+          }}
+        >
           <Box
             sx={{
               paddingTop: "100%",
               backgroundColor: "#404040",
               position: "relative",
               borderRadius: 8,
+              backgroundImage: `url(${product.thumbnail})`,
+              backgroundPosition: "center",
+              backgroundSize: "cover",
             }}
           >
             <Box sx={{ position: "absolute", bottom: 12, left: 12 }}>
@@ -31,6 +44,7 @@ export default function ProductCard() {
                   color: "white",
                   padding: "2px 6px",
                   background: "rgba(200,200,200,.3)",
+
                   borderRadius: 50,
                   display: "flex",
                   alignContent: "center",
@@ -47,16 +61,33 @@ export default function ProductCard() {
         </Box>
         <Stack spacing={"xs"} sx={{ flex: 1 }} px="12px" py="12px">
           <Box>
-            <Title size={"md"} color="#183B56">
-              Product name goes
+            <Title
+              size={"md"}
+              color="#183B56"
+              onClick={() => {
+                navigate(`/products/${product.id}`);
+              }}
+            >
+              {product.title}
             </Title>
-            <Text size={"sm"}> Bolade Beauty Shop</Text>
-            <Text size={"sm"} sx={{ color: "#183B56" }}>
-              Oshodi Market, Lagos
-            </Text>
-            <Title size={"md"} color="#183B56">
-              {formatCurrency(1000)}
-            </Title>
+            <Group position="apart">
+              <Box>
+                <Text size={"sm"} sx={{ color: "#183B56" }}>
+                  {product.category}
+                </Text>
+                <Title size={"md"} color="#183B56">
+                  {formatCurrency(product.price)}
+                </Title>
+              </Box>
+
+              <ActionIcon
+                onClick={() => {
+                  cartManager.addItem(product);
+                }}
+              >
+                <ShoppingCart color={theme.colors.brown[5]} />
+              </ActionIcon>
+            </Group>
           </Box>
         </Stack>
       </Paper>
