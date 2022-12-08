@@ -14,6 +14,7 @@ import {
   Button,
   ActionIcon,
 } from "@mantine/core";
+import { authManager } from "@store/account/auth";
 import { IconNotification, IconSearch } from "@tabler/icons";
 import {
   CardTick,
@@ -22,6 +23,7 @@ import {
   ShoppingBag,
   ShoppingCart,
 } from "iconsax-react";
+import { observer } from "mobx-react-lite";
 import { CartWidget } from "../cart/CartWidget";
 import Logo from "./logo.svg";
 
@@ -92,7 +94,8 @@ const MainHeader: React.FC<{
   );
 };
 
-function UserPrimaryActions() {
+const UserPrimaryActions = observer(() => {
+  let profile = authManager.user;
   return (
     <Menu width={"280px"}>
       <Menu.Target>
@@ -113,7 +116,7 @@ function UserPrimaryActions() {
           />
           <Box sx={{ textAlign: "center" }}>
             <Text sx={{ fontWeight: "bold" }}>Emekus Kalu</Text>
-            <Text>emekusenterprise@gmail.com</Text>
+            <Text>{profile.email}</Text>
           </Box>
 
           <Group>
@@ -126,6 +129,6 @@ function UserPrimaryActions() {
       </Menu.Dropdown>
     </Menu>
   );
-}
+});
 
 export default MainHeader;

@@ -10,6 +10,7 @@ import {
   Container,
   Title,
 } from "@mantine/core";
+import LogoColoredSvgComponent from "@ui/svg/LogoColored";
 import { Link } from "react-router-dom";
 import { CartWidget } from "../cart/CartWidget";
 import Logo from "./logo.svg";
@@ -54,7 +55,10 @@ const MarketplaceHeader: React.FC<{
               }}
               p="md"
             >
-              <Title size={"md"}>Paladin Ecommerce</Title>
+              <Group>
+                <LogoColoredSvgComponent  width={50}/>
+                <Title size={"md"}>Paladin Ecommerce</Title>
+              </Group>
             </Box>
           </MediaQuery>
 

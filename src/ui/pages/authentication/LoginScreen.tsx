@@ -21,10 +21,9 @@ export function LoginScreen(props: any) {
       email: "",
       password: "",
     },
-
-    // validate: {
-    //   email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
-    // },
+    validate: {
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
+    },
   });
 
   return (
@@ -38,8 +37,6 @@ export function LoginScreen(props: any) {
             await loginManager.login({
               email: values.email,
               password: values.password,
-              platform: "BRAND_SELLER",
-              rememberMe: true,
             });
 
             setSubmitting(false);

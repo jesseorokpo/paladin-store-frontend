@@ -32,6 +32,7 @@
     "currency-formatter": "^1.5.9",
     "dayjs": "^1.11.5",
     "faker": "^6.6.6",
+    "firebase": "^9.14.0",
     "iconsax-react": "^0.0.8",
     "mobx": "^6.6.0",
     "mobx-react": "^7.5.0",
@@ -53,8 +54,8 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "craco eject",
-    "gen-auth": "openapi-generator-cli generate -i http://134.209.70.120:8080/api/v1/userapi/documentation -g typescript-axios -o src/sdk/auth",
-    "gen-market-api": "openapi-generator-cli generate -i http://134.209.70.120:8081/api/v1/marketapi/documentation -g typescript-axios -o src/sdk/market"
+    "gen-auth": "openapi-generator-cli generate -i http://localhost:5000/docs/auth-json -g typescript-axios -o src/sdk/auth",
+    "gen-catalog-api": "openapi-generator-cli generate -i http://localhost:5000/docs/catalog-json -g typescript-axios -o src/sdk/catalog"
   },
   "eslintConfig": {
     "extends": [

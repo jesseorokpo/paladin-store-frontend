@@ -1,23 +1,24 @@
 import { makeAutoObservable, observable, runInAction } from "mobx";
-import { authController, userController } from "../../config/sdk";
-import { User } from "../../sdk/auth";
+import { authController } from "../../config/sdk";
+import { UserPublicData } from "../../sdk/auth";
 
 class AuthManager {
   //@ts-ignore
-  user: User;
+  user: UserPublicData;
   status: "AUTHENTICATED" | "INITIAL" = "INITIAL";
   constructor() {
     makeAutoObservable(this, { user: observable });
   }
 
   initAccountToken(token: string) {
-    localStorage.setItem("zu-token", token);
+    localStorage.setItem("u-token", token);
     this.init();
   }
 
   init() {
-    let token = localStorage.getItem("zu-token");
+    let token = localStorage.getItem("u-token");
     if (token == null) {
+      // not logged in
       return;
     }
     runInAction(() => {
@@ -28,7 +29,7 @@ class AuthManager {
 
   async loadProfile() {
     try {
-      let response = await userController.getUser();
+      let response = await authController.authControllerGetProfile();
       runInAction(() => {
         this.user = response.data;
       });

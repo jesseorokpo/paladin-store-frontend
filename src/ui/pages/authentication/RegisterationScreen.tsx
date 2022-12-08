@@ -22,13 +22,14 @@ export function RegisterationScreen(props: any) {
   let [submitting, setSubmitting] = useState(false);
   const form = useForm({
     initialValues: {
-      firstName: "",
-      lastName: "",
-      phoneNumber: "",
-      gender: "",
-      email: "",
-      password: "",
-      confirm_password: "",
+      first_name:"",
+      last_name:"",
+      phone:"",
+      email:"",
+      password:""
+    },
+    validate: {
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
     },
   });
 
@@ -44,9 +45,7 @@ export function RegisterationScreen(props: any) {
                 setSubmitting(true);
                 await registerationManager.createAccount({
                   ...values,
-                  countryCode: "NG",
-                  gender: "MALE",
-                  platform: "BRAND_SELLER",
+             
                 });
                 setSubmitting(false);
               } catch (e) {
