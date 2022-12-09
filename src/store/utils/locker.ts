@@ -1,3 +1,7 @@
+import {
+  resetNavigationProgress,
+  startNavigationProgress,
+} from "@mantine/nprogress";
 import { makeAutoObservable, runInAction } from "mobx";
 import { lockerApiController } from "../../config/sdk";
 import { Locker, PublishLockerDto, UpdateLockerDto } from "../../sdk/catalog";
@@ -23,17 +27,6 @@ class Manager {
       });
   }
 
-//   deleteItem(id: string) {
-//     console.log("deleting item");
-//     productApiController.productControllerDeleteItem(id).then((payload) => {
-//       runInAction(() => {
-//         // @ts-ignore
-//         this.items = this.items.filter((element) => element._id != id);
-//         this.loadItems();
-//       });
-//     });
-//   }
-
   updateItem(id: string, payload: UpdateLockerDto) {
     lockerApiController.lockerControllerUpdate(id, payload).then((payload) => {
       runInAction(() => {
@@ -44,18 +37,21 @@ class Manager {
     });
   }
 
-  publishItem(payload: PublishLockerDto) {
-    lockerApiController
-      .lockerControllerPublish(payload)
-      .then((payload) => {
-        runInAction(() => {
-          this.items.push(payload.data);
-        });
-      })
-      .catch((err) => {
-        //@ts-ignore
-        console.log(err.response);
+  async publishItem(payload: PublishLockerDto) {
+    startNavigationProgress();
+
+    try {
+      let response = await lockerApiController.lockerControllerPublish(payload);
+      runInAction(() => {
+        this.items.push(response.data);
+
+        resetNavigationProgress();
       });
+    } catch (err) {
+      resetNavigationProgress();
+      //@ts-ignore
+      console.log(err.response);
+    }
   }
 }
 

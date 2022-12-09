@@ -8,6 +8,7 @@ import { MaintineThemeConfig } from "../styles/mantine-config";
 import { useUtilsLoader } from "../hooks/loader";
 import axios from "axios";
 import { dataManager } from "@store/data";
+import { authManager } from "@store/account/auth";
 
 export default observer(function () {
   let [appState, setAppState] = React.useState("loaded");
@@ -16,7 +17,9 @@ export default observer(function () {
   React.useEffect(() => {
     dataManager.loadCategories();
     dataManager.loadProducts();
-  },[]);
+
+    authManager.init();
+  }, []);
   // return <div>I AM WORKING</div>;
 
   return (
