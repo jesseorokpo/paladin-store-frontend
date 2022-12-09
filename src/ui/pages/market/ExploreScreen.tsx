@@ -87,7 +87,7 @@ export default observer(function ExploreScreen() {
   );
 });
 
-function SearchComp() {
+const SearchComp = observer(() => {
   return (
     <div>
       <Box>
@@ -97,12 +97,16 @@ function SearchComp() {
           <Grid.Col span={12} sm={4} md={4}>
             <Select
               sx={{ flex: 0.5 }}
-              data={dataManager.categories.map((element) => {
+              value={dataManager.activeCategory}
+              data={[{value:undefined, label:"All Products"},...dataManager.categories.map((element) => {
                 //@ts-ignore
                 return { value: element._id, label: element.name };
-              })}
+              })]}
               variant="unstyled"
               placeholder="Category"
+              onChange={(selected) => {
+                dataManager.filterProducts(selected ?? "");
+              }}
               rightSection={<ArrowDown2 size={14} color="black" />}
             />
           </Grid.Col>
@@ -119,4 +123,4 @@ function SearchComp() {
       </Box>
     </div>
   );
-}
+});

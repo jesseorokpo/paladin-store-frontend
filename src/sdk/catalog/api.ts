@@ -336,6 +336,25 @@ export interface Product {
 /**
  * 
  * @export
+ * @interface PublicProductsResponse
+ */
+export interface PublicProductsResponse {
+    /**
+     * 
+     * @type {Array<Product>}
+     * @memberof PublicProductsResponse
+     */
+    'top_products': Array<Product>;
+    /**
+     * 
+     * @type {Array<Product>}
+     * @memberof PublicProductsResponse
+     */
+    'is_trending': Array<Product>;
+}
+/**
+ * 
+ * @export
  * @interface PublishLockerDto
  */
 export interface PublishLockerDto {
@@ -2066,6 +2085,79 @@ export const ProductApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @param {string} category 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        productControllerGetProductsFiltered: async (category: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'category' is not null or undefined
+            assertParamExists('productControllerGetProductsFiltered', 'category', category)
+            const localVarPath = `/api/catalog/products/products-filtered`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (category !== undefined) {
+                localVarQueryParameter['category'] = category;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        productControllerGetPublic: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/catalog/products/public`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {PublishProductDto} publishProductDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -2187,6 +2279,25 @@ export const ProductApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {string} category 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async productControllerGetProductsFiltered(category: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Product>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.productControllerGetProductsFiltered(category, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async productControllerGetPublic(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PublicProductsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.productControllerGetPublic(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {PublishProductDto} publishProductDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -2241,6 +2352,23 @@ export const ProductApiFactory = function (configuration?: Configuration, basePa
          */
         productControllerGetById(item: string, options?: any): AxiosPromise<Product> {
             return localVarFp.productControllerGetById(item, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} category 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        productControllerGetProductsFiltered(category: string, options?: any): AxiosPromise<Array<Product>> {
+            return localVarFp.productControllerGetProductsFiltered(category, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        productControllerGetPublic(options?: any): AxiosPromise<PublicProductsResponse> {
+            return localVarFp.productControllerGetPublic(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -2301,6 +2429,27 @@ export class ProductApi extends BaseAPI {
      */
     public productControllerGetById(item: string, options?: AxiosRequestConfig) {
         return ProductApiFp(this.configuration).productControllerGetById(item, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} category 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProductApi
+     */
+    public productControllerGetProductsFiltered(category: string, options?: AxiosRequestConfig) {
+        return ProductApiFp(this.configuration).productControllerGetProductsFiltered(category, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProductApi
+     */
+    public productControllerGetPublic(options?: AxiosRequestConfig) {
+        return ProductApiFp(this.configuration).productControllerGetPublic(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

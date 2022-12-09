@@ -84,7 +84,9 @@ export default observer(function PlatformHomeScreen() {
                 </Button>
               }
             />
-            <RenderProductsGrid products={dataManager.products.slice(0, 6)} />
+            <RenderProductsGrid
+              products={dataManager.productsHome.top_products}
+            />
           </Stack>
         </Container>
       </Box>
@@ -108,7 +110,7 @@ export default observer(function PlatformHomeScreen() {
             />
             <RenderProductsGrid
               useMainCard={true}
-              products={dataManager.products.slice(0, 4)}
+              products={dataManager.productsHome.is_trending}
             />
           </Stack>
         </Container>
