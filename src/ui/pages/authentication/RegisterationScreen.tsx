@@ -11,27 +11,31 @@ import {
   Box,
   Container,
   Grid,
-  Select,
 } from "@mantine/core";
 import { registerationManager } from "../../../store/account/registerationManager";
-import { AuthenticationTemplate } from "../../template/authentication";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { RenderPlatformBanner } from "@ui/organisms/utils/covers";
+import { authManager } from "@store/account/auth";
+import { observer } from "mobx-react";
 
-export function RegisterationScreen(props: any) {
+export const RegisterationScreen = observer((props: any) => {
   let [submitting, setSubmitting] = useState(false);
   const form = useForm({
     initialValues: {
-      first_name:"",
-      last_name:"",
-      phone:"",
-      email:"",
-      password:""
+      first_name: "",
+      last_name: "",
+      phone: "",
+      email: "",
+      password: "",
     },
     validate: {
       email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
     },
   });
+
+  if (authManager.status == "AUTHENTICATED") {
+    return <Navigate to={"/"} />;
+  }
 
   return (
     <Box>
@@ -45,7 +49,6 @@ export function RegisterationScreen(props: any) {
                 setSubmitting(true);
                 await registerationManager.createAccount({
                   ...values,
-             
                 });
                 setSubmitting(false);
               } catch (e) {
@@ -73,30 +76,19 @@ export function RegisterationScreen(props: any) {
                 </Grid.Col>
                 <Grid.Col md={12}>
                   <Grid>
-                    <Grid.Col md={3}>
+                    <Grid.Col md={6}>
                       <TextInput
                         label="Phone Number"
-                        placeholder="Your name"
+                        placeholder="Type here"
                         size="lg"
                         {...form.getInputProps("phone")}
                       />
                     </Grid.Col>
-                    <Grid.Col md={3}>
-                      <Select
-                        label="Gender"
-                        placeholder="Your name"
-                        data={[
-                          { value: "MALE", label: "Male" },
-                          { value: "FEMALE", label: "Female" },
-                        ]}
-                        size="lg"
-                        {...form.getInputProps("gender")}
-                      />
-                    </Grid.Col>
+
                     <Grid.Col md={6}>
                       <TextInput
                         label="Email"
-                        placeholder="Your name"
+                        placeholder="Type here"
                         size="lg"
                         {...form.getInputProps("email")}
                       />
@@ -121,7 +113,7 @@ export function RegisterationScreen(props: any) {
                 </Grid.Col>
               </Grid>
 
-              <Button fullWidth size="lg">
+              <Button fullWidth size="lg" loading={submitting} type="submit">
                 Continue
               </Button>
             </Stack>
@@ -129,10 +121,12 @@ export function RegisterationScreen(props: any) {
 
           <Text sx={{ textAlign: "center" }}>
             Already have a seller account?{" "}
-            <span style={{ fontWeight: "bold" }}>Signin</span>
+            <Link to="/login">
+              <span style={{ fontWeight: "bold" }}>Signin</span>
+            </Link>
           </Text>
         </Stack>
       </Container>
     </Box>
   );
-}
+});

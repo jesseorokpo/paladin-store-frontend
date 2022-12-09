@@ -6,6 +6,7 @@ import {
 import { makeAutoObservable, observable } from "mobx";
 import { AuthApi, SignUpDto } from "../../sdk/auth";
 import { handleAxiosError } from "../../utils";
+import { authManager } from "./auth";
 
 class RegisterationManager {
   //@ts-ignore
@@ -18,6 +19,8 @@ class RegisterationManager {
     try {
       startNavigationProgress();
       let response = await new AuthApi().authControllerSignup(request);
+      console.log(response);
+      authManager.initAccountToken(response.data.token);
       completeNavigationProgress();
     } catch (err) {
       let message = handleAxiosError(err);

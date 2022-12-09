@@ -11,7 +11,7 @@ import {
   Title,
 } from "@mantine/core";
 import { authManager } from "@store/account/auth";
-import LogoColoredSvgComponent from "@ui/svg/LogoColored";
+import { observer } from "mobx-react";
 import { Link } from "react-router-dom";
 import { CartWidget } from "../cart/CartWidget";
 import Logo from "./logo.svg";
@@ -98,4 +98,4 @@ const MarketplaceHeader: React.FC<{
   );
 };
 
-export default MarketplaceHeader;
+export default observer(MarketplaceHeader);

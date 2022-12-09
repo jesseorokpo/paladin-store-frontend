@@ -13,8 +13,11 @@ import {
 import { useForm } from "@mantine/form";
 import { loginManager } from "@store/account/loginManager";
 import { RenderPlatformBanner } from "@ui/organisms/utils/covers";
+import { authManager } from "@store/account/auth";
+import { Navigate } from "react-router-dom";
+import { observer } from "mobx-react";
 
-export function LoginScreen(props: any) {
+export const LoginScreen = observer((props: any) => {
   let [submitting, setSubmitting] = useState(false);
   const form = useForm({
     initialValues: {
@@ -25,6 +28,10 @@ export function LoginScreen(props: any) {
       email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
     },
   });
+
+  if (authManager.status == "AUTHENTICATED") {
+    return <Navigate to={"/"} />;
+  }
 
   return (
     <Box>
@@ -73,4 +80,4 @@ export function LoginScreen(props: any) {
       </form>
     </Box>
   );
-}
+});
