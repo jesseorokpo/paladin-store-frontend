@@ -15,6 +15,7 @@ import LockersScreen from "@ui/pages/lockers";
 import LockerScreen from "@ui/pages/locker";
 import { ViewProductScreen } from "@ui/pages/public/ViewShopProduct";
 import ExploreScreen from "@ui/pages/market/ExploreScreen";
+import { EditProfileScreen } from "@ui/pages/account/EditProfileScreen";
 
 export default function MainAppRoutes() {
   return (
@@ -22,6 +23,9 @@ export default function MainAppRoutes() {
       <Route path="account" element={<AccountNavigationShell />}>
         <Route path="notifications">
           <Route path="" element={<NotificationsScreen />} />
+        </Route>
+        <Route path="profile">
+          <Route path="" element={<EditProfileScreen />} />
         </Route>
         <Route path="history">
           <Route path="" element={<OrderHistoryScreen />} />

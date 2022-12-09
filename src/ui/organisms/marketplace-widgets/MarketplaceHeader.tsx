@@ -33,34 +33,23 @@ const MarketplaceHeader: React.FC<{
           align="center"
           position="apart"
         >
-          <MediaQuery largerThan="sm" styles={{ display: "none" }}>
-            <Burger
-              opened={opened}
-              onClick={() => setOpened((o: any) => !o)}
-              size="sm"
-              color={theme.colors.gray[6]}
-              mr="xl"
-            />
-          </MediaQuery>
-          <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
-            <Box
-              sx={(theme) => {
-                return {
-                  height: "100%",
-                  width: "250px",
-                  display: "flex",
-                  alignContent: "center",
-                  alignItems: "center",
-                };
-              }}
-              p="md"
-            >
-              <Group>
-                <LogoColoredSvgComponent  width={50}/>
-                <Title size={"md"}>Paladin Ecommerce</Title>
-              </Group>
-            </Box>
-          </MediaQuery>
+          <Box
+            sx={(theme) => {
+              return {
+                height: "100%",
+                width: "250px",
+                display: "flex",
+                alignContent: "center",
+                alignItems: "center",
+              };
+            }}
+            p="md"
+          >
+            <Group>
+              <LogoColoredSvgComponent width={50} />
+              <Title size={"md"}>Paladin Ecommerce</Title>
+            </Group>
+          </Box>
 
           <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
             <Box>

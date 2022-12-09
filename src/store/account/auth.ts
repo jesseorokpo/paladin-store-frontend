@@ -16,11 +16,11 @@ class AuthManager {
   }
 
   init() {
-    let token = localStorage.getItem("u-token");
-    if (token == null) {
-      // not logged in
-      return;
-    }
+    // let token = localStorage.getItem("u-token");
+    // if (token == null) {
+    //   // not logged in
+    //   return;
+    // }
     runInAction(() => {
       this.status = "AUTHENTICATED";
     });
@@ -30,6 +30,7 @@ class AuthManager {
   async loadProfile() {
     try {
       let response = await authController.authControllerGetProfile();
+      console.log(response.data)
       runInAction(() => {
         this.user = response.data;
       });

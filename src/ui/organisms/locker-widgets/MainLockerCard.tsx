@@ -15,16 +15,18 @@ import {
 import { IconBuildingStore } from "@tabler/icons";
 import { HeartRemove, HeartSlash, Verify } from "iconsax-react";
 import { useNavigate } from "react-router-dom";
+import { Locker } from "../../../sdk/catalog";
 import { formatCurrency } from "../../../utils";
 
-export const MainLockerCard = () => {
+export const MainLockerCard = ({ locker }: { locker: Locker }) => {
   let navigate = useNavigate();
   return (
     <Paper
       withBorder
       sx={{ overflow: "hidden" }}
       onClick={() => {
-        navigate("/account/lockers/locker-id");
+        //@ts-ignore
+        navigate(`/account/lockers/${locker._id}`);
       }}
       px={14}
     >
@@ -37,15 +39,12 @@ export const MainLockerCard = () => {
             <Stack spacing={"xs"} sx={{ flex: 1, width: "100%" }}>
               <Box>
                 <Title size={"md"} color="#183B56">
-                  FullName
+                  {locker.first_name} {locker.last_name}
                 </Title>
                 <Text size={"sm"} sx={{ color: "#183B56" }}>
-                  PID: #123456
+                  PID: {locker.pid}
                 </Text>
               </Box>
-              <Title size={"md"} color="#183B56">
-                {formatCurrency(1000)}
-              </Title>
             </Stack>
             <Button>View</Button>
           </Group>

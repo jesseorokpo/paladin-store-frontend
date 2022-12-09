@@ -1,19 +1,21 @@
-import { CartItem, TProduct } from "@interface/models";
 import { makeAutoObservable, runInAction } from "mobx";
+import { productApiController, taxonomyApiController } from "../config/sdk";
+import { Product, Taxonomy } from "../sdk/catalog";
 
 class DataManager {
-  products: any[] = [];
+  products: Product[] = [];
 
-  categories: any[] = [];
+  categories: Taxonomy[] = [];
 
   constructor() {
     makeAutoObservable(this);
   }
 
   loadCategories() {
-    fetch("https://dummyjson.com/products/categories")
+    taxonomyApiController
+      .taxonomyControllerGet()
       .then(async (res) => {
-        let data = await res.json();
+        let data = res.data;
         console.log(data);
         runInAction(() => {
           this.categories = data;
@@ -25,12 +27,13 @@ class DataManager {
   }
 
   loadProducts() {
-    fetch("https://dummyjson.com/products")
+    productApiController
+      .productControllerGet()
       .then(async (res) => {
-        let data = await res.json();
+        let data = res.data;
         console.log(data);
         runInAction(() => {
-          this.products = data.products;
+          this.products = data;
         });
       })
       .catch((e) => {

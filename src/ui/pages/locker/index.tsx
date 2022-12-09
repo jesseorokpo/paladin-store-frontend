@@ -7,13 +7,44 @@ import {
   Text,
   Tabs,
   ActionIcon,
+  Loader,
 } from "@mantine/core";
+import {
+  resetNavigationProgress,
+  startNavigationProgress,
+} from "@mantine/nprogress";
 import { CardEdit, Edit, EyeSlash } from "iconsax-react";
+import { useEffect, useState } from "react";
+import { useParams, useRoutes } from "react-router-dom";
+import { lockerApiController } from "../../../config/sdk";
+import { Locker } from "../../../sdk/catalog";
 import { LockerAssets } from "./LockerAssets";
 import { LockerDetails } from "./LockerDetails";
 import { LockerHistory } from "./LockerHistory";
 
 export default function LockerScreen() {
+  let [locker, setLocker] = useState<Locker>();
+  let params = useParams();
+  async function loadLocker() {
+    try {
+      startNavigationProgress();
+      let response = await lockerApiController.lockerControllerGetById(
+        params.locker ?? ""
+      );
+      setLocker(response.data);
+      resetNavigationProgress();
+    } catch (err) {
+      resetNavigationProgress();
+    }
+  }
+
+  useEffect(() => {
+    loadLocker();
+  }, []);
+
+  if (locker == undefined) {
+    return <Loader />;
+  }
   return (
     <Box style={{ overflow: "hidden !important" }} mt="xl">
       <Stack>
@@ -28,7 +59,7 @@ export default function LockerScreen() {
             <Group position="apart">
               <Box>
                 <Title sx={{ fontSize: 24 }}>Locker</Title>
-                <Text>#123456</Text>
+                <Text>{locker.pid}</Text>
               </Box>
 
               <Group>
@@ -49,15 +80,15 @@ export default function LockerScreen() {
               </Tabs.List>
 
               <Tabs.Panel value="profile" pt="xs">
-                <LockerDetails />
+                <LockerDetails locker={locker} />
               </Tabs.Panel>
 
               <Tabs.Panel value="items" pt="xs">
-                <LockerAssets />
+                <LockerAssets locker={locker} />
               </Tabs.Panel>
 
               <Tabs.Panel value="history" pt="xs">
-                <LockerHistory />
+                <LockerHistory locker={locker} />
               </Tabs.Panel>
             </Tabs>
           </Stack>

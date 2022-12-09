@@ -8,15 +8,17 @@ import {
   Group,
   Paper,
   Stack,
-  Text,
-  Title,
   useMantineTheme,
 } from "@mantine/core";
+import { authManager } from "@store/account/auth";
+import { lockerManager } from "@store/utils/locker";
+import { orderManager } from "@store/utils/order";
 import { VerticalKeyValuePair } from "@ui/molecules/text";
 import { MainStatsCard } from "@ui/organisms/dashboard-widgets";
 import { SectionHeader } from "@ui/organisms/header-widgets/SectionHeader";
 import ProductCard from "@ui/organisms/product-widgets/ProductCard";
 import { Card, Document, LockCircle } from "iconsax-react";
+import { observer } from "mobx-react";
 import MainScreenHeader from "../organisms/screen-widgets/MainScreenHeader";
 
 export const DashboardScreen = () => {
@@ -29,7 +31,7 @@ export const DashboardScreen = () => {
   );
 };
 
-function AccountOverview() {
+const AccountOverview = observer(() => {
   return (
     <Paper
       p={"18px"}
@@ -47,7 +49,7 @@ function AccountOverview() {
               caption="this month"
               color="orange"
               icon={<Document variant="Bold" color="gray" />}
-              value="0"
+              value={orderManager.items.length + ""}
             />
           </Grid.Col>
           <Grid.Col md={3}>
@@ -56,7 +58,7 @@ function AccountOverview() {
               caption="this month"
               color="orange"
               icon={<LockCircle variant="Bold" color="gray" />}
-              value="0"
+              value={lockerManager.items.length + ""}
             />
           </Grid.Col>
           <Grid.Col md={3}>
@@ -72,9 +74,10 @@ function AccountOverview() {
       </Stack>
     </Paper>
   );
-}
+});
 
-function AccountOthers() {
+const AccountOthers = observer(() => {
+  let profile = authManager.user;
   return (
     <Paper
       p={"18px"}
@@ -105,15 +108,18 @@ function AccountOthers() {
                   />
                 </Grid.Col>
                 <Grid.Col md={5}>
-                  <VerticalKeyValuePair label="First Name" value="Joshua" />
-                  <VerticalKeyValuePair label="Last Name" value="Nwafor" />
                   <VerticalKeyValuePair
-                    label="Email"
-                    value="joshuanwafor01@gmail.com"
+                    label="First Name"
+                    value={profile?.first_name}
                   />
+                  <VerticalKeyValuePair
+                    label="Last Name"
+                    value={profile?.last_name}
+                  />
+                  <VerticalKeyValuePair label="Email" value={profile?.email} />
                 </Grid.Col>
                 <Grid.Col md={5}>
-                  <VerticalKeyValuePair label="Phone" value="+2349019293032" />
+                  <VerticalKeyValuePair label="Phone" value={profile?.phone} />
                   <VerticalKeyValuePair label="Address" value="N/A" />
                   <VerticalKeyValuePair label="Gender" value="Male" />
                 </Grid.Col>
@@ -124,4 +130,4 @@ function AccountOthers() {
       </Stack>
     </Paper>
   );
-}
+});

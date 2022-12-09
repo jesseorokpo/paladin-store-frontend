@@ -94,26 +94,20 @@ function SearchComp() {
         <Grid
           sx={{ background: "white", padding: "4px 12px", borderRadius: 4 }}
         >
-          <Grid.Col span={6} xs={6} sm={6} md={3}>
+          <Grid.Col span={12} sm={4} md={4}>
             <Select
               sx={{ flex: 0.5 }}
-              data={[{ value: "ok", label: "ok" }]}
+              data={dataManager.categories.map((element) => {
+                //@ts-ignore
+                return { value: element._id, label: element.name };
+              })}
               variant="unstyled"
               placeholder="Category"
               rightSection={<ArrowDown2 size={14} color="black" />}
             />
           </Grid.Col>
-          <Grid.Col span={6} xs={6} sm={6} md={3}>
-            <Select
-              sx={{ flex: 0.5 }}
-              data={[{ value: "ok", label: "ok" }]}
-              placeholder="Subcategory"
-              variant="unstyled"
-              rightSection={<ArrowDown2 size={14} color="black" />}
-            />
-          </Grid.Col>
 
-          <Grid.Col md={6}>
+          <Grid.Col span={12} sm={8} md={8}>
             <Input
               sx={{ flex: 1 }}
               placeholder="Search products, brands..."

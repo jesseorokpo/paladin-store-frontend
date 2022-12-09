@@ -12,29 +12,71 @@ import {
   Divider,
   TextInput,
 } from "@mantine/core";
-import { Add, Minus, ShoppingCart, Verify } from "iconsax-react";
+import { Add, Minus, ShoppingBag, ShoppingCart, Verify } from "iconsax-react";
 import { useTheme } from "@emotion/react";
 import { cartManager } from "@store/cart";
 import { observer } from "mobx-react";
 import { CartItemCard } from "./CartItem";
 import { HorizontalKeyValuePair } from "@ui/molecules/text";
 import { formatCurrency } from "../../../utils";
+import { Locker } from "../../../sdk/catalog";
+import { lockerApiController } from "../../../config/sdk";
+import { showNotification } from "@mantine/notifications";
+import { lockerManager } from "@store/utils/locker";
+import { orderManager } from "@store/utils/order";
 
 export const CartWidget = observer(() => {
   const [opened, setOpened] = useState(false);
+  const [locker, setLocker] = useState<Locker>();
+  const [pid, setPID] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
   const theme = useMantineTheme();
 
   let [step, setStep] = useState(1);
 
+  function loadLocker() {
+    setIsLoading(true);
+    lockerApiController
+      .lockerControllerGetLocker(pid)
+      .then((res) => {
+        console.log(res);
+        //@ts-ignore
+        if (res.data == "") {
+          showNotification({ message: "Locker with PID does not exists" });
+        } else {
+          setLocker(res.data);
+        }
+
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        showNotification({ message: "Locker Does not exists" });
+        setIsLoading(false);
+      });
+  }
+
   const CartBag = (
-    <Stack>
-      <Stack>
+    <Stack style={{ flex: 1 }}>
+      <Stack style={{ flex: 1 }}>
         <Box>
           {cartManager.items.map((e, index) => {
             return <CartItemCard e={e} key={index} />;
           })}
         </Box>
+        {cartManager.items.length == 0 ? (
+          <Stack sx={{ flex: 1, height: "100%" }} justify="center" py={"40px"}>
+            <Center>
+              <ShoppingCart
+                size={100}
+                variant="Bold"
+                color={theme.primaryColor}
+              />
+            </Center>
+            <Text sx={{ textAlign: "center" }}>
+              You Shopping bag is empty...
+            </Text>
+          </Stack>
+        ) : null}
       </Stack>
       {cartManager.items.length == 0 ? null : (
         <Button
@@ -73,8 +115,16 @@ export const CartWidget = observer(() => {
 
       <TextInput
         label="PID"
+        onChange={(e) => {
+          setPID(e.target.value);
+        }}
         rightSection={
-          <ActionIcon>
+          <ActionIcon
+            loading={isLoading}
+            onClick={() => {
+              loadLocker();
+            }}
+          >
             <Verify />
           </ActionIcon>
         }
@@ -83,13 +133,23 @@ export const CartWidget = observer(() => {
         <Button
           fullWidth
           loading={isLoading}
+          disabled={locker == undefined}
           onClick={() => {
-            setIsLoading(true);
-            setTimeout(() => {
-              window.open("https://paystack.com/pay/-k8id-yo-4");
-              cartManager.clear();
-              setOpened(false);
-            }, 2000);
+            orderManager.publishItem({
+              items: cartManager.items.map((e) => {
+                return {
+                  amount: e.price,
+                  image: e.image ?? "",
+                  product_id: e.product_id,
+                  product_name: e.name ?? "",
+                  quantity: e.quantity,
+                  total: 1,
+                };
+              }),
+              //@ts-ignore
+              locker_id: locker._id,
+            });
+            setStep(1);
           }}
         >
           {" "}

@@ -1,9 +1,11 @@
 import { Box, Grid, Group, Paper, Stack, Title } from "@mantine/core";
+import { lockerManager } from "@store/utils/locker";
 import { MainLockerCard } from "@ui/organisms/locker-widgets/MainLockerCard";
 import { NewLockerProcess } from "@ui/organisms/processes/new-locker-process";
 import { MainProductCard } from "@ui/organisms/product-widgets/MainProductCard";
+import { observer } from "mobx-react";
 
-export default function LockersScreen() {
+export default observer(function LockersScreen() {
   return (
     <Box style={{ overflow: "hidden !important" }} mt="xl">
       <Stack>
@@ -23,10 +25,10 @@ export default function LockersScreen() {
             </Group>
 
             <Grid>
-              {[1, 2].map((element) => {
+              {lockerManager.items.map((element, index) => {
                 return (
-                  <Grid.Col md={6}>
-                    <MainLockerCard />
+                  <Grid.Col md={6} key={index}>
+                    <MainLockerCard locker={element} />
                   </Grid.Col>
                 );
               })}
@@ -36,4 +38,4 @@ export default function LockersScreen() {
       </Stack>
     </Box>
   );
-}
+});

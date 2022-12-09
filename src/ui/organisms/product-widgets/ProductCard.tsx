@@ -13,9 +13,10 @@ import { cartManager } from "@store/cart";
 import { IconCamera } from "@tabler/icons";
 import { Camera, ShoppingCart } from "iconsax-react";
 import { useNavigate } from "react-router-dom";
+import { Product } from "../../../sdk/catalog";
 import { formatCurrency } from "../../../utils";
 
-export default function ProductCard({ product }: { product: TProduct }) {
+export default function ProductCard({ product }: { product: Product }) {
   let navigate = useNavigate();
   let theme = useMantineTheme();
   return (
@@ -33,7 +34,7 @@ export default function ProductCard({ product }: { product: TProduct }) {
               backgroundColor: "#404040",
               position: "relative",
               borderRadius: 8,
-              backgroundImage: `url(${product.thumbnail})`,
+              backgroundImage: `url(${product.image})`,
               backgroundPosition: "center",
               backgroundSize: "cover",
             }}
@@ -68,13 +69,10 @@ export default function ProductCard({ product }: { product: TProduct }) {
                 navigate(`/products/${product.id}`);
               }}
             >
-              {product.title}
+              {product.name}
             </Title>
             <Group position="apart">
               <Box>
-                <Text size={"sm"} sx={{ color: "#183B56" }}>
-                  {product.category}
-                </Text>
                 <Title size={"md"} color="#183B56">
                   {formatCurrency(product.price)}
                 </Title>

@@ -6,10 +6,12 @@ import {
   ProductApi,
   TaxonomyApi,
 } from "../sdk/catalog";
+import { TOKEN } from "./config";
 
 const API_URL = "";
 
 let config = {
+  accessToken: TOKEN,
   isJsonMime: (mime: any) => {
     return true;
   },
@@ -22,11 +24,11 @@ let axiosConfig = axios.create({
   },
 });
 
-export let authController = new AuthApi();
-export let productApiController = new ProductApi();
-export let taxonomyApiController = new TaxonomyApi();
-export let lockerApiController = new LockerApi();
-export let orderControllerApi = new OrderControllerApi();
+export let authController = new AuthApi(config, undefined, axiosConfig);
+export let productApiController = new ProductApi(config, undefined, axiosConfig);
+export let taxonomyApiController = new TaxonomyApi(config, undefined, axiosConfig);
+export let lockerApiController = new LockerApi(config, undefined, axiosConfig);
+export let orderControllerApi = new OrderControllerApi(config, undefined, axiosConfig);
 
 export function configureClientSDK(token: string) {
   let config = {

@@ -6,6 +6,9 @@ import { Outlet } from "react-router-dom";
 import MainAppShell from "@ui/template/MainAppShell";
 import MainAppNavigation from "@ui/organisms/main-navigation/MainNavigation";
 import MainHeader from "@ui/organisms/main-header/MainHeader";
+import { authManager } from "@store/account/auth";
+import { orderManager } from "@store/utils/order";
+import { lockerManager } from "@store/utils/locker";
 
 export class AccountNavigationShell extends React.Component<
   {},
@@ -22,9 +25,16 @@ export class AccountNavigationShell extends React.Component<
     });
   }
 
+  componentDidMount() {
+    authManager.init();
+    orderManager.load();
+    lockerManager.load();
+    
+  }
+
   render() {
     return (
-      <MainAppShell ShellHeader={MainHeader} Navbar={MainAppNavigation} >
+      <MainAppShell ShellHeader={MainHeader} Navbar={MainAppNavigation}>
         {this.state.error ? <SomethingWentWrongWidget /> : <Outlet />}
       </MainAppShell>
     );

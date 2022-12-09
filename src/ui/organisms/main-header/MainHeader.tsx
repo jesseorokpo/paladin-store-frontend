@@ -16,6 +16,7 @@ import {
 } from "@mantine/core";
 import { authManager } from "@store/account/auth";
 import { IconNotification, IconSearch } from "@tabler/icons";
+import LogoColoredSvgComponent from "@ui/svg/LogoColored";
 import {
   CardTick,
   Message,
@@ -24,6 +25,7 @@ import {
   ShoppingCart,
 } from "iconsax-react";
 import { observer } from "mobx-react-lite";
+import { Link } from "react-router-dom";
 import { CartWidget } from "../cart/CartWidget";
 import Logo from "./logo.svg";
 
@@ -32,6 +34,33 @@ const MainHeader: React.FC<{
   opened: boolean;
 }> = ({ opened, setOpened }) => {
   let theme = useMantineTheme();
+
+  const BRANDLOGO = (
+    <Box
+      sx={(theme) => {
+        return {
+          height: "100%",
+          display: "flex",
+          alignContent: "center",
+          alignItems: "center",
+        };
+      }}
+      p="md"
+    >
+      <Link to={"/"}>
+        <Group>
+          <LogoColoredSvgComponent width={50} />
+          <Title
+            size={"md"}
+            color="black"
+            sx={{ textDecoration: "none", textDecorationStyle: "unset" }}
+          >
+            Paladin Ecommerce
+          </Title>
+        </Group>
+      </Link>
+    </Box>
+  );
   return (
     <Header
       height={60}
@@ -46,30 +75,21 @@ const MainHeader: React.FC<{
       <div style={{ display: "flex", height: "100%" }}>
         <MediaQuery largerThan="sm" styles={{ display: "none" }}>
           <Stack align={"center"} justify="center" px="md">
-            <Burger
-              opened={opened}
-              onClick={() => setOpened((o: any) => !o)}
-              size="sm"
-              color={theme.colors.gray[6]}
-              mr="xl"
-            />
+            <Group spacing={"sm"}>
+              <Burger
+                opened={!opened}
+                onClick={() => setOpened((o: any) => !o)}
+                size="sm"
+                color={theme.colors.gray[6]}
+                mr="xl"
+              />
+
+              {BRANDLOGO}
+            </Group>
           </Stack>
         </MediaQuery>
         <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
-          <Box
-            sx={(theme) => {
-              return {
-                height: "100%",
-                width: "250px",
-                display: "flex",
-                alignContent: "center",
-                alignItems: "center",
-              };
-            }}
-            p="md"
-          >
-            <Title size={"md"}>Paladin Ecommerce</Title>
-          </Box>
+          {BRANDLOGO}
         </MediaQuery>
         <Box p="md" sx={{ flex: 1 }}>
           <Group
@@ -115,8 +135,10 @@ const UserPrimaryActions = observer(() => {
             src="https://www.dmarge.com/wp-content/uploads/2021/01/dwayne-the-rock-.jpg"
           />
           <Box sx={{ textAlign: "center" }}>
-            <Text sx={{ fontWeight: "bold" }}>Emekus Kalu</Text>
-            <Text>{profile.email}</Text>
+            <Text sx={{ fontWeight: "bold" }}>
+              {profile?.first_name}, {profile?.last_name}
+            </Text>
+            <Text>{profile?.email}</Text>
           </Box>
 
           <Group>

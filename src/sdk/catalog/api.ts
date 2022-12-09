@@ -62,7 +62,25 @@ export interface Locker {
      * @type {string}
      * @memberof Locker
      */
+    'middle_name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Locker
+     */
+    'photo': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Locker
+     */
     'pid': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Locker
+     */
+    'pin': string;
 }
 /**
  * 
@@ -289,12 +307,6 @@ export interface Product {
      * @type {string}
      * @memberof Product
      */
-    'handle': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Product
-     */
     'body': string;
     /**
      * 
@@ -332,52 +344,32 @@ export interface PublishLockerDto {
      * @type {string}
      * @memberof PublishLockerDto
      */
-    'name': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PublishLockerDto
-     */
-    'price': number;
+    'first_name': string;
     /**
      * 
      * @type {string}
      * @memberof PublishLockerDto
      */
-    'type': PublishLockerDtoTypeEnum;
+    'last_name': string;
     /**
      * 
      * @type {string}
      * @memberof PublishLockerDto
      */
-    'status': string;
+    'middle_name': string;
     /**
      * 
      * @type {string}
      * @memberof PublishLockerDto
      */
-    'body': string;
+    'photo': string;
     /**
      * 
      * @type {string}
      * @memberof PublishLockerDto
      */
-    'image': string;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof PublishLockerDto
-     */
-    'collections': Array<string>;
+    'pin': string;
 }
-
-export const PublishLockerDtoTypeEnum = {
-    Physical: 'physical',
-    Digital: 'digital'
-} as const;
-
-export type PublishLockerDtoTypeEnum = typeof PublishLockerDtoTypeEnum[keyof typeof PublishLockerDtoTypeEnum];
-
 /**
  * 
  * @export
@@ -389,7 +381,7 @@ export interface PublishOrderDto {
      * @type {Array<OrderItem>}
      * @memberof PublishOrderDto
      */
-    'items_spec': Array<OrderItem>;
+    'items': Array<OrderItem>;
     /**
      * 
      * @type {string}
@@ -594,52 +586,8 @@ export interface UpdateLockerDto {
      * @type {string}
      * @memberof UpdateLockerDto
      */
-    'name'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof UpdateLockerDto
-     */
-    'price'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateLockerDto
-     */
-    'type': UpdateLockerDtoTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateLockerDto
-     */
-    'status': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateLockerDto
-     */
-    'body': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateLockerDto
-     */
-    'image': string;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof UpdateLockerDto
-     */
-    'collections': Array<string>;
+    'pin': string;
 }
-
-export const UpdateLockerDtoTypeEnum = {
-    Physical: 'physical',
-    Digital: 'digital'
-} as const;
-
-export type UpdateLockerDtoTypeEnum = typeof UpdateLockerDtoTypeEnum[keyof typeof UpdateLockerDtoTypeEnum];
-
 /**
  * 
  * @export
@@ -846,43 +794,6 @@ export const LockerApiAxiosParamCreator = function (configuration?: Configuratio
     return {
         /**
          * 
-         * @param {string} item 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        lockerControllerDeleteItem: async (item: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'item' is not null or undefined
-            assertParamExists('lockerControllerDeleteItem', 'item', item)
-            const localVarPath = `/api/catalog/Lockers/{item}`
-                .replace(`{${"item"}}`, encodeURIComponent(String(item)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -939,6 +850,46 @@ export const LockerApiAxiosParamCreator = function (configuration?: Configuratio
             // authentication bearer required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} pid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        lockerControllerGetLocker: async (pid: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'pid' is not null or undefined
+            assertParamExists('lockerControllerGetLocker', 'pid', pid)
+            const localVarPath = `/api/catalog/Lockers/find-locker-by-pid`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (pid !== undefined) {
+                localVarQueryParameter['pid'] = pid;
+            }
 
 
     
@@ -1045,16 +996,6 @@ export const LockerApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {string} item 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async lockerControllerDeleteItem(item: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.lockerControllerDeleteItem(item, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -1070,6 +1011,16 @@ export const LockerApiFp = function(configuration?: Configuration) {
          */
         async lockerControllerGetById(item: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Locker>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.lockerControllerGetById(item, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} pid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async lockerControllerGetLocker(pid: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Locker>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.lockerControllerGetLocker(pid, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -1105,15 +1056,6 @@ export const LockerApiFactory = function (configuration?: Configuration, basePat
     return {
         /**
          * 
-         * @param {string} item 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        lockerControllerDeleteItem(item: string, options?: any): AxiosPromise<void> {
-            return localVarFp.lockerControllerDeleteItem(item, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -1128,6 +1070,15 @@ export const LockerApiFactory = function (configuration?: Configuration, basePat
          */
         lockerControllerGetById(item: string, options?: any): AxiosPromise<Locker> {
             return localVarFp.lockerControllerGetById(item, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} pid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        lockerControllerGetLocker(pid: string, options?: any): AxiosPromise<Locker> {
+            return localVarFp.lockerControllerGetLocker(pid, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1160,17 +1111,6 @@ export const LockerApiFactory = function (configuration?: Configuration, basePat
 export class LockerApi extends BaseAPI {
     /**
      * 
-     * @param {string} item 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof LockerApi
-     */
-    public lockerControllerDeleteItem(item: string, options?: AxiosRequestConfig) {
-        return LockerApiFp(this.configuration).lockerControllerDeleteItem(item, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof LockerApi
@@ -1188,6 +1128,17 @@ export class LockerApi extends BaseAPI {
      */
     public lockerControllerGetById(item: string, options?: AxiosRequestConfig) {
         return LockerApiFp(this.configuration).lockerControllerGetById(item, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} pid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LockerApi
+     */
+    public lockerControllerGetLocker(pid: string, options?: AxiosRequestConfig) {
+        return LockerApiFp(this.configuration).lockerControllerGetLocker(pid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1367,6 +1318,43 @@ export const OrderControllerApiAxiosParamCreator = function (configuration?: Con
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * 
+         * @param {string} item 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        orderControllerSynce: async (item: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'item' is not null or undefined
+            assertParamExists('orderControllerSynce', 'item', item)
+            const localVarPath = `/api/catalog/order/{item}/sync`
+                .replace(`{${"item"}}`, encodeURIComponent(String(item)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -1416,6 +1404,16 @@ export const OrderControllerApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.orderControllerPublish(publishOrderDto, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
+        /**
+         * 
+         * @param {string} item 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async orderControllerSynce(item: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Order>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.orderControllerSynce(item, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
     }
 };
 
@@ -1460,6 +1458,15 @@ export const OrderControllerApiFactory = function (configuration?: Configuration
          */
         orderControllerPublish(publishOrderDto: PublishOrderDto, options?: any): AxiosPromise<Order> {
             return localVarFp.orderControllerPublish(publishOrderDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} item 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        orderControllerSynce(item: string, options?: any): AxiosPromise<Order> {
+            return localVarFp.orderControllerSynce(item, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1512,6 +1519,17 @@ export class OrderControllerApi extends BaseAPI {
      */
     public orderControllerPublish(publishOrderDto: PublishOrderDto, options?: AxiosRequestConfig) {
         return OrderControllerApiFp(this.configuration).orderControllerPublish(publishOrderDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} item 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderControllerApi
+     */
+    public orderControllerSynce(item: string, options?: AxiosRequestConfig) {
+        return OrderControllerApiFp(this.configuration).orderControllerSynce(item, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

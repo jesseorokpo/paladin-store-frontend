@@ -7182,6 +7182,11 @@ makeerror@1.0.12:
   dependencies:
     tmpl "1.0.5"
 
+mantine-datatable@^1.7.24:
+  version "1.7.24"
+  resolved "https://registry.yarnpkg.com/mantine-datatable/-/mantine-datatable-1.7.24.tgz#6de07b74568c57bec58758334531392a0c178ebb"
+  integrity sha512-yyoUipYLoT/GgMD5vJDywrph7iw75DO4sMwXytk6cqvE9lWGsCElhqdpEh96SaOLKogXWdheMP7jrxPI2S7vJA==
+
 mdn-data@2.0.14:
   version "2.0.14"
   resolved "https://registry.yarnpkg.com/mdn-data/-/mdn-data-2.0.14.tgz#7113fc4281917d63ce29b43446f701e68c25ba50"
@@ -8604,6 +8609,11 @@ react-localization@^1.0.19:
   integrity sha512-f4E6T8xRis19K8qMOnnhjGV2quy1YH2lrSsnAiytvgt7uOSp6WgDhrZH6XZEaEFqupTOCFSf8uagIoIAkjl4JA==
   dependencies:
     localized-strings "^0.2.0"
+
+react-paystack@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/react-paystack/-/react-paystack-4.0.1.tgz#e8f2c95b24a8e02bc9cb9932cb9cd33e620afbc0"
+  integrity sha512-6bJ+kHlJZqHupnezlA96tlZh+GQc1giNesLN1vvjQ1lsK8mavjF24uyiwyewInOUSs42+9hx1eP8gZTIgHLYLg==
 
 react-refresh@^0.11.0:
   version "0.11.0"

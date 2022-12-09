@@ -1,6 +1,7 @@
 import { CartItem, TProduct } from "@interface/models";
 import { showNotification } from "@mantine/notifications";
 import { makeObservable, observable, runInAction } from "mobx";
+import { Product } from "../sdk/catalog";
 
 class CartManager {
   items: CartItem[];
@@ -13,38 +14,37 @@ class CartManager {
   }
 
   addItemQuantity = (item: CartItem, num: number) => {
+    console.log(item);
+
     let changed = { ...item };
     changed.quantity = changed.quantity + num;
     runInAction(() => {
-      let itemIndex = this.items.findIndex(
-        (v) => v.product_id !== item.product_id
-      );
-      let tempL = [...this.items];
-      tempL[itemIndex].quantity= changed.quantity;
-      this.items = tempL;
+      item.quantity = changed.quantity;
     });
   };
 
-  addItem = (product: TProduct) => {
-    if (this.items.find((e) => e.product_id == product.id)) {
+  addItem = (product: Product) => {
+    //@ts-ignore
+    if (this.items.find((e) => e.product_id == product._id)) {
       showNotification({
-        message: `${product.title}  already exists in shopping cart...`,
+        message: `${product.name}  already exists in shopping cart...`,
       });
       return;
     }
     runInAction(() => {
       this.items.push({
-        name: product.title ?? "",
+        name: product.name ?? "",
         price: product.price ?? 0,
-        product_id: product.id ?? "",
+        //@ts-ignore
+        product_id: product._id ?? "",
         quantity: 1,
-        image: product.thumbnail,
+        image: product.image,
       });
       this.items = [...this.items];
     });
 
     showNotification({
-      message: `${product.title} was added to your cart 👍... `,
+      message: `${product.name} was added to your cart 👍... `,
     });
   };
 
