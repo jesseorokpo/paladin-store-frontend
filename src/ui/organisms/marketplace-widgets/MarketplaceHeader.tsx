@@ -46,8 +46,7 @@ const MarketplaceHeader: React.FC<{
             p="md"
           >
             <Group>
-              <LogoColoredSvgComponent width={50} />
-              <Title size={"md"}>Paladin Ecommerce</Title>
+             <img src={require('./../../png/Store.png')} style={{height:60}}/>
             </Group>
           </Box>
 

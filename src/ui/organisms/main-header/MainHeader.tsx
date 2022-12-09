@@ -48,16 +48,7 @@ const MainHeader: React.FC<{
       p="md"
     >
       <Link to={"/"}>
-        <Group>
-          <LogoColoredSvgComponent width={50} />
-          <Title
-            size={"md"}
-            color="black"
-            sx={{ textDecoration: "none", textDecorationStyle: "unset" }}
-          >
-            Paladin Ecommerce
-          </Title>
-        </Group>
+        <img src={require("./../../png/Store.png")} style={{ height: 60 }} />
       </Link>
     </Box>
   );
