@@ -10,6 +10,7 @@ import {
   Container,
   Title,
 } from "@mantine/core";
+import { authManager } from "@store/account/auth";
 import LogoColoredSvgComponent from "@ui/svg/LogoColored";
 import { Link } from "react-router-dom";
 import { CartWidget } from "../cart/CartWidget";
@@ -46,7 +47,10 @@ const MarketplaceHeader: React.FC<{
             p="md"
           >
             <Group>
-             <img src={require('./../../png/Store.png')} style={{height:60}}/>
+              <img
+                src={require("./../../png/Store.png")}
+                style={{ height: 60 }}
+              />
             </Group>
           </Box>
 
@@ -71,12 +75,23 @@ const MarketplaceHeader: React.FC<{
             </Box>
           </MediaQuery>
 
-          <Group align={"center"}>
-            <CartWidget />
-            <Link to={"/account"}>
-              <Button>Account</Button>
-            </Link>
-          </Group>
+          {authManager.status == "INITIAL" ? (
+            <Group>
+              <Link to={"/login"}>
+                <Button variant="light">Signin</Button>
+              </Link>
+              <Link to={"/register"}>
+                <Button>Signup</Button>
+              </Link>
+            </Group>
+          ) : (
+            <Group align={"center"}>
+              <CartWidget />
+              <Link to={"/account"}>
+                <Button>Account</Button>
+              </Link>
+            </Group>
+          )}
         </Group>
       </Container>
     </Header>

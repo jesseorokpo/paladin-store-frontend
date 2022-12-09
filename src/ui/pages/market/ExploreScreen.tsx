@@ -98,10 +98,13 @@ const SearchComp = observer(() => {
             <Select
               sx={{ flex: 0.5 }}
               value={dataManager.activeCategory}
-              data={[{value:undefined, label:"All Products"},...dataManager.categories.map((element) => {
-                //@ts-ignore
-                return { value: element._id, label: element.name };
-              })]}
+              data={[
+                { value: undefined, label: "All Products" },
+                ...dataManager.categories.map((element) => {
+                  //@ts-ignore
+                  return { value: element._id, label: element.name };
+                }),
+              ]}
               variant="unstyled"
               placeholder="Category"
               onChange={(selected) => {
