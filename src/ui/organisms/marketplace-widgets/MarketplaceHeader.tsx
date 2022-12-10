@@ -48,7 +48,7 @@ const MarketplaceHeader: React.FC<{
             <Group>
               <img
                 src={require("./../../png/Store.png")}
-                style={{ height: 50 }}
+                style={{ height: 40 }}
               />
             </Group>
           </Box>
