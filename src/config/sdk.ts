@@ -21,6 +21,7 @@ let axiosConfig = axios.create({
   baseURL: API_URL,
   headers: {
     "Bypass-Tunnel-Reminder": "bypass",
+    "ngrok-skip-browser-warning":"bypass"
   },
 });
 
