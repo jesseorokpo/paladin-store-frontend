@@ -41,7 +41,9 @@ export function NewLockerProcess() {
             console.log(values);
             try {
               setSubmitting(true);
-             await  lockerManager.publishItem({ ...values });
+              await lockerManager.publishItem({ ...values });
+              form.reset();
+              setOpened(false);
               setSubmitting(false);
             } catch (e) {
               setSubmitting(false);
@@ -69,10 +71,7 @@ export function NewLockerProcess() {
               />
             </Grid.Col>
             <Grid.Col span={6}>
-              <TextInput
-                label="School"
-                {...form.getInputProps("middle_name")}
-              />
+              <TextInput label="School" {...form.getInputProps("school")} />
             </Grid.Col>
           </Grid>
 
