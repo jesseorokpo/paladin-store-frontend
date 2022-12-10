@@ -53,6 +53,8 @@ export function configureClientSDK(token: string) {
     },
   };
 
+
+  // 
   productApiController = new ProductApi(config, undefined, axiosConfig);
   taxonomyApiController = new TaxonomyApi(config, undefined, axiosConfig);
   lockerApiController = new LockerApi(config, undefined, axiosConfig);
