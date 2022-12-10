@@ -4,6 +4,7 @@ import {
   startNavigationProgress,
 } from "@mantine/nprogress";
 import { makeAutoObservable, observable } from "mobx";
+import { authController } from "../../config/sdk";
 import { AuthApi, SignUpDto } from "../../sdk/auth";
 import { handleAxiosError } from "../../utils";
 import { authManager } from "./auth";
@@ -18,7 +19,7 @@ class RegisterationManager {
   async createAccount(request: SignUpDto) {
     try {
       startNavigationProgress();
-      let response = await new AuthApi().authControllerSignup(request);
+      let response = await authController.authControllerSignup(request);
       console.log(response);
       authManager.initAccountToken(response.data.token);
       completeNavigationProgress();
