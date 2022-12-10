@@ -48,7 +48,7 @@ const MainHeader: React.FC<{
       p="md"
     >
       <Link to={"/"}>
-        <img src={require("./../../png/Store.png")} style={{ height: 60 }} />
+        <img src={require("./../../png/Store.png")} style={{ height: 50 }} />
       </Link>
     </Box>
   );

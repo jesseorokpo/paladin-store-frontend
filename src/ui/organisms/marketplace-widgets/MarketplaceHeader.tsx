@@ -11,6 +11,7 @@ import {
   Title,
 } from "@mantine/core";
 import { authManager } from "@store/account/auth";
+import { User } from "iconsax-react";
 import { observer } from "mobx-react";
 import { Link } from "react-router-dom";
 import { CartWidget } from "../cart/CartWidget";
@@ -38,18 +39,16 @@ const MarketplaceHeader: React.FC<{
             sx={(theme) => {
               return {
                 height: "100%",
-                width: "250px",
                 display: "flex",
                 alignContent: "center",
                 alignItems: "center",
               };
             }}
-            p="md"
           >
             <Group>
               <img
                 src={require("./../../png/Store.png")}
-                style={{ height: 60 }}
+                style={{ height: 50 }}
               />
             </Group>
           </Box>
@@ -76,7 +75,7 @@ const MarketplaceHeader: React.FC<{
           </MediaQuery>
 
           {authManager.status == "INITIAL" ? (
-            <Group>
+            <Group align={"center"}>
               <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
                 <Link to={"/login"}>
                   <Button variant="light">Sign In</Button>
@@ -91,8 +90,13 @@ const MarketplaceHeader: React.FC<{
             <Group align={"center"}>
               <CartWidget />
               <Link to={"/account"}>
-                <Button>Account</Button>
+                <Button size="xs">
+                  <User />
+                </Button>
               </Link>
+              {/*
+                <Button>Account</Button>
+               */}
             </Group>
           )}
         </Group>
