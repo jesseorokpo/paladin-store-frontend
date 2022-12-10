@@ -52,8 +52,6 @@ export function configureClientSDK(token: string) {
       return true;
     },
   };
-
-
   // 
   productApiController = new ProductApi(config, undefined, axiosConfig);
   taxonomyApiController = new TaxonomyApi(config, undefined, axiosConfig);
