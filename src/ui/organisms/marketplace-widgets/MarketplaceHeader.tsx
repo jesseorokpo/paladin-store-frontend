@@ -77,11 +77,14 @@ const MarketplaceHeader: React.FC<{
 
           {authManager.status == "INITIAL" ? (
             <Group>
-              <Link to={"/login"}>
-                <Button variant="light">Signin</Button>
-              </Link>
+              <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
+                <Link to={"/login"}>
+                  <Button variant="light">Sign In</Button>
+                </Link>
+              </MediaQuery>
+
               <Link to={"/register"}>
-                <Button>Signup</Button>
+                <Button>Get Started</Button>
               </Link>
             </Group>
           ) : (

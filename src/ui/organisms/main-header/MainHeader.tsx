@@ -64,42 +64,37 @@ const MainHeader: React.FC<{
       }}
     >
       <div style={{ display: "flex", height: "100%" }}>
-        <MediaQuery largerThan="sm" styles={{ display: "none" }}>
-          <Stack align={"center"} justify="center" px="md">
-            <Group spacing={"sm"}>
-              <Burger
-                opened={!opened}
-                onClick={() => setOpened((o: any) => !o)}
-                size="sm"
-                color={theme.colors.gray[6]}
-                mr="xl"
-              />
-
-              {BRANDLOGO}
-            </Group>
-          </Stack>
-        </MediaQuery>
-        <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
+        <Box
+          px="md"
+          style={{
+            flexDirection: "row",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <MediaQuery largerThan="sm" styles={{ display: "none" }}>
+            <Burger
+              opened={!opened}
+              onClick={() => setOpened((o: any) => !o)}
+              size="sm"
+              color={theme.colors.gray[6]}
+            />
+          </MediaQuery>
           {BRANDLOGO}
-        </MediaQuery>
-        <Box p="md" sx={{ flex: 1 }}>
-          <Group
-            align={"center"}
-            spacing="xl"
-            sx={{ justifyContent: "space-between" }}
-          >
-            <Box></Box>
-            <Box>
-              <Group>
-                <CartWidget />
-                <ActionIcon>
-                  <Notification />
-                </ActionIcon>
-                <UserPrimaryActions />
-              </Group>
-            </Box>
-          </Group>
         </Box>
+        <Group
+          align={"center"}
+          spacing="xl"
+          sx={{ justifyContent: "space-between", flex: 1 }}
+        >
+          <Box></Box>
+          <Box>
+            <Group spacing={"xs"} pr="md">
+              <CartWidget />
+              <UserPrimaryActions />
+            </Group>
+          </Box>
+        </Group>
       </div>
     </Header>
   );
