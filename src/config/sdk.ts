@@ -8,7 +8,7 @@ import {
 } from "../sdk/catalog";
 import { TOKEN } from "./config";
 
-const API_URL = "";
+const API_URL = process.env.API_URL;
 
 let config = {
   accessToken: TOKEN,
