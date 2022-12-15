@@ -32,7 +32,7 @@ export const EditProfileScreen = observer((props: any) => {
   let { first_name, last_name, email, phone, photo, bio } = authManager.user;
   const form = useForm({
     initialValues: {
-      bio: "",
+      bio: bio,
       first_name,
       last_name,
       email,

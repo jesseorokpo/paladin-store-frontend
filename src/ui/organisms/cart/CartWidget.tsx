@@ -109,7 +109,7 @@ export const CartWidget = observer(() => {
 
       <Divider />
       <Group position="apart">
-        <Text>Total</Text>
+        <Text>Platform Fee</Text>
         <Text>{`${formatCurrency(100)}`}</Text>
       </Group>
 
@@ -150,9 +150,9 @@ export const CartWidget = observer(() => {
               locker_id: locker._id,
             });
             setStep(1);
+            setOpened(false);
           }}
         >
-          {" "}
           Proceed
         </Button>
       </Box>
