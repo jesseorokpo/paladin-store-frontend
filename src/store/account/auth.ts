@@ -26,6 +26,13 @@ class AuthManager {
     }
   }
 
+  logout() {
+    localStorage.clear();
+    runInAction(() => {
+      this.status = "INITIAL";
+    });
+  }
+
   async loadProfile() {
     try {
       let response = await authController.authControllerGetProfile();

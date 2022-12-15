@@ -62,7 +62,6 @@
     "gen-catalog-api:live": "openapi-generator-cli generate -i https://api.paladinsuperstore.com/docs/catalog-json -g typescript-axios -o src/sdk/catalog",
     "gen-auth-api:local": "openapi-generator-cli generate -i http://localhost:5000/docs/auth-json -g typescript-axios -o src/sdk/auth",
     "gen-catalog-api:local": "openapi-generator-cli generate -i http://localhost:5000/docs/catalog-json -g typescript-axios -o src/sdk/catalog"
-  
   },
   "eslintConfig": {
     "extends": [
