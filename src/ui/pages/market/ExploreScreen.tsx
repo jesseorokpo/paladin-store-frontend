@@ -25,9 +25,13 @@ import {
   SearchNormal1,
 } from "iconsax-react";
 import { observer } from "mobx-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default observer(function ExploreScreen() {
+  useEffect(() => {
+    dataManager.loadProducts();
+  }, []);
+
   return (
     <Stack>
       <Box

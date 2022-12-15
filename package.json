@@ -53,11 +53,16 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "craco build",
+    "build": "yarn run gen:live  && craco build",
     "test": "craco test",
     "eject": "craco eject",
-    "gen-auth": "openapi-generator-cli generate -i http://localhost:5000/docs/auth-json -g typescript-axios -o src/sdk/auth",
-    "gen-catalog-api": "openapi-generator-cli generate -i http://localhost:5000/docs/catalog-json -g typescript-axios -o src/sdk/catalog"
+    "gen:live": "yarn run gen-auth-api:live && yarn run gen-catalog-api:live",
+    "gen:local": "yarn run gen-auth-api:local && yarn run gen-catalog-api:local",
+    "gen-auth-api:live": "openapi-generator-cli generate -i https://api.paladinsuperstore.com/docs/catalog-json -g typescript-axios -o src/sdk/auth",
+    "gen-catalog-api:live": "openapi-generator-cli generate -i https://api.paladinsuperstore.com/docs/catalog-json -g typescript-axios -o src/sdk/catalog",
+    "gen-auth-api:local": "openapi-generator-cli generate -i http://localhost:5000/docs/auth-json -g typescript-axios -o src/sdk/auth",
+    "gen-catalog-api:local": "openapi-generator-cli generate -i http://localhost:5000/docs/catalog-json -g typescript-axios -o src/sdk/catalog"
+  
   },
   "eslintConfig": {
     "extends": [

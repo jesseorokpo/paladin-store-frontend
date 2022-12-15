@@ -243,6 +243,18 @@ export interface UserPublicData {
      * @type {string}
      * @memberof UserPublicData
      */
+    'photo': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserPublicData
+     */
+    'bio': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserPublicData
+     */
     'first_name': string;
     /**
      * 
@@ -438,6 +450,45 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
             // verify required parameter 'loginDto' is not null or undefined
             assertParamExists('authControllerLogin', 'loginDto', loginDto)
             const localVarPath = `/api/auth/login`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(loginDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {LoginDto} loginDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        authControllerLoginAgent: async (loginDto: LoginDto, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'loginDto' is not null or undefined
+            assertParamExists('authControllerLoginAgent', 'loginDto', loginDto)
+            const localVarPath = `/api/auth/login-admin`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -718,6 +769,16 @@ export const AuthApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {LoginDto} loginDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async authControllerLoginAgent(loginDto: LoginDto, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AuthenticatedUser>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.authControllerLoginAgent(loginDto, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -819,6 +880,15 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
          */
         authControllerLogin(loginDto: LoginDto, options?: any): AxiosPromise<AuthenticatedUser> {
             return localVarFp.authControllerLogin(loginDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {LoginDto} loginDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        authControllerLoginAgent(loginDto: LoginDto, options?: any): AxiosPromise<AuthenticatedUser> {
+            return localVarFp.authControllerLoginAgent(loginDto, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -927,6 +997,17 @@ export class AuthApi extends BaseAPI {
      */
     public authControllerLogin(loginDto: LoginDto, options?: AxiosRequestConfig) {
         return AuthApiFp(this.configuration).authControllerLogin(loginDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {LoginDto} loginDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthApi
+     */
+    public authControllerLoginAgent(loginDto: LoginDto, options?: AxiosRequestConfig) {
+        return AuthApiFp(this.configuration).authControllerLoginAgent(loginDto, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

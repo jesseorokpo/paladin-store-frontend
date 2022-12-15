@@ -1,10 +1,6 @@
 import {} from "@tabler/icons";
 import {
-  Heart,
   LockCircle,
-  Notification,
-  InfoCircle,
-  Information,
   User,
   ArchiveBook,
   Activity,

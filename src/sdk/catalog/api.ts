@@ -758,6 +758,43 @@ export type UpdateProductDtoTypeEnum = typeof UpdateProductDtoTypeEnum[keyof typ
 /**
  * 
  * @export
+ * @interface UpdateProfileDto
+ */
+export interface UpdateProfileDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateProfileDto
+     */
+    'photo': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateProfileDto
+     */
+    'bio': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateProfileDto
+     */
+    'first_name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateProfileDto
+     */
+    'last_name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateProfileDto
+     */
+    'phone': string;
+}
+/**
+ * 
+ * @export
  * @interface UpdateTaxonomyDto
  */
 export interface UpdateTaxonomyDto {
@@ -803,6 +840,109 @@ export interface UpdateTaxonomyDto {
      * @memberof UpdateTaxonomyDto
      */
     'for'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface User
+ */
+export interface User {
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'email': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'phone': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'first_name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'last_name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'bio': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'account_type': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'photo': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'password': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'passwordResetToken': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'passwordResetExpires': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof User
+     */
+    'isActive': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'activationToken': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'activationExpires': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'subscription_plan': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'subscription_status': string;
+    /**
+     * 
+     * @type {object}
+     * @memberof User
+     */
+    'subscription_transaction': object;
 }
 
 /**
@@ -909,6 +1049,39 @@ export const LockerApiAxiosParamCreator = function (configuration?: Configuratio
             if (pid !== undefined) {
                 localVarQueryParameter['pid'] = pid;
             }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        lockerControllerGetLockerAdmin: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/catalog/Lockers/admin`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
@@ -1044,6 +1217,15 @@ export const LockerApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async lockerControllerGetLockerAdmin(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Locker>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.lockerControllerGetLockerAdmin(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {PublishLockerDto} publishLockerDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1098,6 +1280,14 @@ export const LockerApiFactory = function (configuration?: Configuration, basePat
          */
         lockerControllerGetLocker(pid: string, options?: any): AxiosPromise<Locker> {
             return localVarFp.lockerControllerGetLocker(pid, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        lockerControllerGetLockerAdmin(options?: any): AxiosPromise<Array<Locker>> {
+            return localVarFp.lockerControllerGetLockerAdmin(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1158,6 +1348,16 @@ export class LockerApi extends BaseAPI {
      */
     public lockerControllerGetLocker(pid: string, options?: AxiosRequestConfig) {
         return LockerApiFp(this.configuration).lockerControllerGetLocker(pid, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LockerApi
+     */
+    public lockerControllerGetLockerAdmin(options?: AxiosRequestConfig) {
+        return LockerApiFp(this.configuration).lockerControllerGetLockerAdmin(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1235,6 +1435,39 @@ export const OrderControllerApiAxiosParamCreator = function (configuration?: Con
             assertParamExists('orderControllerGetById', 'item', item)
             const localVarPath = `/api/catalog/order/{item}`
                 .replace(`{${"item"}}`, encodeURIComponent(String(item)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        orderControllerGetOrderAdmin: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/catalog/order/admin`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -1405,6 +1638,15 @@ export const OrderControllerApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async orderControllerGetOrderAdmin(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Order>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.orderControllerGetOrderAdmin(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {string} item 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1459,6 +1701,14 @@ export const OrderControllerApiFactory = function (configuration?: Configuration
          */
         orderControllerGetById(item: string, options?: any): AxiosPromise<Order> {
             return localVarFp.orderControllerGetById(item, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        orderControllerGetOrderAdmin(options?: any): AxiosPromise<Array<Order>> {
+            return localVarFp.orderControllerGetOrderAdmin(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1520,6 +1770,16 @@ export class OrderControllerApi extends BaseAPI {
 
     /**
      * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderControllerApi
+     */
+    public orderControllerGetOrderAdmin(options?: AxiosRequestConfig) {
+        return OrderControllerApiFp(this.configuration).orderControllerGetOrderAdmin(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @param {string} item 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1559,6 +1819,45 @@ export class OrderControllerApi extends BaseAPI {
  */
 export const OrgControllerApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * 
+         * @param {UpdateOrganizationDto} updateOrganizationDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        orgControllerGetOrgAdmin: async (updateOrganizationDto: UpdateOrganizationDto, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'updateOrganizationDto' is not null or undefined
+            assertParamExists('orgControllerGetOrgAdmin', 'updateOrganizationDto', updateOrganizationDto)
+            const localVarPath = `/api/catalog/org/admin`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(updateOrganizationDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * 
          * @param {UpdateOrganizationDto} updateOrganizationDto 
@@ -1614,6 +1913,16 @@ export const OrgControllerApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
+        async orgControllerGetOrgAdmin(updateOrganizationDto: UpdateOrganizationDto, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Organization>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.orgControllerGetOrgAdmin(updateOrganizationDto, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {UpdateOrganizationDto} updateOrganizationDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
         async orgControllerUpdate(updateOrganizationDto: UpdateOrganizationDto, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Organization>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.orgControllerUpdate(updateOrganizationDto, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
@@ -1634,6 +1943,15 @@ export const OrgControllerApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
+        orgControllerGetOrgAdmin(updateOrganizationDto: UpdateOrganizationDto, options?: any): AxiosPromise<Organization> {
+            return localVarFp.orgControllerGetOrgAdmin(updateOrganizationDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {UpdateOrganizationDto} updateOrganizationDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
         orgControllerUpdate(updateOrganizationDto: UpdateOrganizationDto, options?: any): AxiosPromise<Organization> {
             return localVarFp.orgControllerUpdate(updateOrganizationDto, options).then((request) => request(axios, basePath));
         },
@@ -1647,6 +1965,17 @@ export const OrgControllerApiFactory = function (configuration?: Configuration, 
  * @extends {BaseAPI}
  */
 export class OrgControllerApi extends BaseAPI {
+    /**
+     * 
+     * @param {UpdateOrganizationDto} updateOrganizationDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrgControllerApi
+     */
+    public orgControllerGetOrgAdmin(updateOrganizationDto: UpdateOrganizationDto, options?: AxiosRequestConfig) {
+        return OrgControllerApiFp(this.configuration).orgControllerGetOrgAdmin(updateOrganizationDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @param {UpdateOrganizationDto} updateOrganizationDto 
@@ -1710,6 +2039,39 @@ export const PayoutsControllerApiAxiosParamCreator = function (configuration?: C
             assertParamExists('payoutControllerGetById', 'item', item)
             const localVarPath = `/api/catalog/payouts/{item}`
                 .replace(`{${"item"}}`, encodeURIComponent(String(item)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        payoutControllerGetPayoutAdmin: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/catalog/payouts/admin`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -1849,6 +2211,15 @@ export const PayoutsControllerApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async payoutControllerGetPayoutAdmin(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Payout>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.payoutControllerGetPayoutAdmin(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {PublishPayoutDto} publishPayoutDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1894,6 +2265,14 @@ export const PayoutsControllerApiFactory = function (configuration?: Configurati
          */
         payoutControllerGetById(item: string, options?: any): AxiosPromise<Payout> {
             return localVarFp.payoutControllerGetById(item, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        payoutControllerGetPayoutAdmin(options?: any): AxiosPromise<Array<Payout>> {
+            return localVarFp.payoutControllerGetPayoutAdmin(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1943,6 +2322,16 @@ export class PayoutsControllerApi extends BaseAPI {
      */
     public payoutControllerGetById(item: string, options?: AxiosRequestConfig) {
         return PayoutsControllerApiFp(this.configuration).payoutControllerGetById(item, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PayoutsControllerApi
+     */
+    public payoutControllerGetPayoutAdmin(options?: AxiosRequestConfig) {
+        return PayoutsControllerApiFp(this.configuration).payoutControllerGetPayoutAdmin(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2850,6 +3239,367 @@ export class TaxonomyApi extends BaseAPI {
      */
     public taxonomyControllerUpdate(item: string, updateTaxonomyDto: UpdateTaxonomyDto, options?: AxiosRequestConfig) {
         return TaxonomyApiFp(this.configuration).taxonomyControllerUpdate(item, updateTaxonomyDto, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * UsersControllerApi - axios parameter creator
+ * @export
+ */
+export const UsersControllerApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userControllerGetAgents: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/users/get-agents`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userControllerGetIndividuals: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/users/get-individuals`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} item 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userControllerGetProfile: async (item: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'item' is not null or undefined
+            assertParamExists('userControllerGetProfile', 'item', item)
+            const localVarPath = `/api/users/{item}`
+                .replace(`{${"item"}}`, encodeURIComponent(String(item)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userControllerGetSystemUsers: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/users/get-system-users`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} item 
+         * @param {UpdateProfileDto} updateProfileDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userControllerUpdateUserProfile: async (item: string, updateProfileDto: UpdateProfileDto, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'item' is not null or undefined
+            assertParamExists('userControllerUpdateUserProfile', 'item', item)
+            // verify required parameter 'updateProfileDto' is not null or undefined
+            assertParamExists('userControllerUpdateUserProfile', 'updateProfileDto', updateProfileDto)
+            const localVarPath = `/api/users/{item}`
+                .replace(`{${"item"}}`, encodeURIComponent(String(item)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(updateProfileDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * UsersControllerApi - functional programming interface
+ * @export
+ */
+export const UsersControllerApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = UsersControllerApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async userControllerGetAgents(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<User>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.userControllerGetAgents(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async userControllerGetIndividuals(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<User>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.userControllerGetIndividuals(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} item 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async userControllerGetProfile(item: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.userControllerGetProfile(item, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async userControllerGetSystemUsers(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<User>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.userControllerGetSystemUsers(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} item 
+         * @param {UpdateProfileDto} updateProfileDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async userControllerUpdateUserProfile(item: string, updateProfileDto: UpdateProfileDto, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.userControllerUpdateUserProfile(item, updateProfileDto, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * UsersControllerApi - factory interface
+ * @export
+ */
+export const UsersControllerApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = UsersControllerApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userControllerGetAgents(options?: any): AxiosPromise<Array<User>> {
+            return localVarFp.userControllerGetAgents(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userControllerGetIndividuals(options?: any): AxiosPromise<Array<User>> {
+            return localVarFp.userControllerGetIndividuals(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} item 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userControllerGetProfile(item: string, options?: any): AxiosPromise<User> {
+            return localVarFp.userControllerGetProfile(item, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userControllerGetSystemUsers(options?: any): AxiosPromise<Array<User>> {
+            return localVarFp.userControllerGetSystemUsers(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} item 
+         * @param {UpdateProfileDto} updateProfileDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userControllerUpdateUserProfile(item: string, updateProfileDto: UpdateProfileDto, options?: any): AxiosPromise<User> {
+            return localVarFp.userControllerUpdateUserProfile(item, updateProfileDto, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * UsersControllerApi - object-oriented interface
+ * @export
+ * @class UsersControllerApi
+ * @extends {BaseAPI}
+ */
+export class UsersControllerApi extends BaseAPI {
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UsersControllerApi
+     */
+    public userControllerGetAgents(options?: AxiosRequestConfig) {
+        return UsersControllerApiFp(this.configuration).userControllerGetAgents(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UsersControllerApi
+     */
+    public userControllerGetIndividuals(options?: AxiosRequestConfig) {
+        return UsersControllerApiFp(this.configuration).userControllerGetIndividuals(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} item 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UsersControllerApi
+     */
+    public userControllerGetProfile(item: string, options?: AxiosRequestConfig) {
+        return UsersControllerApiFp(this.configuration).userControllerGetProfile(item, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UsersControllerApi
+     */
+    public userControllerGetSystemUsers(options?: AxiosRequestConfig) {
+        return UsersControllerApiFp(this.configuration).userControllerGetSystemUsers(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} item 
+     * @param {UpdateProfileDto} updateProfileDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UsersControllerApi
+     */
+    public userControllerUpdateUserProfile(item: string, updateProfileDto: UpdateProfileDto, options?: AxiosRequestConfig) {
+        return UsersControllerApiFp(this.configuration).userControllerUpdateUserProfile(item, updateProfileDto, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
