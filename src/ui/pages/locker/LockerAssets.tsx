@@ -66,7 +66,7 @@ export const LockerAssets = ({ locker }: { locker: Locker }) => {
             title: "Product Name",
           },
           {
-            accessor: "quantitiy",
+            accessor: "quantity",
             title: "Quantitiy",
           },
           {

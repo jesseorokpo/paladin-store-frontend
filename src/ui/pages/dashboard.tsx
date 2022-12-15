@@ -19,6 +19,8 @@ import { SectionHeader } from "@ui/organisms/header-widgets/SectionHeader";
 import ProductCard from "@ui/organisms/product-widgets/ProductCard";
 import { Card, Document, LockCircle } from "iconsax-react";
 import { observer } from "mobx-react";
+import { Link } from "react-router-dom";
+import { formatCurrency } from "../../utils";
 import MainScreenHeader from "../organisms/screen-widgets/MainScreenHeader";
 
 export const DashboardScreen = () => {
@@ -32,6 +34,15 @@ export const DashboardScreen = () => {
 };
 
 const AccountOverview = observer(() => {
+  let completed_orders = orderManager.items.filter(
+    (e) => e.payment_status == "completed"
+  );
+
+  console.log(completed_orders);
+  let purchase_sum = completed_orders.reduce((a, b) => {
+    //@ts-ignore
+    return a + parseInt(b.sum_total);
+  }, 0);
   return (
     <Paper
       p={"18px"}
@@ -67,7 +78,7 @@ const AccountOverview = observer(() => {
               caption="this month"
               color="orange"
               icon={<Card variant="Bold" color="gray" />}
-              value="0"
+              value={formatCurrency(purchase_sum ?? 0)}
             />
           </Grid.Col>
         </Grid>
@@ -94,9 +105,11 @@ const AccountOthers = observer(() => {
                 title="Profile"
                 showBorder={false}
                 right={
-                  <Button variant="outline" size="sm">
-                    Edit
-                  </Button>
+                  <Link to={"/account/profile"}>
+                    <Button variant="outline" size="sm">
+                      Edit
+                    </Button>
+                  </Link>
                 }
               />
 

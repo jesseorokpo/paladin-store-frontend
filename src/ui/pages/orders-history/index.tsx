@@ -18,6 +18,7 @@ import {
   HorizontalKeyValuePair,
   VerticalKeyValuePair,
 } from "@ui/molecules/text";
+import { formatCurrency } from "../../../utils";
 
 export default observer(function OrderHistoryScreen() {
   return (
@@ -103,7 +104,14 @@ export default observer(function OrderHistoryScreen() {
                             <Divider />
                             <Group position="right">
                               {props.record.payment_status == "pending" ? (
-                                <Button size="sm">Pay</Button>
+                                <Button
+                                  size="sm"
+                                  onClick={() => {
+                                    window.open(props.record.payment_url);
+                                  }}
+                                >
+                                  Pay
+                                </Button>
                               ) : null}
                             </Group>
                           </Stack>
@@ -140,6 +148,12 @@ export default observer(function OrderHistoryScreen() {
                   {
                     accessor: "sum_total",
                     title: "Total",
+                    render: ({
+                      //@ts-ignore
+                      sum_total,
+                    }) => {
+                      return <Text>{formatCurrency(sum_total)}</Text>;
+                    },
                   },
                   {
                     accessor: "status",

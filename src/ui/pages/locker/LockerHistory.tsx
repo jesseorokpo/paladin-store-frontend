@@ -1,4 +1,4 @@
-import { ActionIcon, Box, Group } from "@mantine/core";
+import { ActionIcon, Box, Group, Text } from "@mantine/core";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
 import { ArrowDown2 } from "iconsax-react";
 import { DataTable } from "mantine-datatable";
@@ -75,6 +75,10 @@ export const LockerHistory = ({ locker }: { locker: Locker }) => {
           {
             accessor: "when",
             title: "Timestamp",
+            render: ({
+              //@ts-ignore
+              when
+            }) => <Text>{new Date(when).toDateString()}</Text>,
           },
           {
             accessor: "d",
