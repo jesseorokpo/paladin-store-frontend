@@ -86,6 +86,7 @@ class DataManager {
       .then(async (res) => {
         console.log(res);
         let data = res.data;
+        console.log(res)
         runInAction(() => {
           this.productsHome = data;
         });

@@ -17,6 +17,7 @@ export default observer(function () {
   React.useEffect(() => {
     dataManager.loadCategories();
     dataManager.loadProducts();
+    dataManager.loadProductsHome()
     
     authManager.init();
   }, []);

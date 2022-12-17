@@ -19,11 +19,16 @@ import { SectionHeader } from "@ui/organisms/header-widgets/SectionHeader";
 import RenderProductsGrid from "@ui/organisms/renderers/RenderProductsGrid";
 import { ArrowDown2, SearchNormal1 } from "iconsax-react";
 import { observer } from "mobx-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default observer(function PlatformHomeScreen() {
   let navigate = useNavigate();
+
+  useEffect(() => {
+    dataManager.loadProductsHome();
+  }, []);
+
   return (
     <Stack>
       <Box
@@ -110,7 +115,8 @@ export default observer(function PlatformHomeScreen() {
             />
             <RenderProductsGrid
               useMainCard={true}
-              products={dataManager.productsHome.is_trending}
+              //@ts-ignore
+              products={dataManager.productsHome.trending_products}
             />
           </Stack>
         </Container>
