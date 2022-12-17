@@ -20,7 +20,7 @@ export const MainProductCard = () => {
       withBorder
       sx={{ overflow: "hidden" }}
       onClick={() => {
-        navigate("/products/product-id");
+    
       }}
       px={14}
     >

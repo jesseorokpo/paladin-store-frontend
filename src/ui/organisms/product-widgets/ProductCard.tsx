@@ -25,7 +25,7 @@ export default function ProductCard({ product }: { product: Product }) {
         <Box
           pt={14}
           onClick={() => {
-            navigate(`/products/${product.id}`);
+          
           }}
         >
           <Box
