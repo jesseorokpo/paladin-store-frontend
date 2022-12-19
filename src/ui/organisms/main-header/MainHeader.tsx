@@ -24,6 +24,7 @@ import {
   ShoppingBag,
   ShoppingCart,
 } from "iconsax-react";
+import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { Link } from "react-router-dom";
 import { CartWidget } from "../cart/CartWidget";
@@ -129,7 +130,17 @@ const UserPrimaryActions = observer(() => {
 
           <Group>
             <Button variant="outline">Edit Profile</Button>
-            <Button variant="outline" color={"red"}>
+            <Button
+              variant="outline"
+              color={"red"}
+              onClick={() => {
+                localStorage.clear();
+                runInAction(() => {
+                  authManager.status = "INITIAL";
+                });
+                authManager.init();
+              }}
+            >
               Sign Out
             </Button>
           </Group>

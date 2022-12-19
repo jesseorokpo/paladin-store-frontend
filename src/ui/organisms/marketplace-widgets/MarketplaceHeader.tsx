@@ -76,6 +76,7 @@ const MarketplaceHeader: React.FC<{
 
           {authManager.status == "INITIAL" ? (
             <Group align={"center"}>
+              <CartWidget />
               <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
                 <Link to={"/login"}>
                   <Button variant="light">Sign In</Button>
