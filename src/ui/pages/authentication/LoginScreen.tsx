@@ -14,7 +14,7 @@ import { useForm } from "@mantine/form";
 import { loginManager } from "@store/account/loginManager";
 import { RenderPlatformBanner } from "@ui/organisms/utils/covers";
 import { authManager } from "@store/account/auth";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { observer } from "mobx-react";
 
 export const LoginScreen = observer((props: any) => {
@@ -73,7 +73,8 @@ export const LoginScreen = observer((props: any) => {
             </Button>
             <Text sx={{ textAlign: "center" }}>
               Don’t have a seller account?{" "}
-              <span style={{ fontWeight: "bold" }}>Register</span>
+              <Link to={"/register"}>
+              <span style={{ fontWeight: "bold" }}>Register</span></Link>
             </Text>
           </Stack>
         </Container>
