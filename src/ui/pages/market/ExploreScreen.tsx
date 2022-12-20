@@ -52,10 +52,9 @@ export default observer(function ExploreScreen() {
             sx={{ color: "whitesmoke", textAlign: "center" }}
           >
             <Box>
-              <Title>School Paladmin Commerce</Title>
+              <Title>Paladin Super Store</Title>
               <Text>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius
-                quo aut, debitis ipsum, voluptate velit.
+              Paladin is your online Guardian for children in boarding school
               </Text>
             </Box>
 
