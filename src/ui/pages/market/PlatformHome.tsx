@@ -49,25 +49,34 @@ export default observer(function PlatformHomeScreen() {
             sx={{ minHeight: "60vh", color: "whitesmoke", textAlign: "center" }}
           >
             <Box>
-              <Title>School Paladmin Commerce</Title>
+              <Title>Paladin Super Store</Title>
               <Text>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius
-                quo aut, debitis ipsum, voluptate velit.
+                Paladin is your online Guardian for children in boarding school
               </Text>
             </Box>
 
-            <Box>
+            <Group position="center">
               <Button
                 color={"orange"}
                 sx={{ borderRadius: 0 }}
                 size="lg"
+                onClick={() => {
+                  navigate("/register");
+                }}
+              >
+                Get Started
+              </Button>
+              <Button
+                sx={{ borderRadius: 0 }}
+                size="lg"
+                color={"white"}
                 onClick={() => {
                   navigate("/explore");
                 }}
               >
                 Shop Now
               </Button>
-            </Box>
+            </Group>
           </Stack>
         </Container>
       </Box>
@@ -128,7 +137,7 @@ export default observer(function PlatformHomeScreen() {
             {[
               {
                 icon: "receive-amount.svg",
-                title: "Lorem Ipsum",
+                title: "Secure Payment",
                 caption:
                   "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius quo aut, debitis ipsum, voluptate velit.",
               },
@@ -140,7 +149,7 @@ export default observer(function PlatformHomeScreen() {
               },
               {
                 icon: "Trade.svg",
-                title: "Lorem Ipsum",
+                title: "Detailed Invoicing",
                 caption:
                   "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius quo aut, debitis ipsum, voluptate velit.",
               },
