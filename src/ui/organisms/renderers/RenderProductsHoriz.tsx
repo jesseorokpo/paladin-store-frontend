@@ -22,6 +22,10 @@ export default function RenderProductsHoriz({
       loop
       align="start"
       slidesToScroll={3}
+      breakpoints={[
+        { maxWidth: 'md', slideSize: '50%' },
+        { maxWidth: 'sm', slideSize: '100%', slideGap: 0 },
+      ]}
     >
       {(products ?? []).map((element, index) => {
         return (
