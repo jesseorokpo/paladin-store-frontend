@@ -33,7 +33,7 @@ export default observer(function PlatformHomeScreen() {
   }, []);
 
   return (
-    <Stack style={{overflow:"hidden"}}>
+    <Stack style={{ overflow: "hidden" }}>
       <Box
         sx={{
           background: "blue",
@@ -161,7 +161,7 @@ export default observer(function PlatformHomeScreen() {
               <RenderProductsGrid
                 useMainCard={true}
                 //@ts-ignore
-                products={dataManager.productsHome.trending_products}
+                products={dataManager.products.slice(0, 8)}
               />
             </Stack>
           </Paper>
