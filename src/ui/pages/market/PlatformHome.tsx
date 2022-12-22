@@ -19,6 +19,7 @@ import { authManager } from "@store/account/auth";
 import { dataManager } from "@store/data";
 import { SectionHeader } from "@ui/organisms/header-widgets/SectionHeader";
 import RenderProductsGrid from "@ui/organisms/renderers/RenderProductsGrid";
+import RenderProductsHoriz from "@ui/organisms/renderers/RenderProductsHoriz";
 import { ArrowDown2, SearchNormal1 } from "iconsax-react";
 import { observer } from "mobx-react";
 import { useEffect, useState } from "react";
@@ -103,7 +104,7 @@ export default observer(function PlatformHomeScreen() {
                   </Button>
                 }
               />
-              <RenderProductsGrid
+              <RenderProductsHoriz
                 products={dataManager.productsHome.top_products}
               />
             </Stack>
@@ -112,11 +113,39 @@ export default observer(function PlatformHomeScreen() {
       </Box>
 
       <Box sx={{}}>
-        <Container size="lg"  px="0px">
+        <Container size="lg" px="0px">
           <Paper shadow={"md"} p="18px" sx={{ backgroundColor: "white" }}>
-            <Stack  spacing="xl">
+            <Stack spacing="xl">
               <SectionHeader
                 title="Trending Products"
+                showBorder={false}
+                right={
+                  <Button
+                    variant="subtle"
+                    onClick={() => {
+                      navigate("/explore");
+                    }}
+                  >
+                    VIEW MORE
+                  </Button>
+                }
+              />
+              <RenderProductsGrid
+                useMainCard={true}
+                //@ts-ignore
+                products={dataManager.productsHome.trending_products}
+              />
+            </Stack>
+          </Paper>
+        </Container>
+      </Box>
+
+      <Box sx={{}}>
+        <Container size="lg" px="0px">
+          <Paper shadow={"md"} p="18px" sx={{ backgroundColor: "white" }}>
+            <Stack spacing="xl">
+              <SectionHeader
+                title="Productes from paladin store"
                 showBorder={false}
                 right={
                   <Button

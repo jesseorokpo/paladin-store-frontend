@@ -12,7 +12,7 @@ export function SectionHeader({
   showBorder,
 }: SectionHeaderProps) {
   return (
-    <Stack spacing={"sm"}>
+    <Stack spacing={"sm"} sx={{}}>
       <Group position="apart" align={"center"}>
         <Text sx={{ fontWeight: "bold" }}>{title.toUpperCase()}</Text>
         {right}
