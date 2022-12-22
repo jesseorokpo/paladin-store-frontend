@@ -12,7 +12,6 @@ export default function RenderProductsHoriz({
   useMainCard?: boolean;
   products?: any[];
 }) {
-  console.log(products);
 
   return (
     <Carousel
@@ -22,9 +21,10 @@ export default function RenderProductsHoriz({
       loop
       align="start"
       slidesToScroll={3}
+      
       breakpoints={[
         { maxWidth: 'md', slideSize: '50%' },
-        { maxWidth: 'sm', slideSize: '100%', slideGap: 0 },
+        { maxWidth: 'sm', slideSize: '100%', slideGap: 8 },
       ]}
     >
       {(products ?? []).map((element, index) => {

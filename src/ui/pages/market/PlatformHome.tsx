@@ -33,7 +33,7 @@ export default observer(function PlatformHomeScreen() {
   }, []);
 
   return (
-    <Stack>
+    <Stack style={{overflow:"hidden"}}>
       <Box
         sx={{
           background: "blue",
