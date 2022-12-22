@@ -168,7 +168,7 @@ export const CartWidget = observer(() => {
         padding="xl"
         size="xl"
       >
-        {step == 1 ? CartBag : CheckoutBag}
+        <Box style={{overflowY:"auto"}}>{step == 1 ? CartBag : CheckoutBag}</Box>
       </Drawer>
 
       <ActionIcon
