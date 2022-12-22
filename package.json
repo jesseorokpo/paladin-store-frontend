@@ -10,7 +10,7 @@
   "dependencies": {
     "@craco/craco": "^6.4.5",
     "@emotion/react": "^11.10.0",
-    "@mantine/carousel": "^5.9.5",
+    "@mantine/carousel": "5.2.0",
     "@mantine/core": "^5.5.5",
     "@mantine/dates": "^5.2.0",
     "@mantine/dropzone": "^5.2.0",
@@ -32,7 +32,7 @@
     "chart.js": "^3.9.1",
     "currency-formatter": "^1.5.9",
     "dayjs": "^1.11.5",
-    "embla-carousel-react": "^7.0.5",
+    "embla-carousel-react": "7.0.0",
     "faker": "^6.6.6",
     "firebase": "^9.14.0",
     "iconsax-react": "^0.0.8",

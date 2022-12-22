@@ -104,7 +104,7 @@ export default observer(function PlatformHomeScreen() {
                   </Button>
                 }
               />
-              <RenderProductsHoriz
+              <RenderProductsGrid
                 products={dataManager.productsHome.top_products}
               />
             </Stack>

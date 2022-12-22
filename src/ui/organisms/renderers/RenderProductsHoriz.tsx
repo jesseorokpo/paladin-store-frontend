@@ -16,16 +16,15 @@ export default function RenderProductsHoriz({
   return (
     <Carousel
       withIndicators
-      slideSize="25%"
-      slideGap="md"
-      loop
-      align="start"
-      slidesToScroll={3}
-      
-      breakpoints={[
-        { maxWidth: 'md', slideSize: '50%' },
-        { maxWidth: 'sm', slideSize: '100%', slideGap: 8 },
-      ]}
+      // slideSize="25%"
+      // slideGap="md"
+      // loop
+      // align="start"
+      // slidesToScroll={3}
+      // breakpoints={[
+      //   { maxWidth: 'md', slideSize: '50%' },
+      //   { maxWidth: 'sm', slideSize: '100%', slideGap: 8 },
+      // ]}
     >
       {(products ?? []).map((element, index) => {
         return (
