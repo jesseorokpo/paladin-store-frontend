@@ -13,7 +13,9 @@ import {
   TextInput,
   Center,
   Button,
+  Paper,
 } from "@mantine/core";
+import { authManager } from "@store/account/auth";
 import { dataManager } from "@store/data";
 import { SectionHeader } from "@ui/organisms/header-widgets/SectionHeader";
 import RenderProductsGrid from "@ui/organisms/renderers/RenderProductsGrid";
@@ -56,16 +58,18 @@ export default observer(function PlatformHomeScreen() {
             </Box>
 
             <Group position="center">
-              <Button
-                color={"orange"}
-                sx={{ borderRadius: 0 }}
-                size="lg"
-                onClick={() => {
-                  navigate("/register");
-                }}
-              >
-                Get Started
-              </Button>
+              {authManager.status == "AUTHENTICATED" ? null : (
+                <Button
+                  color={"orange"}
+                  sx={{ borderRadius: 0 }}
+                  size="lg"
+                  onClick={() => {
+                    navigate("/register");
+                  }}
+                >
+                  Get Started
+                </Button>
+              )}
               <Button
                 sx={{ borderRadius: 0 }}
                 size="lg"
@@ -82,57 +86,61 @@ export default observer(function PlatformHomeScreen() {
       </Box>
 
       <Box sx={{}}>
-        <Container size="lg" py="32px" sx={{ backgroundColor: "white" }}>
-          <Stack py={"24px"} spacing="xl">
-            <SectionHeader
-              title="Popular Products"
-              showBorder={false}
-              right={
-                <Button
-                  variant="subtle"
-                  onClick={() => {
-                    navigate("/explore");
-                  }}
-                >
-                  VIEW MORE
-                </Button>
-              }
-            />
-            <RenderProductsGrid
-              products={dataManager.productsHome.top_products}
-            />
-          </Stack>
+        <Container size="lg" px="0px">
+          <Paper shadow={"md"} p="18px" sx={{ backgroundColor: "white" }}>
+            <Stack spacing="xl">
+              <SectionHeader
+                title="Popular Products"
+                showBorder={false}
+                right={
+                  <Button
+                    variant="subtle"
+                    onClick={() => {
+                      navigate("/explore");
+                    }}
+                  >
+                    VIEW MORE
+                  </Button>
+                }
+              />
+              <RenderProductsGrid
+                products={dataManager.productsHome.top_products}
+              />
+            </Stack>
+          </Paper>
         </Container>
       </Box>
 
       <Box sx={{}}>
-        <Container size="lg" py="32px" sx={{ backgroundColor: "white" }}>
-          <Stack py={"24px"} spacing="xl">
-            <SectionHeader
-              title="Trending Products"
-              showBorder={false}
-              right={
-                <Button
-                  variant="subtle"
-                  onClick={() => {
-                    navigate("/explore");
-                  }}
-                >
-                  VIEW MORE
-                </Button>
-              }
-            />
-            <RenderProductsGrid
-              useMainCard={true}
-              //@ts-ignore
-              products={dataManager.productsHome.trending_products}
-            />
-          </Stack>
+        <Container size="lg"  px="0px">
+          <Paper shadow={"md"} p="18px" sx={{ backgroundColor: "white" }}>
+            <Stack  spacing="xl">
+              <SectionHeader
+                title="Trending Products"
+                showBorder={false}
+                right={
+                  <Button
+                    variant="subtle"
+                    onClick={() => {
+                      navigate("/explore");
+                    }}
+                  >
+                    VIEW MORE
+                  </Button>
+                }
+              />
+              <RenderProductsGrid
+                useMainCard={true}
+                //@ts-ignore
+                products={dataManager.productsHome.trending_products}
+              />
+            </Stack>
+          </Paper>
         </Container>
       </Box>
 
       <Box py="100px">
-        <Container size="lg">
+        <Container size="lg" px="0px">
           <Grid>
             {[
               {
