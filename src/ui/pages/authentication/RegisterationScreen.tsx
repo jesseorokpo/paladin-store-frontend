@@ -29,13 +29,10 @@ export const RegisterationScreen = observer((props: any) => {
       account_type: "",
       email: "",
       password: "",
-      confirm_password: "",
     },
     validate: {
       email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
       password: (value) =>
-        value.length >= 6 ? null : "Password characters must be more than 6",
-      confirm_password: (value) =>
         value.length >= 6 ? null : "Password characters must be more than 6",
     },
   });
