@@ -1,6 +1,5 @@
 import { Box, Grid } from "@mantine/core";
-import { MarketCard } from "@ui/organisms/marketplace-widgets/MarketCard";
-import { MainProductCard } from "../product-widgets/MainProductCard";
+
 import { Carousel } from "@mantine/carousel";
 
 import ProductCard from "../product-widgets/ProductCard";

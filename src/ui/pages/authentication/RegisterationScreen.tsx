@@ -11,6 +11,7 @@ import {
   Box,
   Container,
   Grid,
+  Select,
 } from "@mantine/core";
 import { registerationManager } from "../../../store/account/registerationManager";
 import { Link, Navigate } from "react-router-dom";
@@ -25,14 +26,17 @@ export const RegisterationScreen = observer((props: any) => {
       first_name: "",
       last_name: "",
       phone: "",
+      account_type: "",
       email: "",
       password: "",
-      confirm_password:""
+      confirm_password: "",
     },
     validate: {
       email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
-      password: (value) => value.length>=6 ? null : "Password characters must be more than 6",
-      confirm_password: (value) => value.length>=6 ? null : "Password characters must be more than 6",
+      password: (value) =>
+        value.length >= 6 ? null : "Password characters must be more than 6",
+      confirm_password: (value) =>
+        value.length >= 6 ? null : "Password characters must be more than 6",
     },
   });
 
@@ -65,7 +69,6 @@ export const RegisterationScreen = observer((props: any) => {
                   <TextInput
                     label="First Name"
                     placeholder="Type Here"
-                    size="lg"
                     {...form.getInputProps("first_name")}
                   />
                 </Grid.Col>
@@ -73,7 +76,6 @@ export const RegisterationScreen = observer((props: any) => {
                   <TextInput
                     label="Last Name"
                     placeholder="Type here"
-                    size="lg"
                     {...form.getInputProps("last_name")}
                   />
                 </Grid.Col>
@@ -83,7 +85,6 @@ export const RegisterationScreen = observer((props: any) => {
                       <TextInput
                         label="Phone Number"
                         placeholder="Type here"
-                        size="lg"
                         {...form.getInputProps("phone")}
                       />
                     </Grid.Col>
@@ -92,31 +93,28 @@ export const RegisterationScreen = observer((props: any) => {
                       <TextInput
                         label="Email"
                         placeholder="Type here"
-                        size="lg"
                         {...form.getInputProps("email")}
                       />
                     </Grid.Col>
                   </Grid>
                 </Grid.Col>
                 <Grid.Col md={6}>
-                  <PasswordInput
-                    label="Password"
-                    placeholder="Type Here"
-                    size="lg"
-                    {...form.getInputProps("password")}
+                  <Select
+                    label="Account Type"
+                    data={[{ label: "Parent", value: "individual" }]}
+                    {...form.getInputProps("account_type")}
                   />
                 </Grid.Col>
                 <Grid.Col md={6}>
                   <PasswordInput
-                    label="Confirm Password"
-                    placeholder="Type here"
-                    size="lg"
-                    {...form.getInputProps("confirm_password")}
+                    label="Password"
+                    placeholder="Type Here"
+                    {...form.getInputProps("password")}
                   />
                 </Grid.Col>
               </Grid>
 
-              <Button fullWidth size="lg" loading={submitting} type="submit">
+              <Button fullWidth loading={submitting} type="submit">
                 Continue
               </Button>
             </Stack>

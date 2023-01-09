@@ -60,16 +60,26 @@ const MarketplaceHeader: React.FC<{
               <Group position="center">
                 {[
                   { label: "Home", path: "/" },
-                  { label: "About", path: "/about" },
-                  { label: "Contact Us", path: "/contact" },
+                  {
+                    label: "About",
+                    path: "https://schoolpaladin.medium.com/about-school-paladin-bb544cfeb1df",
+                  },
+                  {
+                    label: "Contact Us",
+                    path: "mailto:jesseorokpo@gmail.com",
+                  },
+                  {
+                    label: "Terms and Conditions",
+                    path: "https://schoolpaladin.medium.com/terms-and-conditions-906d22db54ea",
+                  },
                 ].map((element) => {
                   return (
-                    <Link
-                      to={element.path}
+                    <a
+                      href={element.path}
                       style={{ textDecoration: "none", color: "#404040" }}
                     >
                       <Text>{element.label}</Text>
-                    </Link>
+                    </a>
                   );
                 })}
               </Group>

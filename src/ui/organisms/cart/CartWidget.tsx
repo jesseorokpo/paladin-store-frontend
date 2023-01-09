@@ -109,8 +109,8 @@ export const CartWidget = observer(() => {
 
       <Divider />
       <Group position="apart">
-        <Text>Platform Fee</Text>
-        <Text>{`${formatCurrency(100)}`}</Text>
+        <Text>Platform Commission</Text>
+        <Text>{`5%`}</Text>
       </Group>
 
       <TextInput
@@ -129,6 +129,25 @@ export const CartWidget = observer(() => {
           </ActionIcon>
         }
       />
+
+      {locker == undefined ? null : (
+        <Box>
+          <Stack
+            sx={{
+              background: "rgba(200,200,200,.2)",
+              padding: 12,
+              borderRadius: 4,
+            }}
+          >
+            <HorizontalKeyValuePair
+              label="Name"
+              value={`${locker.last_name} ${locker.first_name} ${locker.middle_name}`}
+            />
+            <HorizontalKeyValuePair label="PID" value={`${locker.pid}`} />
+            <HorizontalKeyValuePair label="Status" value={`${locker.status}`} />
+          </Stack>
+        </Box>
+      )}
       <Box>
         <Button
           fullWidth

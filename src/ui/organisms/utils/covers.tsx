@@ -6,7 +6,7 @@ export const RenderPlatformBanner = () => {
       <Container>
         <Box py={32} sx={{ textAlign: "center", color: "white" }}>
           <Title>Paladin Ecommerce</Title>
-          <Text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</Text>
+          <Text>Keep your school provisions organized and accessible with the SP student locker.</Text>
         </Box>
       </Container>
     </Box>

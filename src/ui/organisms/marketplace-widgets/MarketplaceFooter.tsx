@@ -18,6 +18,7 @@ import {
 } from "@mantine/core";
 import { IconBrandFacebook } from "@tabler/icons";
 import { Instagram } from "iconsax-react";
+import { Link } from "react-router-dom";
 import FacebookIcon from "../../molecules/icons/facebook.svg";
 import InstagramIcon from "../../molecules/icons/instagram.svg";
 import TwitterIcon from "../../molecules/icons/twitter.svg";
@@ -74,12 +75,7 @@ const MarketplaceFooter: React.FC<{}> = ({}) => {
               <Grid.Col xs={6} sm={6} md={4} style={{ marginBottom: 24 }}>
                 <Stack align={"stretch"}>
                   <Text sx={{ fontWeight: "bold" }}>Company</Text>
-                  {[
-                    "Contact Us",
-                    "Visit Knowledge Base",
-                    "Support System",
-                    "Onsite Training",
-                  ].map((element) => {
+                  {["Contact Us", "Visit Knowledge Base"].map((element) => {
                     return <Text>{element}</Text>;
                   })}
                 </Stack>
@@ -87,8 +83,24 @@ const MarketplaceFooter: React.FC<{}> = ({}) => {
               <Grid.Col xs={6} sm={6} md={4} style={{ marginBottom: 24 }}>
                 <Stack align={"stretch"}>
                   <Text sx={{ fontWeight: "bold" }}>Support</Text>
-                  {["About", "Blog", "Careers", "Features"].map((element) => {
-                    return <Text>{element}</Text>;
+                  {[
+                    {
+                      label: "About",
+                      link: "https://schoolpaladin.medium.com/about-school-paladin-bb544cfeb1df",
+                    },
+                    {
+                      label: "Blog",
+                      link: "https://schoolpaladin.medium.com",
+                    },
+                  ].map((element) => {
+                    return (
+                      <a
+                        style={{ textDecoration: "none", color: "white" }}
+                        href={element.link}
+                      >
+                        <Text>{element.label}</Text>
+                      </a>
+                    );
                   })}
                 </Stack>
               </Grid.Col>
@@ -96,11 +108,19 @@ const MarketplaceFooter: React.FC<{}> = ({}) => {
                 <Stack>
                   <Text sx={{ fontWeight: "bold" }}>Legal</Text>
                   {[
-                    "User Agreements",
-                    "Terms of Service",
-                    "Privacy Impact Accessment",
+                    {
+                      label: "Terms of Service",
+                      link: "https://schoolpaladin.medium.com/terms-and-conditions-906d22db54ea",
+                    },
                   ].map((element) => {
-                    return <Text>{element}</Text>;
+                    return (
+                      <a
+                        style={{ textDecoration: "none", color: "white" }}
+                        href={element.link}
+                      >
+                        <Text>{element.label}</Text>
+                      </a>
+                    );
                   })}
                 </Stack>
               </Grid.Col>

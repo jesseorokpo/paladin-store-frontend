@@ -145,7 +145,7 @@ export default observer(function PlatformHomeScreen() {
           <Paper shadow={"md"} p="18px" sx={{ backgroundColor: "white" }}>
             <Stack spacing="xl">
               <SectionHeader
-                title="Productes from paladin store"
+                title="Products from paladin store"
                 showBorder={false}
                 right={
                   <Button
@@ -176,19 +176,19 @@ export default observer(function PlatformHomeScreen() {
                 icon: "receive-amount.svg",
                 title: "Secure Payment",
                 caption:
-                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius quo aut, debitis ipsum, voluptate velit.",
+                  "Rest easy knowing that your payment is securely processed on our platform.",
               },
               {
                 icon: "Support.svg",
                 title: "24/7 Support",
                 caption:
-                  "Our customer care center is open 24/7 for a swift assistance.",
+                  "You can count on us to be there for you, no matter the time. Our support team is available 24/7.",
               },
               {
                 icon: "Trade.svg",
                 title: "Detailed Invoicing",
                 caption:
-                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius quo aut, debitis ipsum, voluptate velit.",
+                  "We pride ourselves on transparent, detailed invoicing, ensuring that you know exactly what you're paying for.",
               },
             ].map((element) => {
               return (
