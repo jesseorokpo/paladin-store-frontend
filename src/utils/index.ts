@@ -30,3 +30,9 @@ export function handleSuccessEvent(message?: string) {
     message: message ?? "Action completed successfully",
   });
 }
+
+
+
+export function percentageOfANumber(num: number, per: number) {
+  return (num / 100) * per;
+}

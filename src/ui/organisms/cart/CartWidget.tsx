@@ -18,7 +18,7 @@ import { cartManager } from "@store/cart";
 import { observer } from "mobx-react";
 import { CartItemCard } from "./CartItem";
 import { HorizontalKeyValuePair } from "@ui/molecules/text";
-import { formatCurrency } from "../../../utils";
+import { formatCurrency, percentageOfANumber } from "../../../utils";
 import { Locker } from "../../../sdk/catalog";
 import { lockerApiController } from "../../../config/sdk";
 import { showNotification } from "@mantine/notifications";
@@ -54,6 +54,10 @@ export const CartWidget = observer(() => {
         setIsLoading(false);
       });
   }
+
+  let cartSumTotal = cartManager.items.reduce((a, b) => {
+    return a + b.price * b.quantity;
+  }, 0);
 
   const CartBag = (
     <Stack style={{ flex: 1 }}>
@@ -108,10 +112,16 @@ export const CartWidget = observer(() => {
       </Stack>
 
       <Divider />
-      <Group position="apart">
-        <Text>Platform Commission</Text>
-        <Text>{`5%`}</Text>
-      </Group>
+
+      <HorizontalKeyValuePair label="Platform Commission" value="5%" />
+
+      <HorizontalKeyValuePair
+        label="Sum Total"
+        value={
+          formatCurrency(cartSumTotal + percentageOfANumber(cartSumTotal, 5)) +
+          ""
+        }
+      />
 
       <TextInput
         label="PID"
