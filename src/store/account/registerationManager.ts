@@ -25,7 +25,7 @@ class RegisterationManager {
       completeNavigationProgress();
     } catch (err) {
       let message = handleAxiosError(err);
-      showNotification({ message: "Authentication failed..." });
+      showNotification({ message: "Email/Phone number already in use..." });
       completeNavigationProgress();
     }
   }
