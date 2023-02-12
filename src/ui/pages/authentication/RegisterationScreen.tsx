@@ -26,7 +26,7 @@ export const RegisterationScreen = observer((props: any) => {
       first_name: "",
       last_name: "",
       phone: "",
-      account_type: "",
+      account_type: "individual",
       email: "",
       password: "",
     },
@@ -118,7 +118,7 @@ export const RegisterationScreen = observer((props: any) => {
           </form>
 
           <Text sx={{ textAlign: "center" }}>
-            Already have a seller account?{" "}
+            Already have an account?{" "}
             <Link to="/login">
               <span style={{ fontWeight: "bold" }}>Signin</span>
             </Link>

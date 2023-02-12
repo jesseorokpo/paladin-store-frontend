@@ -72,7 +72,7 @@ export const LoginScreen = observer((props: any) => {
               Signin
             </Button>
             <Text sx={{ textAlign: "center" }}>
-              Don’t have a seller account?{" "}
+              Don’t have an account?{" "}
               <Link to={"/register"}>
               <span style={{ fontWeight: "bold" }}>Register</span></Link>
             </Text>
