@@ -75,7 +75,7 @@ const MainHeader: React.FC<{
         >
           <MediaQuery largerThan="sm" styles={{ display: "none" }}>
             <Burger
-              opened={!opened}
+              opened={opened}
               onClick={() => setOpened((o: any) => !o)}
               size="sm"
               color={theme.colors.gray[6]}

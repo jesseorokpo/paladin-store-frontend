@@ -10,10 +10,7 @@ export const LockerDetails = ({ locker }: { locker: Locker }) => {
         <SectionHeader title="Student Profile" showBorder={false} />
         <Stack mt="md">
           <Group position="apart">
-            <Avatar
-              size={"xl"}
-              src="https://business.appstate.edu/sites/default/files/styles/asu_news_full/public/asu_news/student-profile-javon-nathaniel.jpg?itok=-KyYkUKf"
-            />
+            <Avatar size={"xl"} src={locker.photo} />
             <Stack>
               <Button variant="outline" color={"red"} size="sm">
                 Block
@@ -23,22 +20,16 @@ export const LockerDetails = ({ locker }: { locker: Locker }) => {
 
           <VerticalKeyValuePair label="First Name" value={locker.first_name} />
           <VerticalKeyValuePair label="Last Name" value={locker.last_name} />
-          <VerticalKeyValuePair label="School" value="University of Jos" />
-        </Stack>
-      </Box>
-
-      <Box mt={"md"}>
-        <SectionHeader title="Locker Profile" showBorder={false} />
-        <Stack mt="md">
+          <Stack mt="md">
           <Grid>
-            <Grid.Col md={6}>
+            {/* <Grid.Col md={6}>
               <VerticalKeyValuePair label="Total Items" value="10 Items" />
-            </Grid.Col>
-            <Grid.Col md={6}>
+            </Grid.Col> */}
+            {/* <Grid.Col md={6}>
               <VerticalKeyValuePair label="Items Value" value="$100" />
-            </Grid.Col>
+            </Grid.Col> */}
           </Grid>
-          <VerticalKeyValuePair label="Status" value="Value" />
+          <VerticalKeyValuePair label="Status" value={locker.status} />
           <Grid>
             <Grid.Col md={6}>
               <VerticalKeyValuePair label="Created on" value="Value" />
@@ -48,7 +39,9 @@ export const LockerDetails = ({ locker }: { locker: Locker }) => {
             </Grid.Col>
           </Grid>
         </Stack>
+        </Stack>
       </Box>
+
     </Box>
   );
 };

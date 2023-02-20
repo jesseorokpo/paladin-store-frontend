@@ -68,7 +68,7 @@ const MainAppNavigation: React.FC<{
       width={{ sm: 250 }}
       p="md"
       className={classes.navbar}
-      hidden={opened}
+      hidden={!opened}
     >
       <Navbar.Section grow className={classes.links} component={ScrollArea}>
         <div className={classes.linksInner}>

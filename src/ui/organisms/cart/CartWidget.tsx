@@ -60,7 +60,7 @@ export const CartWidget = observer(() => {
   }, 0);
 
   const CartBag = (
-    <Stack style={{ flex: 1 }}>
+    <Stack style={{  overflowY: "auto",height:"100%" }}>
       <Stack style={{ flex: 1 }}>
         <Box>
           {cartManager.items.map((e, index) => {
@@ -197,7 +197,7 @@ export const CartWidget = observer(() => {
         padding="xl"
         size="xl"
       >
-        <Box style={{ overflowY: "auto" }}>
+        <Box style={{ height:"100%"  }}>
           {step == 1 ? CartBag : CheckoutBag}
         </Box>
       </Drawer>

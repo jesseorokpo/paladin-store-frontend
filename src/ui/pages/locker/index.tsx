@@ -75,7 +75,7 @@ export default function LockerScreen() {
             <Tabs defaultValue="profile" variant="pills">
               <Tabs.List>
                 <Tabs.Tab value="profile">Details</Tabs.Tab>
-                <Tabs.Tab value="items">Assets (0)</Tabs.Tab>
+                <Tabs.Tab value="items">Assets</Tabs.Tab>
                 <Tabs.Tab value="history">Use History</Tabs.Tab>
               </Tabs.List>
 
