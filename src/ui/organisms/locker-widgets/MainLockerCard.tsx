@@ -32,7 +32,7 @@ export const MainLockerCard = ({ locker }: { locker: Locker }) => {
     >
       <Grid align={"stretch"} py="md">
         <Grid.Col md={2}>
-          <Avatar size={"lg"} />
+          <Avatar size={"lg"} src={locker.photo}/>
         </Grid.Col>
         <Grid.Col md={10}>
           <Group sx={{}}>
@@ -42,7 +42,7 @@ export const MainLockerCard = ({ locker }: { locker: Locker }) => {
                   {locker.first_name} {locker.last_name}
                 </Title>
                 <Text size={"sm"} sx={{ color: "#183B56" }}>
-                  PID: {locker.pid}
+                  PI: {locker.pid}
                 </Text>
               </Box>
             </Stack>
