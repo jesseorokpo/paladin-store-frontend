@@ -60,8 +60,8 @@ export const CartWidget = observer(() => {
   }, 0);
 
   const CartBag = (
-    <Stack style={{  overflowY: "auto",height:"100%" }}>
-      <Stack style={{ flex: 1 }}>
+    <Stack style={{ height: "100%", paddingBottom:24 }}>
+      <Stack style={{ flex: 1, overflowY: "auto" }}>
         <Box>
           {cartManager.items.map((e, index) => {
             return <CartItemCard e={e} key={index} />;
@@ -82,15 +82,19 @@ export const CartWidget = observer(() => {
           </Stack>
         ) : null}
       </Stack>
-      {cartManager.items.length == 0 ? null : (
-        <Button
-          onClick={() => {
-            setStep(2);
-          }}
-        >
-          Checkout
-        </Button>
-      )}
+      <Box>
+        {cartManager.items.length == 0 ? null : (
+          <Button
+          style={{display:"block"}}
+          fullWidth
+            onClick={() => {
+              setStep(2);
+            }}
+          >
+            Checkout
+          </Button>
+        )}
+      </Box>
     </Stack>
   );
 
@@ -197,7 +201,7 @@ export const CartWidget = observer(() => {
         padding="xl"
         size="xl"
       >
-        <Box style={{ height:"100%"  }}>
+        <Box style={{ height: "100%" }}>
           {step == 1 ? CartBag : CheckoutBag}
         </Box>
       </Drawer>
