@@ -26,7 +26,7 @@ class DataManager {
       .taxonomyControllerGet()
       .then(async (res) => {
         let data = res.data;
-        console.log(data);
+      
         runInAction(() => {
           this.categories = data;
         });
@@ -40,9 +40,9 @@ class DataManager {
     productApiController
       .productControllerGet()
       .then(async (res) => {
-        console.log(res);
+      
         let data = res.data;
-        console.log(data);
+       
         runInAction(() => {
           this.products = data;
         });
@@ -61,14 +61,13 @@ class DataManager {
       this.activeCategory = id;
     });
 
-    console.log("loading");
     startNavigationProgress();
     productApiController
       .productControllerGetProductsFiltered(id)
       .then(async (res) => {
-        console.log(res);
+  
         let data = res.data;
-        console.log(data);
+     
         runInAction(() => {
           this.products = data;
         });
@@ -84,9 +83,9 @@ class DataManager {
     productApiController
       .productControllerGetPublic()
       .then(async (res) => {
-        console.log(res);
+      
         let data = res.data;
-        console.log(res)
+      
         runInAction(() => {
           this.productsHome = data;
         });

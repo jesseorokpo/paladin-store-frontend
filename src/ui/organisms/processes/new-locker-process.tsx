@@ -25,7 +25,7 @@ export function NewLockerProcess() {
       last_name: "",
       middle_name: "",
       school: "",
-      pin: "",
+      pin: "1234",
     },
   });
 
@@ -83,8 +83,8 @@ export function NewLockerProcess() {
             </Grid.Col>
             <Grid.Col span={12}>
               <TextInput
-                label="Pin"
-                value={"123456"}
+                label="Pin (4 Digit code)"
+                description="Pin would be used to access digital locker"
                 {...form.getInputProps("pin")}
               />
             </Grid.Col>

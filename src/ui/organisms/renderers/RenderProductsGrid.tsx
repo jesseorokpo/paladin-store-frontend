@@ -8,7 +8,7 @@ export default function RenderProductsGrid({
   useMainCard?: boolean;
   products?: any[];
 }) {
-  console.log(products);
+
   return (
     <Box>
       <Box>
