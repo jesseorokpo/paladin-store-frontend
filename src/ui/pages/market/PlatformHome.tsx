@@ -52,7 +52,7 @@ export default observer(function PlatformHomeScreen() {
             sx={{ minHeight: "60vh", color: "whitesmoke", textAlign: "center" }}
           >
             <Box>
-              <Title>Paladin Super Store</Title>
+              <Title>Paladin SuperStore</Title>
               <Text>
                 Paladin is your online Guardian for children in boarding school
               </Text>
@@ -68,7 +68,7 @@ export default observer(function PlatformHomeScreen() {
                     navigate("/register");
                   }}
                 >
-                  Get Started
+                  Create Digital Locker
                 </Button>
               )}
               <Button
