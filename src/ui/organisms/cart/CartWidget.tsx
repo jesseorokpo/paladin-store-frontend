@@ -56,7 +56,17 @@ export const CartWidget = observer(() => {
   }
 
   const CartBag = (
-    <Stack style={{ flex: 1 }}>
+    <Stack style={{
+      minHeight: '100vh',
+      height: '100%',
+      overflow: 'auto',
+      scrollbarWidth: 'none',
+      msOverflowStyle: 'none',
+      //@ts-ignore
+      '&::-webkit-scrollbar': {
+        display: 'none',
+      },
+    }}>
       <Stack style={{ flex: 1 }}>
         <Box>
           {cartManager.items.map((e, index) => {
@@ -114,7 +124,7 @@ export const CartWidget = observer(() => {
       </Group>
 
       <TextInput
-        label="PID"
+        label="PI"
         onChange={(e) => {
           setPID(e.target.value);
         }}
@@ -167,6 +177,7 @@ export const CartWidget = observer(() => {
         title="Shopping Bag"
         padding="xl"
         size="xl"
+        sx={{ height: '1030vh' }}
       >
         {step == 1 ? CartBag : CheckoutBag}
       </Drawer>
