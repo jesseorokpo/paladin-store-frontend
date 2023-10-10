@@ -4,22 +4,13 @@ import {
   Text,
   Container,
   Stack,
-  Input,
-  Select,
-  Group,
-  Switch,
   Grid,
-  Menu,
-  TextInput,
-  Center,
   Button,
 } from "@mantine/core";
 import { dataManager } from "@store/data";
 import { SectionHeader } from "@ui/organisms/header-widgets/SectionHeader";
 import RenderProductsGrid from "@ui/organisms/renderers/RenderProductsGrid";
-import { ArrowDown2, SearchNormal1 } from "iconsax-react";
 import { observer } from "mobx-react";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default observer(function PlatformHomeScreen() {
@@ -29,8 +20,9 @@ export default observer(function PlatformHomeScreen() {
       <Box
         sx={{
           background: "blue",
+          //link to background image https://i.imgur.com/IVDLxMd.jpg
           backgroundImage:
-            "linear-gradient(to bottom, rgb(222, 190, 162,.5), rgb(85, 55, 37)), url(https://previews.123rf.com/images/iamzews/iamzews2001/iamzews200100099/137163842-beautiful-young-african-woman-in-a-local-african-market-viewing-content-on-her-phone-looking-surpris.jpg)",
+            "linear-gradient(to bottom, rgb(222, 190, 162,.5), rgb(85, 55, 37)), url(https://i.imgur.com/IVDLxMd.jpg)",
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}

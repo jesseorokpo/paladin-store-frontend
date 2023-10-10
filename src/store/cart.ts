@@ -1,4 +1,4 @@
-import { CartItem, TProduct } from "@interface/models";
+import { CartItem } from "@interface/models";
 import { showNotification } from "@mantine/notifications";
 import { makeObservable, observable, runInAction } from "mobx";
 import { Product } from "../sdk/catalog";

@@ -7,11 +7,7 @@ import {
   Input,
   Select,
   Group,
-  Switch,
   Grid,
-  Menu,
-  TextInput,
-  Center,
   ActionIcon,
 } from "@mantine/core";
 import { dataManager } from "@store/data";
@@ -20,12 +16,11 @@ import RenderProductsGrid from "@ui/organisms/renderers/RenderProductsGrid";
 import {
   ArrowDown2,
   Grid1,
-  Grid4,
   RowVertical,
   SearchNormal1,
 } from "iconsax-react";
 import { observer } from "mobx-react";
-import { useState } from "react";
+
 
 export default observer(function ExploreScreen() {
   return (
@@ -34,7 +29,7 @@ export default observer(function ExploreScreen() {
         sx={{
           background: "blue",
           backgroundImage:
-            "linear-gradient(to bottom, rgb(222, 190, 162,.5), rgb(85, 55, 37)), url(https://previews.123rf.com/images/iamzews/iamzews2001/iamzews200100099/137163842-beautiful-young-african-woman-in-a-local-african-market-viewing-content-on-her-phone-looking-surpris.jpg)",
+            "linear-gradient(to bottom, rgb(222, 190, 162,.5), rgb(85, 55, 37)), url(https://i.imgur.com/7Wozahe.jpg)",
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}
