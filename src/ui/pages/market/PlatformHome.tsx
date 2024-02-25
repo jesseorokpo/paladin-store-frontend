@@ -132,7 +132,7 @@ export default observer(function PlatformHomeScreen() {
               return (
                 <Grid.Col md={4}>
                   <Stack sx={{ textAlign: "center" }} align="center" px="24px">
-                    <img
+                    <img alt=""
                       width={100}
                       src={require(`./../../molecules/graphics/${element.icon}`)}
                     />

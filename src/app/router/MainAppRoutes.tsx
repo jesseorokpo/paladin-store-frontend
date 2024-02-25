@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import {  Routes, Route } from "react-router-dom";
 import { DashboardScreen } from "@ui/pages/dashboard";
 import { LoginScreen } from "@ui/pages/authentication/LoginScreen";
 
