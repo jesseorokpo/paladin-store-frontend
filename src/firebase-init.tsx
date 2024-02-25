@@ -1,6 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import "firebase/firestore"
+import { addDoc, collection, getDocs, getFirestore, query, where } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -18,4 +20,31 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+export const db = getFirestore(app)
+export const analytics = getAnalytics(app);
+
+interface Transaction {
+  userId: string;
+  amount: number;
+  purchaseDate: Date;
+}
+
+
+export const addTransaction = async (transaction: Transaction) => {
+  try {
+    const docRef = await addDoc(collection(db, "transactions"), transaction);
+    console.log("Transaction written with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+};
+
+export const getUserTransactions = async (userId: string) => {
+  const transactionsRef = collection(db, "transactions");
+  const q = query(transactionsRef, where("userId", "==", userId));
+
+  const querySnapshot = await getDocs(q);
+  const transactions = querySnapshot.docs.map(doc => doc.data() as Transaction);
+  console.log(transactions)
+  return transactions;
+};
