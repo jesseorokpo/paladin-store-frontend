@@ -23,12 +23,16 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app)
 export const analytics = getAnalytics(app);
 
+
 interface Transaction {
   userId: string;
   amount: number;
+  product_id: number;
+  product_name?: string;
+  quantity: number;
   purchaseDate: Date;
+  itemsNames: []
 }
-
 
 export const addTransaction = async (transaction: Transaction) => {
   try {
@@ -48,3 +52,4 @@ export const getUserTransactions = async (userId: string) => {
   console.log(transactions)
   return transactions;
 };
+
