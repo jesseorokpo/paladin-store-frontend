@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Drawer,
   ActionIcon,
@@ -12,8 +12,7 @@ import {
   Divider,
   TextInput,
 } from "@mantine/core";
-import { Add, Minus, ShoppingBag, ShoppingCart, Verify } from "iconsax-react";
-import { useTheme } from "@emotion/react";
+import { ShoppingCart, Verify } from "iconsax-react";
 import { cartManager } from "@store/cart";
 import { observer } from "mobx-react";
 import { CartItemCard } from "./CartItem";
@@ -24,6 +23,10 @@ import { lockerApiController } from "../../../config/sdk";
 import { showNotification } from "@mantine/notifications";
 import { lockerManager } from "@store/utils/locker";
 import { orderManager } from "@store/utils/order";
+import TestPaymentForm from "./TestPaymentForm";
+import { getUserTransactions } from "../../../firebase-init";
+import { authManager } from "@store/account/auth";
+
 
 export const CartWidget = observer(() => {
   const [opened, setOpened] = useState(false);
@@ -41,7 +44,7 @@ export const CartWidget = observer(() => {
       .then((res) => {
         console.log(res);
         //@ts-ignore
-        if (res.data == "") {
+        if (res.data === "") {
           showNotification({ message: "Locker with PID does not exists" });
         } else {
           setLocker(res.data);
@@ -54,6 +57,13 @@ export const CartWidget = observer(() => {
         setIsLoading(false);
       });
   }
+
+  useEffect(() => {
+    authManager.loadProfile()
+    getUserTransactions(authManager.status === "AUTHENTICATED" ? authManager.status : "")
+    console.log("This user is " + authManager.status)
+    console.log("The auth manager ya'll " + authManager.loadProfile)
+  }, [])
 
   const CartBag = (
     <Stack style={{
@@ -83,7 +93,7 @@ export const CartWidget = observer(() => {
               />
             </Center>
             <Text sx={{ textAlign: "center" }}>
-              You Shopping bag is empty...
+              Your Shopping bag is empty...
             </Text>
           </Stack>
         ) : null}
@@ -177,7 +187,7 @@ export const CartWidget = observer(() => {
         title="Shopping Bag"
         padding="xl"
         size="xl"
-        sx={{ height: '1030vh' }}
+        sx={{ minHeight: '1030vh' }}
       >
         {step == 1 ? CartBag : CheckoutBag}
       </Drawer>
