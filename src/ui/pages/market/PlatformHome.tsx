@@ -38,8 +38,7 @@ export default observer(function PlatformHomeScreen() {
             <Box>
               <Title>School Paladmin Commerce</Title>
               <Text>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius
-                quo aut, debitis ipsum, voluptate velit.
+                Explore wide range of products from our store
               </Text>
             </Box>
 
