@@ -17,7 +17,6 @@ class Manager {
       .lockerControllerGet()
       .then(async (res) => {
         let data = res.data;
-        console.log(data);
         runInAction(() => {
           this.items = data;
         });

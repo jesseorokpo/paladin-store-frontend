@@ -26,7 +26,7 @@ class DataManager {
       .taxonomyControllerGet()
       .then(async (res) => {
         let data = res.data;
-      
+
         runInAction(() => {
           this.categories = data;
         });
@@ -40,9 +40,7 @@ class DataManager {
     productApiController
       .productControllerGet()
       .then(async (res) => {
-      
         let data = res.data;
-       
         runInAction(() => {
           this.products = data;
         });
@@ -65,9 +63,8 @@ class DataManager {
     productApiController
       .productControllerGetProductsFiltered(id)
       .then(async (res) => {
-  
         let data = res.data;
-     
+
         runInAction(() => {
           this.products = data;
         });
@@ -83,9 +80,8 @@ class DataManager {
     productApiController
       .productControllerGetPublic()
       .then(async (res) => {
-      
         let data = res.data;
-      
+
         runInAction(() => {
           this.productsHome = data;
         });

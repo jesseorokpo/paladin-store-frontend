@@ -38,7 +38,6 @@ const AccountOverview = observer(() => {
     (e) => e.payment_status == "completed"
   );
 
-  console.log(completed_orders);
   let purchase_sum = completed_orders.reduce((a, b) => {
     //@ts-ignore
     return a + parseInt(b.sum_total);

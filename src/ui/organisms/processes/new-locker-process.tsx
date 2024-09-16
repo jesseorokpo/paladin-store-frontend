@@ -38,7 +38,6 @@ export function NewLockerProcess() {
       >
         <form
           onSubmit={form.onSubmit(async (values) => {
-            console.log(values);
             try {
               setSubmitting(true);
               await lockerManager.publishItem({ ...values });

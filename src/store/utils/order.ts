@@ -19,7 +19,6 @@ class Manager {
       .orderControllerGet()
       .then(async (res) => {
         let data = res.data;
-        console.log(data);
         runInAction(() => {
           this.items = data;
         });
@@ -44,7 +43,6 @@ class Manager {
     orderControllerApi
       .orderControllerPublish(payload)
       .then((payload) => {
-        console.log(payload);
         window.open(payload.data.payment_url);
         runInAction(() => {
           this.items.push(payload.data);

@@ -82,6 +82,7 @@ function LinksGroup({
   let navigate = useNavigate();
   const { classes, theme } = useStyles();
 
+  // console.log(props);
   const hasLinks = Array.isArray(links);
   const [opened, setOpened] = useState(initiallyOpened || false);
   const ChevronIcon = theme.dir === "ltr" ? IconChevronRight : IconChevronLeft;

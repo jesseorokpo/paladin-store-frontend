@@ -42,6 +42,7 @@ export const LockerAssets = ({ locker }: { locker: Locker }) => {
           allowMultiple: false,
           content: (props) => {
             let data = props.record;
+            console.log(data);
             return (
               <Box p="md" key={props.recordIndex}>
                 <Box p="md" sx={{ background: "ghostwhite" }}></Box>
@@ -72,7 +73,7 @@ export const LockerAssets = ({ locker }: { locker: Locker }) => {
           {
             accessor: "amount",
             title: "Cost (Per)",
-          },      
+          },
         ]}
       />
     </Box>

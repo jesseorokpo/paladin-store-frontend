@@ -1,10 +1,5 @@
 import {} from "@tabler/icons";
-import {
-  LockCircle,
-  User,
-  ArchiveBook,
-  Activity,
-} from "iconsax-react";
+import { LockCircle, User, ArchiveBook, Activity } from "iconsax-react";
 import { LinksGroupProps } from "./NavigationLinks";
 
 export const navigationLinks: LinksGroupProps[] = [

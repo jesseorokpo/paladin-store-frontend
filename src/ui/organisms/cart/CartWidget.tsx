@@ -39,7 +39,6 @@ export const CartWidget = observer(() => {
     lockerApiController
       .lockerControllerGetLocker(pid)
       .then((res) => {
-        console.log(res);
         //@ts-ignore
         if (res.data == "") {
           showNotification({ message: "Locker with PID does not exists" });
@@ -60,7 +59,7 @@ export const CartWidget = observer(() => {
   }, 0);
 
   const CartBag = (
-    <Stack style={{ height: "100%", paddingBottom:24 }}>
+    <Stack style={{ height: "100%", paddingBottom: 24 }}>
       <Stack style={{ flex: 1, overflowY: "auto" }}>
         <Box>
           {cartManager.items.map((e, index) => {
@@ -85,8 +84,8 @@ export const CartWidget = observer(() => {
       <Box>
         {cartManager.items.length == 0 ? null : (
           <Button
-          style={{display:"block"}}
-          fullWidth
+            style={{ display: "block" }}
+            fullWidth
             onClick={() => {
               setStep(2);
             }}

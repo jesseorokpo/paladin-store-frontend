@@ -17,17 +17,13 @@ import { Product } from "../../../sdk/catalog";
 import { formatCurrency } from "../../../utils";
 
 export default function ProductCard({ product }: { product: Product }) {
+  console.log(product.image);
   let navigate = useNavigate();
   let theme = useMantineTheme();
   return (
     <Box>
       <Paper withBorder sx={{ overflow: "hidden" }} px={14}>
-        <Box
-          pt={14}
-          onClick={() => {
-          
-          }}
-        >
+        <Box pt={14} onClick={() => {}}>
           <Box
             sx={{
               paddingTop: "100%",
@@ -62,13 +58,7 @@ export default function ProductCard({ product }: { product: Product }) {
         </Box>
         <Stack spacing={"xs"} sx={{ flex: 1 }} px="12px" py="12px">
           <Box>
-            <Title
-              size={"md"}
-              color="#183B56"
-              onClick={() => {
-              
-              }}
-            >
+            <Title size={"md"} color="#183B56" onClick={() => {}}>
               {product.name}
             </Title>
             <Group position="apart">
