@@ -82,7 +82,7 @@ export function NewLockerProcess() {
             </Grid.Col>
             <Grid.Col span={12}>
               <TextInput
-                label="Pin (4 Digit code)"
+                label="Pin (6 Digit code)"
                 description="Pin would be used to access digital locker"
                 {...form.getInputProps("pin")}
               />
