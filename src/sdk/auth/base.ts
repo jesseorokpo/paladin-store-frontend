@@ -31,6 +31,8 @@ export const BASE_PATH = "https://api.paladinsuperstore.com".replace(
   ""
 );
 
+// export const BASE_PATH = "http://localhost:4000".replace(/\/+$/, "");
+
 /**
  *
  * @export

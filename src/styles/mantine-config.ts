@@ -4,7 +4,7 @@ export const MaintineThemeConfig: MantineThemeOverride = {
   colorScheme: "light",
   fontFamily: "'Manrope', sans-serif",
   fontFamilyMonospace: "'Manrope', sans-serif",
-  headings: { fontFamily:"'Manrope', sans-serif" },
+  headings: { fontFamily: "'Manrope', sans-serif" },
   colors: {
     brown: [
       "#E5D4C3",
