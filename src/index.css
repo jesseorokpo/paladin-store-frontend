@@ -25,6 +25,7 @@
   font-weight: 700;
   src: local("AppRegularFont"), url(font/Proxima-Nova-Bold.otf);
 }
+/* css */
 .mantine-tbarly {
   overflow-y: auto;
 }
